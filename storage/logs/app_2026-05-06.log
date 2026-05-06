@@ -1363,3 +1363,93 @@ WHERE bots.status = %s ORDER BY bots.created_at DESC
 2026-05-06 19:01:33.033 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
 2026-05-06 19:01:33.038 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=2
 2026-05-06 19:01:33.041 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=3
+2026-05-06 22:20:32.595 | INFO     | app | app.logging:setup:143 | Logger initialized | level=DEBUG | path=storage/logs
+2026-05-06 22:20:45.497 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 22:20:45.497 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 22:20:45.498 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 22:20:45.499 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 22:20:45.500 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 22:20:45.545 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 22:20:45.548 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 22:20:45.549 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 22:21:41.154 | INFO     | app | app.logging:setup:143 | Logger initialized | level=DEBUG | path=storage/logs
+2026-05-06 22:21:44.903 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 22:21:44.903 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 22:21:44.903 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 22:21:44.904 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 22:21:44.905 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 22:21:44.906 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 22:21:44.908 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 22:21:44.909 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 22:21:47.778 | INFO     | app | app.lifecycle:lifespan:96 | Starting MediaFlow... | pid=1399405 | debug=True
+2026-05-06 22:21:47.779 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/azarstream
+2026-05-06 22:21:48.440 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-05-06 22:21:48.440 | DEBUG    | app | app.lifecycle:lifespan:101 | Database connected
+2026-05-06 22:21:48.444 | INFO     | service.cache | services.cache:connect:55 | Connected to Redis | url=redis://localhost:6379/0
+2026-05-06 22:21:48.444 | DEBUG    | app | app.lifecycle:lifespan:104 | Cache connected
+2026-05-06 22:21:48.444 | INFO     | service.rate_limiter | services.rate_limiter:start:97 | Rate limiter started
+2026-05-06 22:21:48.445 | INFO     | service.adv_rate_limiter | services.advanced_rate_limiter:start:216 | Advanced rate limiter started
+2026-05-06 22:21:48.445 | INFO     | service.user_queue | services.user_download_queue:start:64 | User download queue started
+2026-05-06 22:21:48.760 | INFO     | service.bot_manager | services.bot_manager:_preload_active_bots:95 | Preloaded bots | count=0
+2026-05-06 22:21:48.762 | INFO     | service.queue | services.queue:start:74 | Queue started | workers=10
+2026-05-06 22:21:48.786 | INFO     | scheduler | workers.scheduler:start:47 | Scheduler started
+2026-05-06 22:21:48.787 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=0
+2026-05-06 22:21:48.787 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=1
+2026-05-06 22:21:48.787 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=2
+2026-05-06 22:21:48.787 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=3
+2026-05-06 22:21:48.788 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=4
+2026-05-06 22:21:48.788 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=5
+2026-05-06 22:21:48.788 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=6
+2026-05-06 22:21:48.788 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=7
+2026-05-06 22:21:48.789 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=8
+2026-05-06 22:21:48.789 | DEBUG    | service.queue | services.queue:_worker:147 | Worker started | worker_id=9
+2026-05-06 22:21:48.789 | INFO     | service.queue | workers.queue:start:73 | Queue service started | workers=10
+2026-05-06 22:21:48.790 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=0
+2026-05-06 22:21:48.790 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=1
+2026-05-06 22:21:48.790 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=2
+2026-05-06 22:21:48.791 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=3
+2026-05-06 22:21:48.791 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=4
+2026-05-06 22:21:48.791 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=5
+2026-05-06 22:21:48.791 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=6
+2026-05-06 22:21:48.792 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=7
+2026-05-06 22:21:48.792 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=8
+2026-05-06 22:21:48.792 | DEBUG    | service.queue | workers.queue:_worker:165 | Worker started | worker_id=9
+2026-05-06 22:21:48.793 | INFO     | app | app.lifecycle:_setup_webhooks_once:59 | This worker acquired webhook lock, setting webhooks | pid=1399405
+2026-05-06 22:21:48.811 | INFO     | service.queue | workers.queue:_init_arq_pool:82 | ARQ pool created — broadcasts enabled
+2026-05-06 22:21:48.884 | INFO     | app | app.lifecycle:_setup_webhooks_once:62 | Webhooks configured | result={} | pid=1399405
+2026-05-06 22:21:48.884 | INFO     | app | app.lifecycle:lifespan:119 | Webhook setup done | results={}
+2026-05-06 22:21:49.082 | INFO     | app | app.lifecycle:_seed_superadmin_once:77 | Superadmin seed completed
+2026-05-06 22:21:49.082 | INFO     | app | app.lifecycle:lifespan:128 | MediaFlow started successfully
+2026-05-06 22:24:35.824 | INFO     | controller.admin | app.controllers.admin:dashboard:60 | Cached media count from Redis | count=2
+2026-05-06 22:25:52.502 | INFO     | app | app.lifecycle:lifespan:132 | Shutting down MediaFlow...
+2026-05-06 22:25:52.503 | INFO     | scheduler | workers.scheduler:stop:56 | Scheduler stopped
+2026-05-06 22:25:52.503 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=0
+2026-05-06 22:25:52.503 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=1
+2026-05-06 22:25:52.503 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=2
+2026-05-06 22:25:52.504 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=3
+2026-05-06 22:25:52.504 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=4
+2026-05-06 22:25:52.504 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=5
+2026-05-06 22:25:52.505 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=6
+2026-05-06 22:25:52.505 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=7
+2026-05-06 22:25:52.505 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=8
+2026-05-06 22:25:52.506 | DEBUG    | service.queue | workers.queue:_worker:212 | Worker stopped | worker_id=9
+2026-05-06 22:25:52.506 | INFO     | service.queue | workers.queue:stop:101 | Queue service stopped
+2026-05-06 22:25:52.506 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=0
+2026-05-06 22:25:52.507 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=1
+2026-05-06 22:25:52.508 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=2
+2026-05-06 22:25:52.508 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=3
+2026-05-06 22:25:52.509 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=4
+2026-05-06 22:25:52.509 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=5
+2026-05-06 22:25:52.510 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=6
+2026-05-06 22:25:52.510 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=7
+2026-05-06 22:25:52.510 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=8
+2026-05-06 22:25:52.510 | DEBUG    | service.queue | services.queue:_worker:197 | Worker stopped | worker_id=9
+2026-05-06 22:25:52.511 | INFO     | service.queue | services.queue:stop:88 | Queue stopped
+2026-05-06 22:25:52.511 | INFO     | service.bot_manager | services.bot_manager:shutdown:72 | Shutting down bot manager...
+2026-05-06 22:25:52.511 | INFO     | service.user_queue | services.user_download_queue:stop:74 | User download queue stopped
+2026-05-06 22:25:52.512 | INFO     | service.adv_rate_limiter | services.advanced_rate_limiter:stop:226 | Advanced rate limiter stopped
+2026-05-06 22:25:52.512 | INFO     | service.rate_limiter | services.rate_limiter:stop:107 | Rate limiter stopped
+2026-05-06 22:25:52.512 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 22:25:52.512 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-05-06 22:25:52.513 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-05-06 22:25:52.513 | INFO     | app | app.lifecycle:lifespan:144 | MediaFlow stopped cleanly

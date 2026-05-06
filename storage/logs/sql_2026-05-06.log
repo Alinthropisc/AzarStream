@@ -18,3 +18,7 @@ WHERE bots.status = %s ORDER BY bots.created_at DESC
 2026-05-06 17:51:54.752 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
 2026-05-06 17:51:55.163 | INFO     | database | database.connection:disconnect:92 | Database disconnected
 2026-05-06 19:01:03.044 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-05-06 22:21:47.779 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/azarstream
+2026-05-06 22:21:48.440 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-05-06 22:25:52.512 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-05-06 22:25:52.513 | INFO     | database | database.connection:disconnect:92 | Database disconnected

@@ -74,6 +74,61 @@ class UpdateProcessor:
         ],
     }
 
+    # Запрет 18+ / NSFW контента — каналы кеша могут быть забанены за такой материал.
+    ADULT_DOMAINS = (
+        "pornhub.com",
+        "xnxx.com",
+        "xvideos.com",
+        "xvideos2.com",
+        "xvideos.red",
+        "thisvid.com",
+        "redtube.com",
+        "youporn.com",
+        "tube8.com",
+        "spankbang.com",
+        "xhamster.com",
+        "xhamsterlive.com",
+        "porn.com",
+        "porntrex.com",
+        "porn300.com",
+        "eporner.com",
+        "tnaflix.com",
+        "beeg.com",
+        "brazzers.com",
+        "bangbros.com",
+        "naughtyamerica.com",
+        "manyvids.com",
+        "chaturbate.com",
+        "stripchat.com",
+        "cam4.com",
+        "onlyfans.com",
+        "fansly.com",
+        "rule34.xxx",
+        "rule34video.com",
+        "e-hentai.org",
+        "nhentai.net",
+        "hanime.tv",
+        "hentaihaven.xxx",
+    )
+
+    @classmethod
+    def _is_adult_url(cls, url: str) -> bool:
+        from urllib.parse import urlparse
+
+        candidate = url.strip().lower()
+        if not candidate.startswith(("http://", "https://")):
+            candidate = "http://" + candidate
+        try:
+            host = urlparse(candidate).hostname or ""
+        except ValueError:
+            return False
+        if not host:
+            return False
+        for domain in cls.ADULT_DOMAINS:
+            if host == domain or host.endswith("." + domain):
+                return True
+        return False
+
     def __init__(self):
         # Кеш каналов для проверки подписки (bot_id -> channels, time)
         self._channel_cache: dict[int, dict] = {}
@@ -345,6 +400,13 @@ class UpdateProcessor:
     async def _handle_url(self, ctx: ProcessingContext, message: Message, url: str) -> bool:
         """Обработка URL — с очередью для пользователя"""
         from i18n.lang import MESSAGES
+
+        # Запрет 18+ контента — проверяем до определения платформы и до постановки в очередь.
+        if self._is_adult_url(url):
+            text = MESSAGES["adult_content_blocked"].get(ctx.language, MESSAGES["adult_content_blocked"]["en"])
+            await ctx.bot.send_message(ctx.chat_id, text, reply_to_message_id=message.message_id)
+            log.warning("🚫 Adult URL blocked", user_id=ctx.user_id, url=url[:100])
+            return True
 
         # Определяем платформу заранее для передачи в проверку подписки
         platform = download_service.detect_platform(url)

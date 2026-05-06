@@ -15,6 +15,11 @@ MESSAGES = {
         "ru": "❗ Поддерживаемые ссылки: Pinterest, VK, YouTube, YouTube Shorts, YouTube Playlists, TikTok, Instagram. С YouTube можно конвертировать в MP3 или MP4. Пожалуйста, отправьте ссылку из одной из этих соцсетей.",
         "uz": "❗ Qo'llab-quvvatlanadigan havolalar: Pinterest, VK, YouTube, YouTube Shorts, YouTube Playlists, TikTok, Instagram. YouTube'dan MP3 yoki MP4 ga aylantirish mumkin. Iltimos, shu platformalardan birining havolasini yuboring.",
     },
+    "adult_content_blocked": {
+        "en": "🚫 Downloading 18+ / adult content is not allowed.\n\nThis bot does not support pornographic or NSFW websites (e.g. Pornhub, XNXX, XVideos, ThisVid and similar).\n\n✅ Supported platforms: YouTube, YouTube Shorts, YouTube Playlists, TikTok, Instagram, Pinterest, VK.",
+        "ru": "🚫 Скачивание контента 18+ запрещено.\n\nЭтот бот не поддерживает порнографические и NSFW сайты (например, Pornhub, XNXX, XVideos, ThisVid и подобные).\n\n✅ Поддерживаемые платформы: YouTube, YouTube Shorts, YouTube Playlists, TikTok, Instagram, Pinterest, VK.",
+        "uz": "🚫 18+ / kattalar uchun kontentni yuklab olish taqiqlangan.\n\nBu bot pornografik va NSFW saytlarni qo'llab-quvvatlamaydi (masalan, Pornhub, XNXX, XVideos, ThisVid va shunga o'xshashlar).\n\n✅ Qo'llab-quvvatlanadigan platformalar: YouTube, YouTube Shorts, YouTube Playlists, TikTok, Instagram, Pinterest, VK.",
+    },
     "error_processing": {
         "en": "❌ An error occurred while processing the link.",
         "ru": "❌ Произошла ошибка при обработке ссылки.",
