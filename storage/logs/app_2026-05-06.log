@@ -640,3 +640,726 @@ WHERE bots.status = %s ORDER BY bots.created_at DESC
 2026-05-06 17:51:54.752 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
 2026-05-06 17:51:55.163 | INFO     | database | database.connection:disconnect:92 | Database disconnected
 2026-05-06 17:51:55.164 | INFO     | app | app.lifecycle:lifespan:144 | MediaFlow stopped cleanly
+2026-05-06 19:00:30.273 | INFO     | app | app.logging:setup:143 | Logger initialized | level=DEBUG | path=storage/logs
+2026-05-06 19:00:47.414 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:00:47.414 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:00:47.414 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:00:47.415 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:00:47.416 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:00:47.504 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:00:47.547 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:00:47.547 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:00:55.010 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:55.702 | INFO     | service.downloader | services.downloaders.downloader:download:340 | 📥 DownloadService.download called | user_id=12345 | url=https://www.youtube.com/watch?v=test123
+2026-05-06 19:00:55.786 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:55.892 | DEBUG    | service.cache | services.cache:cache_media:160 | Cached media | url=https://www.youtube.com/watch?v=cached123 | quality=720p
+2026-05-06 19:00:55.893 | DEBUG    | service.cache | services.cache:get_cached_media:138 | Cache HIT | url=https://www.youtube.com/watch?v=cached123 | quality=720p
+2026-05-06 19:00:55.896 | DEBUG    | service.downloader | services.downloaders.downloader:check_cache:274 | Cache HIT (Redis) | url=https://www.youtube.com/watch?v=cached123
+2026-05-06 19:00:55.944 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:56.048 | INFO     | service.rate_limiter | services.rate_limiter:start:97 | Rate limiter started
+2026-05-06 19:00:56.070 | INFO     | service.downloader | services.downloaders.downloader:download:340 | 📥 DownloadService.download called | user_id=99999 | url=https://www.youtube.com/watch?v=test
+2026-05-06 19:00:57.390 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.391 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['tv_embedded'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:57.471 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.471 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['tv_embedded'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:57.555 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.556 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['tv_embedded', 'android'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:57.636 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.637 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['tv_embedded', 'android'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:57.721 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.722 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['android'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:57.803 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.804 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['android'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:57.896 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.897 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['ios'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:57.989 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:57.990 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['ios'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:58.070 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:58.071 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['mweb'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:58.176 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:58.177 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['mweb'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:58.269 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:58.270 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['web'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:58.371 | DEBUG    | downloader.youtube | services.media.youtube:error:211 | yt-dlp error | msg=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=test looks truncated.
+2026-05-06 19:00:58.372 | DEBUG    | downloader.youtube | services.media.youtube:_download_video_best:1175 | Best quality attempt failed | clients=['web'] | error=ERROR: [youtube:truncated_id] test: Incomplete YouTube ID test. URL https://www.youtube.com/watch?v=
+2026-05-06 19:00:58.378 | INFO     | service.rate_limiter | services.rate_limiter:stop:107 | Rate limiter stopped
+2026-05-06 19:00:58.408 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:58.503 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:58.578 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:00:58.590 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:00:58.590 | INFO     | service.user | services.user:get_or_create:82 | New user registered | telegram_id=123456789 | bot_id=1 | language=ru
+2026-05-06 19:00:58.600 | DEBUG    | repository.telegramuser | repositories.base:update:130 | Updated | id=1
+2026-05-06 19:00:58.601 | DEBUG    | service.user | services.user:update_language:146 | Language updated | user_id=1 | language=en
+2026-05-06 19:00:58.637 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:58.782 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:00:58.782 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:00:58.783 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:58.889 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.051 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:00:59.052 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:00:59.052 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.056 | INFO     | controller.auth | app.controllers.auth:login:42 | Admin logged in | username=admin
+2026-05-06 19:00:59.091 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.225 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:00:59.225 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:00:59.226 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.234 | WARNING  | controller.auth | app.controllers.auth:login:35 | Failed login attempt | username=admin
+2026-05-06 19:00:59.265 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.575 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:00:59.575 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:00:59.576 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.603 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.753 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:00:59.754 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:00:59.755 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:00:59.768 | INFO     | controller.admin | app.controllers.admin:dashboard:60 | Cached media count from Redis | count=0
+2026-05-06 19:00:59.919 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.102 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:00.102 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:00.103 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.112 | WARNING  | webhook | app.controllers.webhook:handle_webhook:62 | Webhook for unknown bot — dropping | token_suffix=en_12345
+2026-05-06 19:01:00.142 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.297 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:00.298 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:00.299 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.333 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.476 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:00.478 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:00.478 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:00.479 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.532 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.702 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:00.703 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:00.704 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.767 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.939 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:00.939 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:00.940 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:00.977 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:01.118 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:01.118 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:01.119 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:01.178 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:01.536 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:01.536 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:01.537 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:01.545 | INFO     | controller.ads | app.controllers.ads:create_form:97 | Loaded bots for ad form | bot_count=0
+2026-05-06 19:01:01.604 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:01.746 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:01.747 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:01.747 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:01.776 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:01.917 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:01.917 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:01.918 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.005 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.159 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:02.159 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:02.160 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.234 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.418 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:02.418 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:02.419 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.451 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.592 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:02.592 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:02.594 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.687 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.846 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:02.847 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:02.848 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:02.899 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.040 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:03.041 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:03.042 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.044 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-05-06 19:01:03.075 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.222 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:03.223 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:03.223 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.257 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.393 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:03.393 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:03.394 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.421 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.574 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:03.574 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:03.575 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.607 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:03.990 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:03.991 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:03.991 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:04.023 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:04.167 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:04.167 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:04.168 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:04.531 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:04.728 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:04.729 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:04.729 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:04.954 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.123 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:05.124 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:05.125 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.161 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.317 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:05.317 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:05.318 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.393 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.532 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:05.532 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:05.533 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.606 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.754 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:05.754 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:05.755 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.788 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.944 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:05.945 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:05.946 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:05.976 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.123 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:06.124 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:06.125 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.246 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.397 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:06.398 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:06.399 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.482 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.617 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:06.617 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:06.618 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.624 | INFO     | controller.ads | app.controllers.ads:create_form:97 | Loaded bots for ad form | bot_count=0
+2026-05-06 19:01:06.688 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.838 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:06.838 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:06.839 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:06.842 | INFO     | controller.ads | app.controllers.ads:create_ad:163 | Ad create request received | name=Test Post-Download Ad | ad_type=post_download | media_type=none | media_file_id=None | media_file_id_length=0
+2026-05-06 19:01:06.842 | INFO     | controller.ads | app.controllers.ads:create_ad:211 | Creating ad | name=Test Post-Download Ad | ad_type=post_download | media_type=none | has_file_id=False | bot_count=0
+2026-05-06 19:01:06.853 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:06.885 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.023 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:07.023 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:07.024 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.027 | INFO     | controller.ads | app.controllers.ads:create_ad:163 | Ad create request received | name=Test Broadcast | ad_type=broadcast | media_type=none | media_file_id=None | media_file_id_length=0
+2026-05-06 19:01:07.056 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.199 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:07.200 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:07.200 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.208 | WARNING  | webhook | app.controllers.webhook:handle_webhook:62 | Webhook for unknown bot — dropping | token_suffix=BCdefGHI
+2026-05-06 19:01:07.235 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.680 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:07.680 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:07.681 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.690 | WARNING  | webhook | app.controllers.webhook:handle_webhook:62 | Webhook for unknown bot — dropping | token_suffix=BCdefGHI
+2026-05-06 19:01:07.723 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.857 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:07.858 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:07.859 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:07.866 | WARNING  | webhook | app.controllers.webhook:handle_webhook:62 | Webhook for unknown bot — dropping | token_suffix=BCdefGHI
+2026-05-06 19:01:07.897 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:08.030 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:08.031 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:08.032 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:08.039 | WARNING  | webhook | app.controllers.webhook:handle_webhook:62 | Webhook for unknown bot — dropping | token_suffix=id_token
+2026-05-06 19:01:08.066 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:08.197 | WARNING  | service.cache | services.cache:connect:35 | Loop changed, reconnecting cache
+2026-05-06 19:01:08.198 | INFO     | service.cache | services.cache:disconnect:66 | Disconnected from Redis
+2026-05-06 19:01:08.198 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:08.206 | WARNING  | webhook | app.controllers.webhook:handle_webhook:62 | Webhook for unknown bot — dropping | token_suffix=BCdefGHI
+2026-05-06 19:01:08.231 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:08.830 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:08.891 | INFO     | service.rate_limiter | services.rate_limiter:start:97 | Rate limiter started
+2026-05-06 19:01:09.177 | INFO     | service.rate_limiter | services.rate_limiter:stop:107 | Rate limiter stopped
+2026-05-06 19:01:09.196 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:09.876 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:09.974 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.063 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.140 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.209 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.278 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.340 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.410 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.492 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.578 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.664 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.742 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.850 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:10.936 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.010 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.093 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.186 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.278 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.361 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.454 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.532 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.622 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.706 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.777 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:11.781 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:11.815 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.879 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:11.913 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:11.980 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:12.010 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:12.073 | DEBUG    | repository.addelivery | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:12.095 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:12.152 | DEBUG    | repository.addelivery | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:12.155 | DEBUG    | repository.addelivery | repositories.base:update:130 | Updated | id=1
+2026-05-06 19:01:12.181 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.166 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.253 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.346 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.449 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.521 | DEBUG    | service.auth | services.auth:decode_token:119 | Invalid token | error=Not enough segments
+2026-05-06 19:01:13.553 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.649 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.745 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.832 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.905 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:13.984 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.068 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.163 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.251 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.349 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.442 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.532 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.622 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.717 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.818 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:14.886 | DEBUG    | service.cache | services.cache:cache_media:160 | Cached media | url=https://example.com/video.mp4 | quality=720p
+2026-05-06 19:01:14.886 | DEBUG    | service.cache | services.cache:get_cached_media:138 | Cache HIT | url=https://example.com/video.mp4 | quality=720p
+2026-05-06 19:01:14.919 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.032 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.135 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.221 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.305 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.368 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=d26fb665-7c42-4f15-9110-c7664a3959ad
+2026-05-06 19:01:15.368 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=d26fb665-7c42-4f15-9110-c7664a3959ad | telegram_id=-1001234567890 | name=Test Channel
+2026-05-06 19:01:15.389 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.439 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=00b94aed-93ad-4fa9-baf3-93db61fc7bdd
+2026-05-06 19:01:15.440 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=00b94aed-93ad-4fa9-baf3-93db61fc7bdd | telegram_id=-1001234567890 | name=Channel 1
+2026-05-06 19:01:15.459 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.512 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=4b714788-5e53-4134-8bee-caf9d11d9e84
+2026-05-06 19:01:15.512 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=4b714788-5e53-4134-8bee-caf9d11d9e84 | telegram_id=-1001111111111 | name=Channel 1
+2026-05-06 19:01:15.531 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.580 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=8b74c42e-dcac-476b-8301-b1b86ca72dbe
+2026-05-06 19:01:15.580 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=8b74c42e-dcac-476b-8301-b1b86ca72dbe | telegram_id=-1001234567890 | name=Test Channel
+2026-05-06 19:01:15.599 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.666 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.729 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=1772e42d-211f-4d96-a200-0d06842efe4e
+2026-05-06 19:01:15.730 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=1772e42d-211f-4d96-a200-0d06842efe4e | telegram_id=-1001234567890 | name=Test Channel
+2026-05-06 19:01:15.750 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.844 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:15.910 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=0d6b5413-205d-4ce2-9d14-94ae88251cd8
+2026-05-06 19:01:15.910 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=0d6b5413-205d-4ce2-9d14-94ae88251cd8 | telegram_id=-1001234567890 | name=Active Channel
+2026-05-06 19:01:15.936 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.021 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.083 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=e69cb537-6497-41b0-951a-4e1b0e206ff3
+2026-05-06 19:01:16.083 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=e69cb537-6497-41b0-951a-4e1b0e206ff3 | telegram_id=-1001111111111 | name=Ch1
+2026-05-06 19:01:16.088 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=f5222de0-1dd2-44ba-9b22-01d4e5038f3a
+2026-05-06 19:01:16.088 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=f5222de0-1dd2-44ba-9b22-01d4e5038f3a | telegram_id=-1002222222222 | name=Ch2
+2026-05-06 19:01:16.118 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.191 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=7b160bf7-1d0f-4c41-8008-60d5b14c09df
+2026-05-06 19:01:16.191 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=7b160bf7-1d0f-4c41-8008-60d5b14c09df | telegram_id=-1001111111111 | name=Active
+2026-05-06 19:01:16.196 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=9ac11da4-00ac-4fb9-9f93-f3b253f4a9ec
+2026-05-06 19:01:16.196 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=9ac11da4-00ac-4fb9-9f93-f3b253f4a9ec | telegram_id=-1002222222222 | name=Inactive
+2026-05-06 19:01:16.200 | DEBUG    | repository.cachechannel | repositories.base:update:130 | Updated | id=9ac11da4-00ac-4fb9-9f93-f3b253f4a9ec
+2026-05-06 19:01:16.200 | INFO     | service.cache_channel | services.cache_channel:update:158 | Cache channel updated | channel_id=9ac11da4-00ac-4fb9-9f93-f3b253f4a9ec | fields=['is_active']
+2026-05-06 19:01:16.235 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.320 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=8b6094c7-c7a5-4e26-a7a7-99ca2bc0e5f6
+2026-05-06 19:01:16.321 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=8b6094c7-c7a5-4e26-a7a7-99ca2bc0e5f6 | telegram_id=-1001234567890 | name=Old Name
+2026-05-06 19:01:16.325 | DEBUG    | repository.cachechannel | repositories.base:update:130 | Updated | id=8b6094c7-c7a5-4e26-a7a7-99ca2bc0e5f6
+2026-05-06 19:01:16.325 | INFO     | service.cache_channel | services.cache_channel:update:158 | Cache channel updated | channel_id=8b6094c7-c7a5-4e26-a7a7-99ca2bc0e5f6 | fields=['name']
+2026-05-06 19:01:16.351 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.415 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=c1b0436f-51f2-4bef-9c48-a9755efb99b9
+2026-05-06 19:01:16.415 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=c1b0436f-51f2-4bef-9c48-a9755efb99b9 | telegram_id=-1001234567890 | name=Test
+2026-05-06 19:01:16.415 | DEBUG    | service.cache_channel | services.cache_channel:update:154 | Nothing to update | channel_id=c1b0436f-51f2-4bef-9c48-a9755efb99b9
+2026-05-06 19:01:16.439 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.511 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=b6e39bcf-c9d0-43d9-a57e-f32662e4f48b
+2026-05-06 19:01:16.511 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=b6e39bcf-c9d0-43d9-a57e-f32662e4f48b | telegram_id=-1001234567890 | name=Test
+2026-05-06 19:01:16.514 | DEBUG    | repository.cachechannel | repositories.base:update:130 | Updated | id=b6e39bcf-c9d0-43d9-a57e-f32662e4f48b
+2026-05-06 19:01:16.514 | INFO     | service.cache_channel | services.cache_channel:update:158 | Cache channel updated | channel_id=b6e39bcf-c9d0-43d9-a57e-f32662e4f48b | fields=['is_active']
+2026-05-06 19:01:16.516 | DEBUG    | repository.cachechannel | repositories.base:update:130 | Updated | id=b6e39bcf-c9d0-43d9-a57e-f32662e4f48b
+2026-05-06 19:01:16.516 | INFO     | service.cache_channel | services.cache_channel:update:158 | Cache channel updated | channel_id=b6e39bcf-c9d0-43d9-a57e-f32662e4f48b | fields=['is_active']
+2026-05-06 19:01:16.541 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.608 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=06295727-d12d-4106-94c4-643f1b12ad1a
+2026-05-06 19:01:16.609 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=06295727-d12d-4106-94c4-643f1b12ad1a | telegram_id=-1001234567890 | name=Test
+2026-05-06 19:01:16.612 | DEBUG    | repository.cachechannel | repositories.base:delete:164 | Deleted | id=06295727-d12d-4106-94c4-643f1b12ad1a
+2026-05-06 19:01:16.612 | INFO     | service.cache_channel | services.cache_channel:delete:170 | Cache channel deleted | channel_id=06295727-d12d-4106-94c4-643f1b12ad1a
+2026-05-06 19:01:16.640 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.711 | DEBUG    | repository.cachechannel | repositories.base:create:41 | Created | id=71e011f6-7573-4d0a-9818-48acfff9b164
+2026-05-06 19:01:16.711 | INFO     | service.cache_channel | services.cache_channel:create:73 | Cache channel created | channel_id=71e011f6-7573-4d0a-9818-48acfff9b164 | telegram_id=-1001234567890 | name=Test
+2026-05-06 19:01:16.715 | DEBUG    | repository.cachechannel | repositories.base:delete:164 | Deleted | id=71e011f6-7573-4d0a-9818-48acfff9b164
+2026-05-06 19:01:16.715 | INFO     | service.cache_channel | services.cache_channel:delete_by_telegram_id:178 | Cache channel deleted by telegram_id | telegram_id=-1001234567890
+2026-05-06 19:01:16.741 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.825 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.917 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:16.981 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:16.981 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:16.982 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:16.983 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:16.984 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:16.985 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:16.987 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:16.988 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:16.998 | INFO     | service.downloader | services.downloaders.downloader:send_to_user:674 | Sending to user | count=1 | types=['video'] | media_type=None
+2026-05-06 19:01:17.026 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.087 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:17.087 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:17.087 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:17.089 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:17.090 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:17.091 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:17.093 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:17.093 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:17.103 | INFO     | service.downloader | services.downloaders.downloader:send_to_user:674 | Sending to user | count=1 | types=['video'] | media_type=None
+2026-05-06 19:01:17.127 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.193 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:17.194 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:17.194 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:17.195 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:17.196 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:17.198 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:17.200 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:17.200 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:17.211 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:655 | send_to_user: no file_ids and no file_paths
+2026-05-06 19:01:17.244 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.315 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:17.315 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:17.316 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:17.317 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:17.318 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:17.337 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:17.340 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:17.340 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:17.355 | INFO     | service.downloader | services.downloaders.downloader:send_to_user:674 | Sending to user | count=1 | types=['video'] | media_type=None
+2026-05-06 19:01:17.388 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.457 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:17.457 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:17.458 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:17.459 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:17.460 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:17.462 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:17.464 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:17.465 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:17.477 | INFO     | service.downloader | services.downloaders.downloader:send_to_user:674 | Sending to user | count=1 | types=['video'] | media_type=None
+2026-05-06 19:01:17.509 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.582 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:17.582 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:17.583 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:17.583 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:17.584 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:17.591 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:17.593 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:17.594 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:17.606 | INFO     | service.downloader | services.downloaders.downloader:send_to_user:674 | Sending to user | count=1 | types=['photo'] | media_type=photo
+2026-05-06 19:01:17.634 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.710 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:17.710 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:17.711 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:17.711 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:17.712 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:17.714 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:17.715 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:17.716 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:17.725 | INFO     | service.downloader | services.downloaders.downloader:send_to_user:674 | Sending to user | count=1 | types=['video'] | media_type=None
+2026-05-06 19:01:17.756 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.847 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:17.933 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.012 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.084 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.154 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.243 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.373 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.480 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.590 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.666 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.729 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.811 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:18.906 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.008 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.116 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.209 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.300 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.389 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.485 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.570 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.668 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.758 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.848 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:19.941 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.028 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.117 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.194 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.269 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.355 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.444 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.546 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.622 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:20.623 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:20.623 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:20.624 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:20.625 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:20.627 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:20.659 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.727 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:20.727 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:20.727 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:20.728 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:20.729 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:20.731 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:20.760 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.821 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:20.822 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:20.822 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:20.823 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:20.824 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:20.826 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:20.854 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:20.925 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:20.925 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:20.925 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:20.926 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:20.927 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:20.928 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:20.956 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.022 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:21.022 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:21.023 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:21.025 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:21.026 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:21.028 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:21.056 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.114 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:21.114 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:21.114 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:21.115 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:21.116 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:21.117 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:21.140 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.200 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:21.200 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:21.200 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:21.201 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:21.202 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:21.203 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:21.228 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.292 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:21.293 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:21.293 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:21.294 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:21.295 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:21.297 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:21.332 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.402 | INFO     | downloader.youtube | services.media.youtube:_load_token_file:426 | Loaded visitor_data.txt | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/visitor_data.txt
+2026-05-06 19:01:21.403 | WARNING  | downloader.youtube | services.media.youtube:__init__:286 | PO_TOKEN not found — wpc plugin will handle it automatically
+2026-05-06 19:01:21.403 | INFO     | downloader.youtube | services.media.youtube:_start_virtual_display:337 | Display found | display=:1
+2026-05-06 19:01:21.404 | INFO     | downloader.youtube | services.media.youtube:__init__:296 | Browser found for wpc plugin | path=/usr/bin/chromium-browser
+2026-05-06 19:01:21.405 | INFO     | downloader.youtube | services.media.youtube:__init__:323 | YouTube downloader ready | aria2c=True | ffmpeg=True
+2026-05-06 19:01:21.407 | INFO     | downloader.youtube | services.media.youtube:__init__:330 | YouTube cookies found | path=/home/sayavdera/Desktop/projects/TelegramBots/AzarStream/storage/cookies/youtube.txt
+2026-05-06 19:01:21.460 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.529 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:21.529 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:21.553 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.614 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:21.615 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:21.639 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.706 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:21.707 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:21.737 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.806 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:21.807 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:21.838 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:21.911 | WARNING  | downloader.instagram | services.media.instagram:_load_netscape_cookies:150 | sessionid not found in cookies file
+2026-05-06 19:01:21.912 | INFO     | downloader.instagram | services.media.instagram:__init__:53 | InstagramDownloader initialized | has_ffmpeg=True | session_loaded=False | cookies_file_exists=True
+2026-05-06 19:01:21.950 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.057 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.151 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.240 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.322 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.404 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.495 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.577 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.668 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.757 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.846 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:22.941 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.042 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.134 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.229 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.328 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.437 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.530 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.630 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.742 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:23.951 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.073 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.166 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.274 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.388 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.494 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.560 | INFO     | service.queue_monitor | services.queue_monitor:delete_job:325 | Job deleted | job_id=non_existent_job_id
+2026-05-06 19:01:24.593 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.705 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.802 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.901 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:24.998 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.096 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.188 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.278 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.371 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.468 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.579 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.674 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.755 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:25.792 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.868 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:25.895 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:25.953 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:25.956 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:25.959 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=3
+2026-05-06 19:01:25.983 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.047 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.054 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.080 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.150 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.158 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.190 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.266 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.298 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.365 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.399 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.468 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.472 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:26.505 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.578 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.610 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.676 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.705 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.779 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.810 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.879 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.881 | DEBUG    | repository.bot | repositories.base:update:130 | Updated | id=1
+2026-05-06 19:01:26.900 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:26.972 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.979 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:26.984 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:26.987 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=3
+2026-05-06 19:01:26.992 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=4
+2026-05-06 19:01:26.995 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=5
+2026-05-06 19:01:27.024 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.101 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.107 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.114 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:27.118 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=3
+2026-05-06 19:01:27.123 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=4
+2026-05-06 19:01:27.127 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=5
+2026-05-06 19:01:27.156 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.237 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.244 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.275 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.359 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.393 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.465 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.499 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.570 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.573 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:27.576 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=3
+2026-05-06 19:01:27.579 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=4
+2026-05-06 19:01:27.581 | DEBUG    | repository.media | repositories.base:create:41 | Created | id=5
+2026-05-06 19:01:27.604 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.675 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.716 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.788 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.792 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:27.795 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=3
+2026-05-06 19:01:27.832 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:27.902 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.917 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:27.917 | INFO     | service.user | services.user:get_or_create:82 | New user registered | telegram_id=123456789 | bot_id=1 | language=en
+2026-05-06 19:01:27.947 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.022 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.029 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.065 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.148 | DEBUG    | repository.bot | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.157 | DEBUG    | repository.ad | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.159 | INFO     | service.ad | services.ad:create:77 | Ad created | ad_id=1 | name=Test Campaign
+2026-05-06 19:01:28.185 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.277 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.365 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.423 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.425 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:28.449 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.518 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.521 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:28.557 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.642 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.679 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.763 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.801 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.866 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.892 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:28.964 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:28.969 | DEBUG    | repository.subscriptionchannel | repositories.base:update:130 | Updated | id=1
+2026-05-06 19:01:29.001 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.078 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:29.105 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.176 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:29.179 | DEBUG    | repository.subscriptionchannel | repositories.base:delete:164 | Deleted | id=1
+2026-05-06 19:01:29.213 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.280 | DEBUG    | repository.subscriptionchannel | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:29.310 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.415 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.521 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.614 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.709 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.793 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.884 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:29.987 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.062 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.147 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.242 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.328 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.406 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.486 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.585 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.685 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.771 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.863 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:30.961 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.041 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.117 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.185 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.260 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.335 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.493 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.567 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.644 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.710 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.774 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.863 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:31.946 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.041 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.130 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.235 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.329 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.426 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.516 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.597 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:32.601 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:32.604 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=3
+2026-05-06 19:01:32.608 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=4
+2026-05-06 19:01:32.612 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=5
+2026-05-06 19:01:32.644 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.719 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:32.741 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.813 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:32.818 | DEBUG    | repository.telegramuser | repositories.base:update:130 | Updated | id=1
+2026-05-06 19:01:32.850 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:32.927 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:32.930 | DEBUG    | repository.telegramuser | repositories.base:delete:164 | Deleted | id=1
+2026-05-06 19:01:32.958 | INFO     | service.cache | services.cache:connect:46 | Connected to FakeRedis (dev mode)
+2026-05-06 19:01:33.033 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=1
+2026-05-06 19:01:33.038 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=2
+2026-05-06 19:01:33.041 | DEBUG    | repository.telegramuser | repositories.base:create:41 | Created | id=3

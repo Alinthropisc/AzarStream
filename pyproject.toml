@@ -1,7 +1,7 @@
 [project]
-name = "mediaflow"
+name = "azarstream"
 version = "0.1.0"
-description = "MediaFlow - Telegram bot for downloading and organizing media content"
+description = "AzarStrean - Telegram bot for downloading and organizing media content"
 readme = "README.md"
 authors = [
     { name = "AI Ansar" },

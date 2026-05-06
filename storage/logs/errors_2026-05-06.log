@@ -391,3 +391,5 @@ WHERE bots.status = %s ORDER BY bots.created_at DESC
  LIMIT %s, %s]
 [parameters: ('ACTIVE', 0, 100)]
 (Background on this error at: https://sqlalche.me/e/20/f405)
+2026-05-06 19:01:03.044 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-05-06 19:01:17.211 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:655 | send_to_user: no file_ids and no file_paths

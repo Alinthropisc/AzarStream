@@ -17,3 +17,4 @@ WHERE bots.status = %s ORDER BY bots.created_at DESC
 2026-05-06 17:39:53.205 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
 2026-05-06 17:51:54.752 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
 2026-05-06 17:51:55.163 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-05-06 19:01:03.044 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
