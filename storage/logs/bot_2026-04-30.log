@@ -1,0 +1,78 @@
+2026-04-30 00:05:13.626 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716092 | has_message=True | has_callback=False
+2026-04-30 00:05:13.627 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 00:05:13.672 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=asd
+2026-04-30 00:05:20.604 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716093 | has_message=True | has_callback=False
+2026-04-30 00:05:20.605 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 00:05:20.616 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.youtube.com/watch?v=ZoNH1HJr0OQ
+2026-04-30 00:06:04.628 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716094 | has_message=False | has_callback=True
+2026-04-30 00:06:04.628 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 00:06:12.693 | INFO     | bot.processor | bot.processor:_process_download:903 | ⬇️ Starting download | user_id=6597464835 | url=https://www.youtube.com/watch?v=ZoNH1HJr0OQ | platform=youtube
+2026-04-30 00:06:54.389 | INFO     | bot.processor | bot.processor:_process_download:929 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-04-30 00:06:55.475 | DEBUG    | bot.processor | bot.processor:_save_download_record:1324 | Download record saved | user_id=1 | total_downloads=95
+2026-04-30 00:06:55.476 | DEBUG    | bot.processor | bot.processor:_process_download:1006 | Download record saved (new) | user_id=6597464835 | url=https://www.youtube.com/watch?v=ZoNH1HJr0OQ
+2026-04-30 00:06:56.497 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1550 | Sending ad | ad_id=1 | media_type=none
+2026-04-30 00:06:56.706 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1636 | Ad sent as text | mode=HTML
+2026-04-30 00:07:12.427 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716095 | has_message=True | has_callback=False
+2026-04-30 00:07:12.428 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 00:07:12.478 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.youtube.com/watch?v=ZoNH1HJr0OQ
+2026-04-30 00:13:40.450 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716096 | has_message=True | has_callback=False
+2026-04-30 00:13:40.450 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 00:13:40.470 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/reel/DXJ-yIcDEpC/?igsh=MXBxNGprYjhjeGcydg==
+2026-04-30 00:13:40.710 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716097 | has_message=True | has_callback=False
+2026-04-30 00:13:40.711 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 00:13:40.727 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/reel/DU_HjAxjAZ1/?igsh=MW1penoybnR5bGI2cQ==
+2026-04-30 00:13:40.814 | INFO     | bot.processor | bot.processor:_handle_direct_download:834 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/reel/DXJ-yIcDEpC/?igsh=MXBxNGprYjhjeGcydg==
+2026-04-30 00:13:40.930 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716098 | has_message=True | has_callback=False
+2026-04-30 00:13:40.930 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 00:13:40.939 | INFO     | bot.processor | bot.processor:_process_download:903 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/reel/DXJ-yIcDEpC/?igsh=MXBxNGprYjhjeGcydg== | platform=instagram
+2026-04-30 00:13:40.958 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXq0r9XCDic/?igsh=ZXFqMzI0bzUwemY=
+2026-04-30 00:13:41.100 | INFO     | bot.processor | bot.processor:_handle_url:394 | 📋 Download queued | user_id=6597464835 | position=1 | url=https://www.instagram.com/reel/DU_HjAxjAZ1/?igsh=MW1penoybnR5bGI2cQ==
+2026-04-30 00:13:41.314 | INFO     | bot.processor | bot.processor:_handle_url:394 | 📋 Download queued | user_id=6597464835 | position=2 | url=https://www.instagram.com/p/DXq0r9XCDic/?igsh=ZXFqMzI0bzUwemY=
+2026-04-30 00:13:57.580 | INFO     | bot.processor | bot.processor:_process_download:929 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-04-30 00:13:58.533 | DEBUG    | bot.processor | bot.processor:_save_download_record:1324 | Download record saved | user_id=1 | total_downloads=96
+2026-04-30 00:13:58.534 | DEBUG    | bot.processor | bot.processor:_process_download:1006 | Download record saved (new) | user_id=6597464835 | url=https://www.instagram.com/reel/DXJ-yIcDEpC/?igsh=MXBxNGprYjh
+2026-04-30 00:13:58.680 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1550 | Sending ad | ad_id=1 | media_type=none
+2026-04-30 00:13:58.817 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1636 | Ad sent as text | mode=HTML
+2026-04-30 00:13:58.817 | INFO     | bot.processor | bot.processor:_process_next_in_queue:1119 | 🔄 Processing next from queue | user_id=6597464835 | url=https://www.instagram.com/reel/DU_HjAxjAZ1/?igsh=MW1penoybnR5bGI2cQ==
+2026-04-30 00:14:17.855 | DEBUG    | bot.processor | bot.processor:_save_download_record:1324 | Download record saved | user_id=1 | total_downloads=97
+2026-04-30 00:14:17.872 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1550 | Sending ad | ad_id=1 | media_type=none
+2026-04-30 00:14:18.005 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1636 | Ad sent as text | mode=HTML
+2026-04-30 00:14:18.006 | INFO     | bot.processor | bot.processor:_process_next_in_queue:1119 | 🔄 Processing next from queue | user_id=6597464835 | url=https://www.instagram.com/p/DXq0r9XCDic/?igsh=ZXFqMzI0bzUwemY=
+2026-04-30 00:14:25.998 | DEBUG    | bot.processor | bot.processor:_save_download_record:1324 | Download record saved | user_id=1 | total_downloads=98
+2026-04-30 00:14:26.272 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1550 | Sending ad | ad_id=1 | media_type=none
+2026-04-30 00:14:26.413 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1636 | Ad sent as text | mode=HTML
+2026-04-30 00:30:39.207 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716099 | has_message=False | has_callback=False
+2026-04-30 00:30:39.208 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 01:15:03.441 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716100 | has_message=True | has_callback=False
+2026-04-30 01:15:03.442 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 01:15:05.782 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716101 | has_message=True | has_callback=False
+2026-04-30 01:15:05.783 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 01:15:06.073 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716102 | has_message=True | has_callback=False
+2026-04-30 01:15:06.073 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 01:15:06.520 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/reel/DXrb6pfiFn1/?igsh=aXBrdmQxbHZqYW9t
+2026-04-30 01:15:06.541 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-04-30 01:15:06.558 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/reel/DWZ7uetkmkr/?igsh=MXQ2c3BvMWhucDJhcQ==
+2026-04-30 01:15:10.218 | INFO     | bot.processor | bot.processor:_handle_direct_download:834 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/reel/DWZ7uetkmkr/?igsh=MXQ2c3BvMWhucDJhcQ==
+2026-04-30 01:15:10.235 | INFO     | bot.processor | bot.processor:_handle_url:394 | 📋 Download queued | user_id=6597464835 | position=1 | url=https://www.instagram.com/reel/DXrb6pfiFn1/?igsh=aXBrdmQxbHZqYW9t
+2026-04-30 01:15:10.250 | INFO     | bot.processor | bot.processor:_handle_url:394 | 📋 Download queued | user_id=6597464835 | position=2 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-04-30 01:15:10.341 | INFO     | bot.processor | bot.processor:_process_download:903 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/reel/DWZ7uetkmkr/?igsh=MXQ2c3BvMWhucDJhcQ== | platform=instagram
+2026-04-30 01:16:33.826 | INFO     | bot.processor | bot.processor:_process_download:929 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-04-30 01:16:34.900 | DEBUG    | bot.processor | bot.processor:_save_download_record:1324 | Download record saved | user_id=1 | total_downloads=99
+2026-04-30 01:16:34.901 | DEBUG    | bot.processor | bot.processor:_process_download:1006 | Download record saved (new) | user_id=6597464835 | url=https://www.instagram.com/reel/DWZ7uetkmkr/?igsh=MXQ2c3BvMWh
+2026-04-30 01:16:35.210 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1550 | Sending ad | ad_id=1 | media_type=none
+2026-04-30 01:16:35.351 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1636 | Ad sent as text | mode=HTML
+2026-04-30 01:16:35.352 | INFO     | bot.processor | bot.processor:_process_next_in_queue:1119 | 🔄 Processing next from queue | user_id=6597464835 | url=https://www.instagram.com/reel/DXrb6pfiFn1/?igsh=aXBrdmQxbHZqYW9t
+2026-04-30 01:16:48.826 | DEBUG    | bot.processor | bot.processor:_save_download_record:1324 | Download record saved | user_id=1 | total_downloads=100
+2026-04-30 01:16:48.903 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1550 | Sending ad | ad_id=1 | media_type=none
+2026-04-30 01:16:49.041 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1636 | Ad sent as text | mode=HTML
+2026-04-30 01:16:49.042 | INFO     | bot.processor | bot.processor:_process_next_in_queue:1119 | 🔄 Processing next from queue | user_id=6597464835 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-04-30 01:17:00.551 | DEBUG    | bot.processor | bot.processor:_save_download_record:1324 | Download record saved | user_id=1 | total_downloads=101
+2026-04-30 01:17:00.570 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1550 | Sending ad | ad_id=1 | media_type=none
+2026-04-30 01:17:00.736 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1636 | Ad sent as text | mode=HTML
+2026-04-30 01:17:22.581 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716103 | has_message=True | has_callback=False
+2026-04-30 01:17:22.582 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 01:17:22.722 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.youtube.com/watch?v=ZoNH1HJr0OQ
+2026-04-30 01:27:26.053 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716104 | has_message=False | has_callback=False
+2026-04-30 01:27:26.054 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-30 01:27:54.468 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716105 | has_message=False | has_callback=False
+2026-04-30 01:27:54.469 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot

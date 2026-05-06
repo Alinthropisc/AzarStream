@@ -1,0 +1,16 @@
+[1mdiff --cc .env.example[m
+[1mindex 53924b2,e30a908..0000000[m
+[1m--- a/.env.example[m
+[1m+++ b/.env.example[m
+[36m@@@ -4,7 -4,7 +4,11 @@@[m [mDEBUG=tru[m
+  APP_NAME=MediaFlow[m
+  [m
+  # Database Configuration (Example: postgresql+psycopg://user:pass@localhost:5432/db)[m
+[32m++<<<<<<< Updated upstream[m
+[32m +DATABASE_URL=sqlite+aiosqlite:///./database.db[m
+[32m++=======[m
+[32m+ DATABASE_URL="mysql+aiomysql://root:Sayavdera99%21@localhost:3306/mediaflow"[m
+[32m++>>>>>>> Stashed changes[m
+  DATABASE_ECHO=false[m
+  DATABASE_POOL_SIZE=10[m
+  [m

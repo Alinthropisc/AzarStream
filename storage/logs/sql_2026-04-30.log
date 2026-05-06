@@ -1,0 +1,71 @@
+2026-04-30 00:03:52.498 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:03:52.539 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:03:52.566 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:03:52.632 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:03:54.114 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 00:03:54.116 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 00:03:54.116 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 00:03:54.118 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 00:10:31.523 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 00:10:31.525 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 00:10:31.743 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 00:10:31.745 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 00:10:32.243 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 00:10:32.244 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 00:10:32.700 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 00:10:32.972 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 00:13:15.774 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:13:15.775 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:13:15.774 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:13:15.778 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 00:13:16.609 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 00:13:16.609 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 00:13:16.611 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 00:13:16.612 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 01:08:16.681 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 01:08:16.685 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 01:08:16.739 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 01:08:16.740 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 01:08:16.742 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 01:08:16.744 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 01:08:16.747 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 01:08:16.749 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 01:13:07.153 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 01:13:07.282 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 01:13:07.511 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 01:13:07.597 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 01:13:37.170 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 01:13:37.400 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 01:13:37.466 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 01:13:37.521 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 01:34:20.991 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:36:07.900 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:37:45.223 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:41:35.421 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:49:51.119 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:53:04.003 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 10:37:03.711 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 10:58:59.293 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 10:58:59.296 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 10:58:59.303 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 10:58:59.305 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 10:58:59.313 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 10:58:59.314 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 10:58:59.318 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 10:58:59.319 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 11:00:36.832 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 11:00:36.883 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 11:00:36.915 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 11:00:36.919 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
+2026-04-30 11:00:42.756 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 11:00:42.756 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 11:00:42.757 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 11:00:42.759 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-30 11:00:58.949 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 11:00:58.949 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 11:00:58.954 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 11:00:58.956 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 11:00:58.960 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 11:00:58.961 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-30 11:00:59.206 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-30 11:00:59.207 | INFO     | database | database.connection:disconnect:92 | Database disconnected

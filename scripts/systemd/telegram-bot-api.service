@@ -1,0 +1,44 @@
+[Unit]
+Description=Telegram Bot API Server (TDLib Local Server)
+Documentation=https://github.com/tdlib/telegram-bot-api
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=${SERVICE_USER}
+Group=${SERVICE_USER}
+WorkingDirectory=${PROJECT_DIR}/storage/telegram-bot-api
+EnvironmentFile=${PROJECT_DIR}/.env
+ExecStartPre=/usr/local/bin/test -x /usr/local/bin/telegram-bot-api
+ExecStart=/usr/local/bin/telegram-bot-api \
+    --api-id=${TELEGRAM_API_ID} \
+    --api-hash=${TELEGRAM_API_HASH} \
+    --http-port=8081 \
+    --dir=${PROJECT_DIR}/storage/telegram-bot-api \
+    --temp-dir=${PROJECT_DIR}/storage/temp \
+    --local \
+    --max-webhook-connections=100 \
+    --max-webhook-drop-connection-error-count=3 \
+    --verbosity=2
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+TimeoutStartSec=60
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=telegram-bot-api
+LimitNOFILE=65536
+LimitNPROC=4096
+MemoryMax=4G
+CPUQuota=80%
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=${PROJECT_DIR}/storage
+ReadWritePaths=/tmp
+
+[Install]
+WantedBy=multi-user.target

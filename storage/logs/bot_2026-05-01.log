@@ -1,0 +1,449 @@
+2026-05-01 13:30:21.535 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716202 | has_message=False | has_callback=False
+2026-05-01 13:30:21.536 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:30:21.569 | ERROR    | bot.processor | bot.processor:_handle_chat_member:1775 | chat_member handler failed | error=(pymysql.err.OperationalError) (1054, "Unknown column 'ads.buttons' in 'field list'")
+[SQL: SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.button_text, ads.button_url, ads.buttons, ads.subscription_channel_chat_id, ads.subscription_channel_username, ads.subscription_channel_title, ads.subscriber_goal, ads.subscribers_gained, ads.target_language, ads.status, ads.ad_type, ads.is_active, ads.duration_days, ads.expires_at, ads.auto_delete_seconds, ads.scheduled_at, ads.started_at, ads.completed_at, ads.total_recipients, ads.sent_count, ads.failed_count, ads.created_at, ads.updated_at 
+FROM ads 
+WHERE ads.ad_type = %s AND ads.is_active = true AND ads.subscription_channel_chat_id = %s]
+[parameters: ('SUBSCRIPTION_GATE', -1001787891528)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) | bot_id=7039033833
+Traceback (most recent call last):
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x7756457a4f40>
+    │    └ <sqlalchemy.dialects.mysql.aiomysql.MySQLDialect_aiomysql object at 0x775635745df0>
+    └ <sqlalchemy.engine.base.Connection object at 0x77563598a720>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ ('SUBSCRIPTION_GATE', -1001787891528)
+    │      │       └ 'SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+    │      └ <function AsyncAdapt_dbapi_cursor.execute at 0x775634079ee0>
+    └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_dbapi_cursor' objects>
+    └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+          │     │              └ (<class 'pymysql.err.OperationalError'>, OperationalError(1054, "Unknown column 'ads.buttons' in 'field list'"), <traceback o...
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1054, "Unknown column 'ads.buttons' in 'field list'")
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           │    │      │    │              │          └ ('SUBSCRIPTION_GATE', -1001787891528)
+           │    │      │    │              └ 'SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+           │    │      │    └ <function AsyncAdapt_dbapi_cursor._execute_async at 0x77563407a020>
+           │    │      └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+           │    └ <member 'await_' of 'AsyncAdapt_dbapi_cursor' objects>
+           └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_dbapi_cursor._execute_async at 0x77563418af40>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x7756348e4480 (otid=0x38106f30) dead>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <coroutine object Cursor.close at 0x77563419cba0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+                   │    │               │          └ ('SUBSCRIPTION_GATE', -1001787891528)
+                   │    │               └ 'SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+                   │    └ <member '_cursor' of 'AsyncAdapt_dbapi_cursor' objects>
+                   └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+          │    │      └ "SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+          │    └ <function Cursor._query at 0x7756340ed1c0>
+          └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_dbapi._init_cursors_subclasses.<locals>.Cursor object at 0x77563598bc50>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+          │    │     └ "SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+          │    └ <function Connection.query at 0x7756340d8860>
+          └ <aiomysql.connection.Connection object at 0x77563598a270>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+          │    │                             └ False
+          │    └ <function Connection._read_query_result at 0x7756340d9080>
+          └ <aiomysql.connection.Connection object at 0x77563598a270>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+          │      └ <function MySQLResult.read at 0x7756340d9d00>
+          └ <aiomysql.connection.MySQLResult object at 0x77563598ab10>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                         │    └ None
+                         └ <aiomysql.connection.MySQLResult object at 0x77563598ab10>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x77563401ff60>
+    └ <pymysql.protocol.MysqlPacket object at 0x7756348715a0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x7756348715a0>
+    │   └ <function raise_mysql_exception at 0x7756340614e0>
+    └ <module 'pymysql.err' from '/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/pymysq...
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 'ads.buttons' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+pymysql.err.OperationalError: (1054, "Unknown column 'ads.buttons' in 'field list'")
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/main.py", line 85, in <module>
+    main()
+    └ <function main at 0x77564cb21bc0>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/main.py", line 81, in main
+    run_server()
+    └ <function run_server at 0x77564cb18220>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/main.py", line 35, in run_server
+    granian.Granian(**kwargs).serve()
+    │       │         └ {'target': 'app.lifecycle:app', 'address': '127.0.0.1', 'port': 8000, 'interface': <Interfaces.ASGI: 'asgi'>, 'workers': 4, '...
+    │       └ <class 'granian.server.mp.MPServer'>
+    └ <module 'granian' from '/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/__...
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/mp.py", line 458, in serve
+    super().serve(spawn_target, target_loader, wrap_loader)
+                  │             │              └ True
+                  │             └ None
+                  └ None
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 720, in serve
+    serve_method(spawn_target, target_loader)
+    │            │             └ functools.partial(<function load_target at 0x775649667920>, 'app.lifecycle:app', wd=None, factory=False)
+    │            └ <function MPServer._spawn_asgi_lifespan_worker at 0x7756493d04a0>
+    └ <bound method AbstractServer._serve of <granian.server.mp.MPServer object at 0x77564c11c8f0>>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 562, in _serve
+    self.startup(spawn_target, target_loader)
+    │    │       │             └ functools.partial(<function load_target at 0x775649667920>, 'app.lifecycle:app', wd=None, factory=False)
+    │    │       └ <function MPServer._spawn_asgi_lifespan_worker at 0x7756493d04a0>
+    │    └ <function AbstractServer.startup at 0x775649367c40>
+    └ <granian.server.mp.MPServer object at 0x77564c11c8f0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 473, in startup
+    self._spawn_workers(spawn_target, target_loader)
+    │    │              │             └ functools.partial(<function load_target at 0x775649667920>, 'app.lifecycle:app', wd=None, factory=False)
+    │    │              └ <function MPServer._spawn_asgi_lifespan_worker at 0x7756493d04a0>
+    │    └ <function AbstractServer._spawn_workers at 0x775649367380>
+    └ <granian.server.mp.MPServer object at 0x77564c11c8f0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 335, in _spawn_workers
+    wrk.start()
+    │   └ <function AbstractWorker.start at 0x7756493668e0>
+    └ <granian.server.mp.WorkerProcess object at 0x77563573f3e0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 65, in start
+    self.inner.start()
+    │    │     └ <function BaseProcess.start at 0x775649a78900>
+    │    └ <ForkProcess name='granian-worker' parent=327339 started>
+    └ <granian.server.mp.WorkerProcess object at 0x77563573f3e0>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+    │    │        │    │      └ <ForkProcess name='granian-worker' parent=327339 started>
+    │    │        │    └ <staticmethod(<function ForkProcess._Popen at 0x775649a996c0>)>
+    │    │        └ <ForkProcess name='granian-worker' parent=327339 started>
+    │    └ None
+    └ <ForkProcess name='granian-worker' parent=327339 started>
+  File "/usr/lib/python3.12/multiprocessing/context.py", line 282, in _Popen
+    return Popen(process_obj)
+           │     └ <ForkProcess name='granian-worker' parent=327339 started>
+           └ <class 'multiprocessing.popen_fork.Popen'>
+  File "/usr/lib/python3.12/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+    │    │       └ <ForkProcess name='granian-worker' parent=327339 started>
+    │    └ <function Popen._launch at 0x7756353dec00>
+    └ <multiprocessing.popen_fork.Popen object at 0x77563573f410>
+  File "/usr/lib/python3.12/multiprocessing/popen_fork.py", line 71, in _launch
+    code = process_obj._bootstrap(parent_sentinel=child_r)
+           │           │                          └ 32
+           │           └ <function BaseProcess._bootstrap at 0x775649a79300>
+           └ <ForkProcess name='granian-worker' parent=327339 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x775649a78860>
+    └ <ForkProcess name='granian-worker' parent=327339 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <ForkProcess name='granian-worker' parent=327339 started>
+    │    │        │    └ (2, None, functools.partial(<function load_target at 0x775649667920>, 'app.lifecycle:app', wd=None, factory=False), (<granian...
+    │    │        └ <ForkProcess name='granian-worker' parent=327339 started>
+    │    └ <function MPServer._spawn_asgi_lifespan_worker at 0x7756493d04a0>
+    └ <ForkProcess name='granian-worker' parent=327339 started>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/mp.py", line 91, in wrapped
+    return target(worker_id, callback, sock, _ipc_handle, loop, *args, **kwargs)
+           │      │          │         │     │            │      │       └ {}
+           │      │          │         │     │            │      └ (<RuntimeModes.mt: 'mt'>, 1, 512, 1, 30, 256, <TaskImpl.asyncio: 'asyncio'>, <HTTPModes.auto: 'auto'>, None, None, False, Non...
+           │      │          │         │     │            └ <uvloop.Loop running=True closed=False debug=False>
+           │      │          │         │     └ None
+           │      │          │         └ <granian._granian.SocketHolder object at 0x77564982acd0>
+           │      │          └ <litestar.app.Litestar object at 0x7756357d7040>
+           │      └ 2
+           └ <function MPServer._spawn_asgi_lifespan_worker at 0x7756493d0400>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/mp.py", line 221, in _spawn_asgi_lifespan_worker
+    serve(scheduler, loop, shutdown_event)
+    │     │          │     └ <granian._granian.WorkerSignal object at 0x77563573f9c0>
+    │     │          └ <uvloop.Loop running=True closed=False debug=False>
+    │     └ <granian._futures._CBSchedulerAIO object at 0x775635442dd0>
+    └ <built-in method serve_mtr of granian._granian.ASGIWorker object at 0x775634174030>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/app/controllers/webhook.py", line 122, in _process_with_dedup
+    await _process_in_background(bot_token, data)
+          │                      │          └ {'update_id': 689716202, 'chat_member': {'chat': {'id': -1001787891528, 'title': 'Кукон иш', 'username': 'Qoqon_ish_Vakant', ...
+          │                      └ '7039033833:AAGOhZLTiBUQ5K54_Qcds06auoW5k0D8aUo'
+          └ <function _process_in_background at 0x775635584b80>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/app/controllers/webhook.py", line 149, in _process_in_background
+    await update_processor.process(bot_token, data)
+          │                │       │          └ {'update_id': 689716202, 'chat_member': {'chat': {'id': -1001787891528, 'title': 'Кукон иш', 'username': 'Qoqon_ish_Vakant', ...
+          │                │       └ '7039033833:AAGOhZLTiBUQ5K54_Qcds06auoW5k0D8aUo'
+          │                └ <function UpdateProcessor.process at 0x775635586020>
+          └ <bot.processor.UpdateProcessor object at 0x775635df1580>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/bot/processor.py", line 141, in process
+    await self._handle_chat_member(bot_model.bot_id, update.chat_member)
+          │    │                   │         │       │      └ ChatMemberUpdated(chat=Chat(id=-1001787891528, type='channel', title='Кукон иш', username='Qoqon_ish_Vakant', first_name=None...
+          │    │                   │         │       └ Update(update_id=689716202, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+          │    │                   │         └ <sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x775645256200>
+          │    │                   └ <Bot(id=1)>
+          │    └ <function UpdateProcessor._handle_chat_member at 0x775635586de0>
+          └ <bot.processor.UpdateProcessor object at 0x775635df1580>
+
+> File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/bot/processor.py", line 1734, in _handle_chat_member
+    rows = (await uow.session.execute(
+                  │   └ <property object at 0x775637afb5b0>
+                  └ <repositories.uow.UnitOfWork object at 0x77563597b3e0>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
+    result = await greenlet_spawn(
+                   └ <function greenlet_spawn at 0x775648207a60>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+             │       │      └ None
+             │       └ <method 'switch' of 'greenlet.greenlet' objects>
+             └ <_AsyncIoGreenlet object at 0x7756348e4480 (otid=0x38106f30) dead>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           │    └ <function Session._execute_internal at 0x7756452d32e0>
+           └ <sqlalchemy.orm.session.Session object at 0x775635758fe0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                   │      │                 └ <classmethod(<function AbstractORMCompileState.orm_execute_statement at 0x7756454802c0>)>
+                   │      └ <class 'sqlalchemy.orm.context.ORMSelectCompileState'>
+                   └ typing.Any
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             │    └ <function Connection.execute at 0x775645a6d3a0>
+             └ <sqlalchemy.engine.base.Connection object at 0x77563598a720>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.selectable.Select object at 0x77563598a810>>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x775645a6d6c0>
+           └ <sqlalchemy.engine.base.Connection object at 0x77563598a720>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x775645a6d8a0>
+          └ <sqlalchemy.engine.base.Connection object at 0x77563598a720>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           │    └ <function Connection._exec_single_context at 0x775645a6d940>
+           └ <sqlalchemy.engine.base.Connection object at 0x77563598a720>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x775645a6dbc0>
+    └ <sqlalchemy.engine.base.Connection object at 0x77563598a720>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+          │                    │              │                 └ OperationalError(1054, "Unknown column 'ads.buttons' in 'field list'")
+          │                    │              └ (<class 'pymysql.err.OperationalError'>, OperationalError(1054, "Unknown column 'ads.buttons' in 'field list'"), <traceback o...
+          │                    └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError('(pymysql.err.OperationalError) (1054, "Unknown column \'ads.buttons\' in \'field list\'")')
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x7756457a4f40>
+    │    └ <sqlalchemy.dialects.mysql.aiomysql.MySQLDialect_aiomysql object at 0x775635745df0>
+    └ <sqlalchemy.engine.base.Connection object at 0x77563598a720>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ ('SUBSCRIPTION_GATE', -1001787891528)
+    │      │       └ 'SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+    │      └ <function AsyncAdapt_dbapi_cursor.execute at 0x775634079ee0>
+    └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_dbapi_cursor' objects>
+    └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+          │     │              └ (<class 'pymysql.err.OperationalError'>, OperationalError(1054, "Unknown column 'ads.buttons' in 'field list'"), <traceback o...
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1054, "Unknown column 'ads.buttons' in 'field list'")
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           │    │      │    │              │          └ ('SUBSCRIPTION_GATE', -1001787891528)
+           │    │      │    │              └ 'SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+           │    │      │    └ <function AsyncAdapt_dbapi_cursor._execute_async at 0x77563407a020>
+           │    │      └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+           │    └ <member 'await_' of 'AsyncAdapt_dbapi_cursor' objects>
+           └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_dbapi_cursor._execute_async at 0x77563418af40>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x7756348e4480 (otid=0x38106f30) dead>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <coroutine object Cursor.close at 0x77563419cba0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/sqlalchemy/connectors/asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+                   │    │               │          └ ('SUBSCRIPTION_GATE', -1001787891528)
+                   │    │               └ 'SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+                   │    └ <member '_cursor' of 'AsyncAdapt_dbapi_cursor' objects>
+                   └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_cursor object at 0x7756341bc630>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+          │    │      └ "SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+          │    └ <function Cursor._query at 0x7756340ed1c0>
+          └ <sqlalchemy.dialects.mysql.aiomysql.AsyncAdapt_aiomysql_dbapi._init_cursors_subclasses.<locals>.Cursor object at 0x77563598bc50>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+          │    │     └ "SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.butt...
+          │    └ <function Connection.query at 0x7756340d8860>
+          └ <aiomysql.connection.Connection object at 0x77563598a270>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+          │    │                             └ False
+          │    └ <function Connection._read_query_result at 0x7756340d9080>
+          └ <aiomysql.connection.Connection object at 0x77563598a270>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+          │      └ <function MySQLResult.read at 0x7756340d9d00>
+          └ <aiomysql.connection.MySQLResult object at 0x77563598ab10>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                         │    └ None
+                         └ <aiomysql.connection.MySQLResult object at 0x77563598ab10>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x77563401ff60>
+    └ <pymysql.protocol.MysqlPacket object at 0x7756348715a0>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x7756348715a0>
+    │   └ <function raise_mysql_exception at 0x7756340614e0>
+    └ <module 'pymysql.err' from '/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/pymysq...
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 'ads.buttons' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'ads.buttons' in 'field list'")
+[SQL: SELECT ads.id, ads.ad_uuid, ads.name, ads.content, ads.media_type, ads.media_file_id, ads.cache_channel_message_id, ads.button_text, ads.button_url, ads.buttons, ads.subscription_channel_chat_id, ads.subscription_channel_username, ads.subscription_channel_title, ads.subscriber_goal, ads.subscribers_gained, ads.target_language, ads.status, ads.ad_type, ads.is_active, ads.duration_days, ads.expires_at, ads.auto_delete_seconds, ads.scheduled_at, ads.started_at, ads.completed_at, ads.total_recipients, ads.sent_count, ads.failed_count, ads.created_at, ads.updated_at 
+FROM ads 
+WHERE ads.ad_type = %s AND ads.is_active = true AND ads.subscription_channel_chat_id = %s]
+[parameters: ('SUBSCRIPTION_GATE', -1001787891528)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-01 13:36:46.158 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716206 | has_message=False | has_callback=False
+2026-05-01 13:36:46.159 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:44:22.174 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716211 | has_message=True | has_callback=False
+2026-05-01 13:44:22.174 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:44:22.317 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=ы
+2026-05-01 13:45:03.806 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716212 | has_message=True | has_callback=False
+2026-05-01 13:45:03.806 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:45:03.831 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42,
+2026-05-01 13:45:04.253 | INFO     | bot.processor | bot.processor:_handle_direct_download:851 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42,
+2026-05-01 13:45:04.384 | INFO     | bot.processor | bot.processor:_process_download:920 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42, | platform=instagram
+2026-05-01 13:45:12.608 | INFO     | bot.processor | bot.processor:_process_download:947 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-05-01 13:45:13.390 | DEBUG    | bot.processor | bot.processor:_save_download_record:1343 | Download record saved | user_id=4 | total_downloads=1
+2026-05-01 13:45:13.391 | DEBUG    | bot.processor | bot.processor:_process_download:1024 | Download record saved (new) | user_id=6597464835 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em
+2026-05-01 13:45:13.542 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1603 | Sending ad | ad_id=1 | media_type=none
+2026-05-01 13:45:13.707 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1679 | Ad sent as text | mode=HTML
+2026-05-01 13:50:10.185 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716214 | has_message=True | has_callback=False
+2026-05-01 13:50:10.185 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:50:10.548 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=ы
+2026-05-01 13:50:12.546 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716215 | has_message=True | has_callback=False
+2026-05-01 13:50:12.547 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:50:12.564 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=ы
+2026-05-01 13:54:49.037 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716224 | has_message=True | has_callback=False
+2026-05-01 13:54:49.037 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:54:49.133 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-05-01 13:54:50.278 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716225 | has_message=True | has_callback=False
+2026-05-01 13:54:50.279 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:54:50.295 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-05-01 13:55:17.498 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716227 | has_message=True | has_callback=False
+2026-05-01 13:55:17.499 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:55:17.886 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-05-01 13:55:19.032 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716228 | has_message=True | has_callback=False
+2026-05-01 13:55:19.033 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:55:19.050 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-05-01 13:57:53.555 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716229 | has_message=True | has_callback=False
+2026-05-01 13:57:53.556 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:57:53.583 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-05-01 13:57:57.955 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716230 | has_message=True | has_callback=False
+2026-05-01 13:57:57.955 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:57:57.971 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-05-01 13:57:58.095 | INFO     | bot.processor | bot.processor:_check_subscription_fast:1397 | 💾 Pending download stored | user_id=6597464835 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42 | platform=instagram
+2026-05-01 13:58:04.246 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716231 | has_message=False | has_callback=False
+2026-05-01 13:58:04.247 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 13:58:04.257 | INFO     | bot.processor | bot.processor:_handle_chat_member:1750 | Subscription-gate goal reached | ad_id=2 | gained=1 | goal=1
+2026-05-01 13:58:04.257 | INFO     | bot.processor | bot.processor:_handle_chat_member:1750 | Subscription-gate goal reached | ad_id=3 | gained=1 | goal=1
+2026-05-01 13:58:05.436 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716232 | has_message=False | has_callback=True
+2026-05-01 13:58:05.436 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:06:15.585 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716233 | has_message=False | has_callback=False
+2026-05-01 14:06:15.585 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:07:14.820 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716234 | has_message=True | has_callback=False
+2026-05-01 14:07:14.821 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:07:14.837 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-05-01 14:07:15.738 | INFO     | bot.processor | bot.processor:_check_subscription_fast:1397 | 💾 Pending download stored | user_id=6597464835 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42 | platform=instagram
+2026-05-01 14:07:23.660 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716235 | has_message=False | has_callback=True
+2026-05-01 14:07:23.660 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:07:27.405 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716236 | has_message=False | has_callback=False
+2026-05-01 14:07:27.405 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:07:27.415 | INFO     | bot.processor | bot.processor:_handle_chat_member:1750 | Subscription-gate goal reached | ad_id=4 | gained=1 | goal=1
+2026-05-01 14:07:29.580 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716237 | has_message=False | has_callback=True
+2026-05-01 14:07:29.581 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:07:31.847 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716238 | has_message=True | has_callback=False
+2026-05-01 14:07:31.848 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:07:31.861 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-05-01 14:07:31.996 | INFO     | bot.processor | bot.processor:_handle_direct_download:851 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-05-01 14:07:32.143 | INFO     | bot.processor | bot.processor:_process_download:920 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42 | platform=instagram
+2026-05-01 14:07:32.377 | INFO     | bot.processor | bot.processor:_process_download:947 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-05-01 14:07:34.228 | DEBUG    | bot.processor | bot.processor:_process_download:1026 | Cache hit — not counting as new download | user_id=6597464835
+2026-05-01 14:07:34.364 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1603 | Sending ad | ad_id=1 | media_type=none
+2026-05-01 14:07:34.515 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1679 | Ad sent as text | mode=HTML
+2026-05-01 14:08:55.790 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716239 | has_message=False | has_callback=False
+2026-05-01 14:08:55.791 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:09:52.805 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716240 | has_message=True | has_callback=False
+2026-05-01 14:09:52.806 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:09:52.827 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=ыфв
+2026-05-01 14:09:54.040 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716241 | has_message=True | has_callback=False
+2026-05-01 14:09:54.041 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:09:54.056 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42
+2026-05-01 14:09:54.195 | INFO     | bot.processor | bot.processor:_check_subscription_fast:1397 | 💾 Pending download stored | user_id=6597464835 | url=https://www.instagram.com/p/DXpdgCEDUmk/?igsh=YjZocmR6OTV2em42 | platform=instagram
+2026-05-01 14:10:03.086 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716242 | has_message=False | has_callback=False
+2026-05-01 14:10:03.087 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:10:03.117 | INFO     | bot.processor | bot.processor:_handle_chat_member:1750 | Subscription-gate goal reached | ad_id=5 | gained=1 | goal=1
+2026-05-01 14:10:05.981 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716243 | has_message=False | has_callback=True
+2026-05-01 14:10:05.981 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:10:33.439 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716244 | has_message=True | has_callback=False
+2026-05-01 14:10:33.440 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:10:33.486 | INFO     | bot.processor | bot.processor:_handle_message:227 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://youtu.be/d53Zk28esmU?si=LxGg8na4_GeD1iMO
+2026-05-01 14:11:35.901 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716245 | has_message=False | has_callback=True
+2026-05-01 14:11:35.902 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-05-01 14:11:36.943 | INFO     | bot.processor | bot.processor:_process_download:920 | ⬇️ Starting download | user_id=6597464835 | url=https://www.youtube.com/watch?v=d53Zk28esmU | platform=youtube
+2026-05-01 14:12:40.750 | INFO     | bot.processor | bot.processor:_process_download:947 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-05-01 14:12:41.446 | DEBUG    | bot.processor | bot.processor:_save_download_record:1343 | Download record saved | user_id=7 | total_downloads=1
+2026-05-01 14:12:41.447 | DEBUG    | bot.processor | bot.processor:_process_download:1024 | Download record saved (new) | user_id=6597464835 | url=https://www.youtube.com/watch?v=d53Zk28esmU
+2026-05-01 14:12:41.689 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1603 | Sending ad | ad_id=1 | media_type=none
+2026-05-01 14:12:41.993 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1679 | Ad sent as text | mode=HTML
+2026-05-01 14:15:00.889 | INFO     | bot.processor | bot.processor:process:113 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689716246 | has_message=False | has_callback=False
+2026-05-01 14:15:00.889 | INFO     | bot.processor | bot.processor:process:127 | ✅ Bot instance acquired | username=testingmodeonbot

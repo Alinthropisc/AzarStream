@@ -1,0 +1,306 @@
+import asyncio
+import json
+import hashlib
+from typing import Any
+from datetime import timedelta
+
+from app.config import settings
+from app.logging import get_logger
+
+log = get_logger("service.cache")
+
+_fake_server = None
+
+
+class CacheService:
+    """
+    Использование:
+        cache = CacheService()
+        await cache.connect()
+
+        await cache.set("key", {"data": 123}, ttl=3600)
+        data = await cache.get("key")
+    """
+
+    def __init__(self):
+        self._redis = None
+        self._loop = None
+
+    async def connect(self) -> None:
+        """Подключение к Redis"""
+        current_loop = asyncio.get_running_loop()
+        if self._redis is not None:
+            if self._loop == current_loop:
+                return
+            log.warning("Loop changed, reconnecting cache")
+            await self.disconnect()
+
+        self._loop = current_loop
+        if settings.use_fakeredis:
+            import fakeredis
+            import fakeredis.aioredis
+            global _fake_server
+            if _fake_server is None:
+                _fake_server = fakeredis.FakeServer()
+            self._redis = fakeredis.aioredis.FakeRedis(server=_fake_server, decode_responses=True)
+            log.info("Connected to FakeRedis (dev mode)")
+        else:
+            import redis.asyncio as redis
+            self._redis = redis.from_url(
+                str(settings.redis_url),
+                encoding="utf-8",
+                decode_responses=True,
+            )
+            await self._redis.ping()
+            log.info("Connected to Redis", url=str(settings.redis_url).split("@")[-1])
+
+    async def disconnect(self) -> None:
+        """Отключение"""
+        if self._redis:
+            try:
+                await self._redis.close()
+            except Exception:
+                pass
+            self._redis = None
+            self._loop = None
+            log.info("Disconnected from Redis")
+
+    @property
+    def redis(self):
+        if self._redis is None:
+            raise RuntimeError("Cache not connected. Call connect() first.")
+        return self._redis
+
+    # === Basic Operations ===
+
+    async def get(self, key: str) -> Any | None:
+        """Получить значение"""
+        await self.connect()
+        data = await self.redis.get(key)
+        if data:
+            try:
+                return json.loads(data)
+            except json.JSONDecodeError:
+                return data
+        return None
+
+    async def set(self, key: str, value: Any, ttl: int | None = None) -> None:
+        """Установить значение"""
+        await self.connect()
+        if isinstance(value, (dict, list)):
+            value = json.dumps(value, ensure_ascii=False, default=str)
+        await self.redis.set(key, value, ex=ttl)
+
+    async def set_nx(self, key: str, value: Any, ttl: int | None = None) -> bool:
+        """SET if Not eXists — атомарная операция для distributed locks.
+
+        Возвращает True если ключ создан (lock получен),
+        False если ключ уже существовал (другой worker успел раньше).
+        """
+        await self.connect()
+        if isinstance(value, (dict, list)):
+            value = json.dumps(value, ensure_ascii=False, default=str)
+        result = await self.redis.set(key, value, ex=ttl, nx=True)
+        return result is not None
+
+    async def delete(self, key: str) -> bool:
+        """Удалить ключ"""
+        await self.connect()
+        return await self.redis.delete(key) > 0
+
+    async def exists(self, key: str) -> bool:
+        """Проверить существование"""
+        await self.connect()
+        return await self.redis.exists(key) > 0
+
+    async def incr(self, key: str, amount: int = 1) -> int:
+        """Инкремент"""
+        await self.connect()
+        return await self.redis.incrby(key, amount)
+
+    async def expire(self, key: str, ttl: int) -> None:
+        """Установить TTL"""
+        await self.connect()
+        await self.redis.expire(key, ttl)
+
+    # === Media Cache ===
+
+    def _media_key(self, url: str, quality: str | None = None) -> str:
+        url_hash = hashlib.sha256(url.encode()).hexdigest()
+        if quality:
+            return f"media:{url_hash}:{quality}"
+        return f"media:{url_hash}"
+
+    async def get_cached_media(self, url: str, quality: str | None = None) -> dict | None:
+        key = self._media_key(url, quality)
+        data = await self.get(key)
+        if data:
+            log.debug("Cache HIT", url=url[:50], quality=quality)
+        return data
+
+    async def cache_media(
+        self,
+        url: str,
+        file_id: str,
+        message_id: int,
+        chat_id: int,
+        quality: str | None = None,
+        ttl: int = 86400 * 7,
+        **extra,
+    ) -> None:
+        key = self._media_key(url, quality)
+        data = {
+            "file_id": file_id,
+            "message_id": message_id,
+            "chat_id": chat_id,
+            "quality": quality,
+            **extra,
+        }
+        await self.set(key, data, ttl=ttl)
+        log.debug("Cached media", url=url[:50], quality=quality)
+
+    # === Rate Limiting ===
+
+    async def check_rate_limit(self, key: str, limit: int, window: int = 60) -> tuple[bool, int]:
+        """
+        Проверить rate limit.
+        Returns: (allowed: bool, remaining: int)
+        """
+        await self.connect()
+        current = await self.redis.get(key)
+
+        if current is None:
+            await self.redis.setex(key, window, 1)
+            return True, limit - 1
+
+        current = int(current)
+        if current >= limit:
+            ttl = await self.redis.ttl(key)
+            return False, ttl
+
+        await self.redis.incr(key)
+        return True, limit - current - 1
+
+    async def get_user_rate_limit(self, user_id: int, action: str = "download") -> tuple[bool, int]:
+        key = f"simple_ratelimit:{action}:{user_id}"
+        if action == "download":
+            return await self.check_rate_limit(key, limit=settings.downloads_per_user_hour, window=3600)
+        return True, 999
+
+    async def get_global_rate_limit(self) -> tuple[bool, int]:
+        return await self.check_rate_limit("simple_ratelimit:global", limit=settings.downloads_per_minute, window=60)
+
+    # === User State ===
+
+    async def get_user_state(self, user_id: int, bot_id: int) -> dict | None:
+        return await self.get(f"state:{bot_id}:{user_id}")
+
+    async def set_user_state(
+        self,
+        user_id: int,
+        bot_id: int,
+        state: str,
+        data: dict | None = None,
+        ttl: int = 3600,
+    ) -> None:
+        await self.set(f"state:{bot_id}:{user_id}", {"state": state, "data": data or {}}, ttl=ttl)
+
+    async def clear_user_state(self, user_id: int, bot_id: int) -> None:
+        await self.delete(f"state:{bot_id}:{user_id}")
+
+    async def update_state_data(self, user_id: int, bot_id: int, **data) -> None:
+        current = await self.get_user_state(user_id, bot_id) or {"state": None, "data": {}}
+        current["data"].update(data)
+        await self.set_user_state(user_id, bot_id, current["state"], current["data"])
+
+    # === Queue ===
+
+    async def add_to_queue(self, queue_name: str, item: dict) -> int:
+        await self.connect()
+        return await self.redis.rpush(f"queue:{queue_name}", json.dumps(item, default=str))
+
+    async def pop_from_queue(self, queue_name: str) -> dict | None:
+        await self.connect()
+        data = await self.redis.lpop(f"queue:{queue_name}")
+        if data:
+            return json.loads(data)
+        return None
+
+    async def queue_length(self, queue_name: str) -> int:
+        await self.connect()
+        return await self.redis.llen(f"queue:{queue_name}")
+
+    # === Download metrics ===
+
+    async def track_download(self, from_cache: bool) -> None:
+        """Atomically increment cache-hit or cache-miss counters (fire-and-forget)."""
+        try:
+            await self.connect()
+            from datetime import date
+            today = date.today().isoformat()
+            if from_cache:
+                await self.redis.incr("stats:dl:hits:total")
+                key = f"stats:dl:hits:{today}"
+            else:
+                await self.redis.incr("stats:dl:misses:total")
+                key = f"stats:dl:misses:{today}"
+            await self.redis.incr(key)
+            await self.redis.expire(key, 86400 * 7)  # Keep 7 days
+        except Exception:
+            pass  # Metrics are non-critical
+
+    async def get_download_stats(self) -> dict:
+        """Return cache hit/miss stats for the admin dashboard."""
+        try:
+            await self.connect()
+            from datetime import date
+            today = date.today().isoformat()
+
+            total_hits   = int(await self.redis.get("stats:dl:hits:total")   or 0)
+            total_misses = int(await self.redis.get("stats:dl:misses:total") or 0)
+            today_hits   = int(await self.redis.get(f"stats:dl:hits:{today}")   or 0)
+            today_misses = int(await self.redis.get(f"stats:dl:misses:{today}") or 0)
+
+            total       = total_hits + total_misses
+            today_total = today_hits + today_misses
+
+            return {
+                "total_hits":       total_hits,
+                "total_misses":     total_misses,
+                "total_requests":   total,
+                "hit_rate":         round(total_hits / total * 100, 1) if total else 0.0,
+                "today_hits":       today_hits,
+                "today_misses":     today_misses,
+                "today_requests":   today_total,
+                "today_hit_rate":   round(today_hits / today_total * 100, 1) if today_total else 0.0,
+            }
+        except Exception:
+            return {"error": "metrics unavailable"}
+
+    async def get_active_downloads_count(self) -> int:
+        """Current number of active (in-progress) downloads across all users."""
+        try:
+            await self.connect()
+            return int(await self.redis.get("stats:dl:active") or 0)
+        except Exception:
+            return 0
+
+    async def increment_active_downloads(self) -> None:
+        try:
+            await self.connect()
+            await self.redis.incr("stats:dl:active")
+            await self.redis.expire("stats:dl:active", 3600)
+        except Exception:
+            pass
+
+    async def decrement_active_downloads(self) -> None:
+        try:
+            await self.connect()
+            val = int(await self.redis.get("stats:dl:active") or 1)
+            await self.redis.set("stats:dl:active", max(0, val - 1), ex=3600)
+        except Exception:
+            pass
+
+
+# === Singleton ===
+cache = CacheService()

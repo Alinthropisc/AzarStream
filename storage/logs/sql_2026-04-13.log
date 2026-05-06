@@ -1,0 +1,589 @@
+2026-04-13 00:15:07.809 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:15:07.810 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:15:07.811 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:15:07.813 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:15:07.813 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:15:07.814 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:15:07.815 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:15:07.817 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:15:39.396 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:15:39.396 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:15:39.396 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:15:39.396 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:15:41.978 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:15:41.979 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:15:42.004 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:15:42.004 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:17:55.961 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-13 00:27:57.383 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:27:57.383 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:27:57.387 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:27:57.387 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:27:57.389 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:27:57.390 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:27:57.397 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:27:57.398 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:28:17.827 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:28:17.865 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:28:17.906 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:28:17.917 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:28:18.627 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:28:18.628 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:28:18.665 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:28:18.682 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:33:58.251 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:33:58.252 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:33:58.254 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:33:58.255 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:33:58.255 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:33:58.255 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:33:58.256 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 00:33:58.259 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 00:34:16.067 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:34:16.120 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:34:16.138 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:34:16.159 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 00:34:16.745 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:34:16.745 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:34:16.803 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 00:34:16.802 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:30:18.840 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:30:18.840 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:30:18.843 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:30:18.844 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:30:18.844 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:30:18.846 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:30:18.847 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:30:18.848 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:30:52.480 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:30:52.483 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:30:52.486 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:30:52.492 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:30:54.717 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:30:54.720 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:30:54.723 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:30:54.724 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:34:18.736 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:34:18.744 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:34:18.740 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:34:18.746 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:34:18.746 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:34:18.747 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:34:18.988 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 11:34:18.989 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 11:34:45.126 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:34:45.170 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:34:45.210 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:34:45.250 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 11:34:45.812 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:34:45.883 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:34:45.893 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 11:34:46.016 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:00:53.739 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:00:53.740 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:00:53.740 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:00:53.742 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:00:53.747 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:00:53.747 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:00:53.750 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:00:53.751 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:01:14.985 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:01:15.002 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:01:15.011 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:01:15.056 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:01:15.458 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:01:15.468 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:01:15.471 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:01:15.508 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:17:49.979 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:17:49.979 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:17:49.982 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:17:49.982 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:17:49.984 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:17:49.984 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:17:49.986 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:17:49.987 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:18:20.234 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:18:20.238 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:18:20.238 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:18:20.240 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:18:21.822 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:18:21.825 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:18:21.840 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:18:21.844 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:23:17.635 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:23:17.636 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:23:17.648 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:23:17.651 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:23:17.652 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:23:17.649 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:23:17.902 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 12:23:17.905 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 12:23:35.016 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:23:35.024 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:23:35.077 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:23:35.078 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 12:23:35.470 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:23:35.470 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:23:35.489 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 12:23:35.497 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 15:05:15.858 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-13 15:19:12.593 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 15:19:12.594 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 15:19:12.594 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 15:19:12.596 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 15:19:12.600 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 15:19:12.601 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 15:19:12.599 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 15:19:12.609 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 15:19:35.823 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 15:19:35.823 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 15:19:35.825 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 15:19:35.826 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 15:19:37.942 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 15:19:37.942 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 15:19:37.942 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 15:19:37.947 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:02:29.835 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:02:29.836 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:02:29.839 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:02:29.841 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:02:29.841 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:02:29.842 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:02:29.849 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:02:29.850 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:02:49.712 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:02:49.718 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:02:49.727 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:02:49.745 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:02:50.232 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:02:50.232 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:02:50.240 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:02:50.238 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:08:37.695 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:08:37.695 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:08:37.699 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:08:37.699 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:08:37.709 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:08:37.710 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:08:37.712 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:08:37.713 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:08:52.695 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:08:52.698 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:08:52.734 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:08:52.739 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:08:53.262 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:08:53.272 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:08:53.278 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:08:53.304 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:12:37.605 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:12:37.606 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:12:37.607 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:12:37.607 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:12:37.856 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:12:37.856 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:12:37.865 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:12:37.866 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:12:55.530 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:12:55.564 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:12:55.620 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:12:55.635 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:12:56.531 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:12:56.548 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:12:56.578 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:12:56.593 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:22:53.950 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:22:53.952 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:22:53.951 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:22:53.952 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:22:53.955 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:22:53.956 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:22:53.957 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:22:53.958 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:23:07.616 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:23:07.619 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:23:07.625 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:23:07.672 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:23:08.129 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:23:08.150 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:23:08.181 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:23:08.197 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:39:06.212 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:39:06.212 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:39:06.213 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:39:06.214 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:39:06.215 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:39:06.216 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:39:06.214 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:39:06.221 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:39:46.952 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:39:46.960 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:39:46.963 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:39:46.993 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:39:47.405 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:39:47.408 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:39:47.406 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:39:47.446 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:53:22.861 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:53:22.862 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:53:22.862 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:53:22.862 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:53:22.865 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:53:22.865 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:53:22.866 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 16:53:22.870 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 16:53:35.807 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:53:35.845 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:53:35.857 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:53:35.889 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 16:53:36.378 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:53:36.380 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:53:36.407 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 16:53:36.410 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:35:48.629 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:35:48.632 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:35:48.635 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:35:48.636 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:35:51.407 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:35:51.407 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:35:51.412 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:35:51.411 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:45:53.348 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:45:57.128 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 17:45:57.131 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 17:45:57.198 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:45:59.743 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:45:59.744 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:46:00.943 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 17:46:00.946 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 17:46:01.009 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:46:01.162 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:46:04.757 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 17:46:04.760 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 17:49:41.226 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 17:49:41.228 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 17:49:41.229 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 17:49:41.230 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 17:49:41.476 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 17:49:41.478 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 17:49:41.482 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 17:49:41.484 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 17:50:43.141 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:50:43.270 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:50:43.296 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:50:43.306 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 17:50:47.146 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:50:47.162 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:50:47.164 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 17:50:47.154 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:46:02.710 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:46:02.710 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:46:02.711 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:46:02.711 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:46:02.726 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:46:02.731 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:46:02.734 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:46:02.739 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:46:30.861 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:46:30.864 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:46:30.864 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:46:30.869 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:46:32.407 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:46:32.409 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:46:32.413 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:46:32.420 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:53:16.162 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:53:16.163 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:53:16.166 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:53:16.167 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:53:16.175 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:53:16.177 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:53:16.177 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:53:16.180 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:53:29.177 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:53:29.178 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:53:29.238 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:53:29.261 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:53:29.638 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:53:29.646 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:53:29.645 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:53:29.645 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:58:24.024 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:58:24.026 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:58:24.026 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:58:24.025 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:58:24.033 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:58:24.037 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:58:24.283 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 18:58:24.283 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 18:58:38.970 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:58:38.980 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:58:39.002 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:58:39.045 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 18:58:39.379 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:58:39.386 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:58:39.390 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 18:58:39.387 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:01:32.173 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:01:32.174 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:01:32.179 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:01:32.179 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:01:32.180 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:01:32.181 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:01:32.429 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:01:32.431 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:01:45.862 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:01:45.890 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:01:45.925 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:01:45.961 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:01:46.314 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:01:46.315 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:01:46.324 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:01:46.336 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:33:03.233 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:33:03.234 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:33:03.235 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:33:03.237 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:33:03.238 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:33:03.238 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:33:03.240 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 19:33:03.243 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 19:33:15.839 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:33:15.857 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:33:15.898 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:33:15.954 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 19:33:16.197 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:33:16.202 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:33:16.202 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 19:33:16.208 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:11:27.541 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:27.542 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:27.543 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:27.546 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:27.546 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:27.546 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:27.547 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:27.550 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:43.632 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:11:43.640 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:11:43.662 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:11:43.668 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:11:46.442 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:11:46.445 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:11:46.446 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:11:46.451 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:11:46.838 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:11:46.840 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:11:46.876 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:11:47.442 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$fCSby/pS4uMwgs6lGKFbWO7jDr2rdhCkHgeVK.iK5/MG9otjxLMjS, admin, t, t, null, b36c5baa-4189-4351-be4e-3ac26a65d672, 2026-04-13 21:11:46.871716+05, 2026-04-13 21:11:46.871716+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$fCSby/pS4uMwgs6lGKFbWO7jDr2rdhCkHgeVK.iK5/MG9otjxLMjS', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('b36c5baa-4189-4351-be4e-3ac26a65d672')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:11:47.447 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$tb0vdHOr7tdCxFR5OnN9xec62.XeqADantcna20l/iuvOIJIt1w/G, admin, t, t, null, 02eaf23e-8bdd-40a9-97df-45bdba508281, 2026-04-13 21:11:46.882316+05, 2026-04-13 21:11:46.882316+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$tb0vdHOr7tdCxFR5OnN9xec62.XeqADantcna20l/iuvOIJIt1w/G', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('02eaf23e-8bdd-40a9-97df-45bdba508281')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:11:47.453 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:47.454 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:47.464 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:47.465 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:47.475 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$/rmlZS23FWtsc6eEouCFsO6eOcf9Lrcn8JcJX.cEjuZB2joS4/2pS, admin, t, t, null, 384aa5ab-e181-46e8-b12c-3fb3609a3ed7, 2026-04-13 21:11:46.899128+05, 2026-04-13 21:11:46.899128+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$/rmlZS23FWtsc6eEouCFsO6eOcf9Lrcn8JcJX.cEjuZB2joS4/2pS', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('384aa5ab-e181-46e8-b12c-3fb3609a3ed7')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:11:47.491 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:47.492 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:47.550 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:11:47.761 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:11:47.811 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:11:47.954 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$CR/CsLVE3fWsvqIj21UQYuihZRXRVv8GNQSTgdk/.P8bnkp5wPmO6, admin, t, t, null, 399b2620-ee09-45fc-84da-da9beb7ce59a, 2026-04-13 21:11:47.587091+05, 2026-04-13 21:11:47.587091+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$CR/CsLVE3fWsvqIj21UQYuihZRXRVv8GNQSTgdk/.P8bnkp5wPmO6', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('399b2620-ee09-45fc-84da-da9beb7ce59a')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:11:47.966 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:11:47.967 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:11:47.980 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:11:48.017 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:11:48.176 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:11:48.217 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:39:25.408 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:39:25.410 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:39:25.421 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:39:25.421 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:39:25.422 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:39:25.424 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:39:38.121 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:39:38.145 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:39:38.166 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:39:38.208 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:39:38.475 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:39:38.475 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:39:38.475 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:39:38.477 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:39:38.672 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:39:38.701 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:39:38.713 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:39:39.059 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$JTJ/TzFs2AtF3EcKo5tw5O1IQwdQy8ngGuKFG.5sM9yFLiPlk2.YO, admin, t, t, null, 535e638a-450b-4f0c-b5c9-0fe06a8222a9, 2026-04-13 21:39:38.699627+05, 2026-04-13 21:39:38.699627+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$JTJ/TzFs2AtF3EcKo5tw5O1IQwdQy8ngGuKFG.5sM9yFLiPlk2.YO', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('535e638a-450b-4f0c-b5c9-0fe06a8222a9')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:39:39.074 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:39:39.075 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:39:39.083 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$5RLKpUNasJJlseEP8fGri.LNEDwklX6ei1q/GhWKzC1G2rSBo8DCq, admin, t, t, null, dac772f8-2336-40f0-a2b6-29e3416da275, 2026-04-13 21:39:38.726766+05, 2026-04-13 21:39:38.726766+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$5RLKpUNasJJlseEP8fGri.LNEDwklX6ei1q/GhWKzC1G2rSBo8DCq', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('dac772f8-2336-40f0-a2b6-29e3416da275')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:39:39.091 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$2uoLjz6GFXkcn6UNWXnigOBPB.cQjs1gZNvKiU2t8b7fvpPails9O, admin, t, t, null, 2056b416-31c6-4d55-b5ba-d29fcff66b52, 2026-04-13 21:39:38.738357+05, 2026-04-13 21:39:38.738357+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$2uoLjz6GFXkcn6UNWXnigOBPB.cQjs1gZNvKiU2t8b7fvpPails9O', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('2056b416-31c6-4d55-b5ba-d29fcff66b52')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:39:39.098 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:39:39.099 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:39:39.102 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:39:39.103 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:39:39.407 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:39:39.782 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$FUbhDjldfVD1AXAb1gJ.ouURiL5pEPXE7SFHCHRgvdDxoU0tvH.x6, admin, t, t, null, 3b9cfd21-5a3a-4201-87c0-b8e34d6f996e, 2026-04-13 21:39:39.441154+05, 2026-04-13 21:39:39.441154+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$FUbhDjldfVD1AXAb1gJ.ouURiL5pEPXE7SFHCHRgvdDxoU0tvH.x6', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('3b9cfd21-5a3a-4201-87c0-b8e34d6f996e')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:39:39.791 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:39:39.792 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:48:33.462 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:48:33.468 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:48:33.483 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:48:33.505 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 21:48:33.844 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:48:33.845 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:48:33.846 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:48:33.848 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 21:48:34.046 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:48:34.066 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:48:34.087 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:48:34.436 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$d9/UFl2sZJsM74.mMI9ezuG6pS9uapNgdZeaG5L0mBVfuKf3Plsuq, admin, t, t, null, 5eb936c7-25ce-464b-837f-074c226d9d7d, 2026-04-13 21:48:34.07823+05, 2026-04-13 21:48:34.07823+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$d9/UFl2sZJsM74.mMI9ezuG6pS9uapNgdZeaG5L0mBVfuKf3Plsuq', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('5eb936c7-25ce-464b-837f-074c226d9d7d')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:48:34.451 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:48:34.452 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:48:34.451 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$dIrXxBdW51RZpruWu2KdVeKZsrXJNlPzT5mztbPG7ygvCUONbbFh6, admin, t, t, null, d2e41e68-78f6-4b92-a001-f9f7ffd0f8e0, 2026-04-13 21:48:34.092615+05, 2026-04-13 21:48:34.092615+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$dIrXxBdW51RZpruWu2KdVeKZsrXJNlPzT5mztbPG7ygvCUONbbFh6', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('d2e41e68-78f6-4b92-a001-f9f7ffd0f8e0')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:48:34.464 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:48:34.465 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:48:34.473 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$0ZLZ7XZFTcWfAEybqRPU9OBC5FiFOGo28fWJfWnHxrxt9LKZcY53K, admin, t, t, null, eb3f1376-de3d-4496-b0e8-8f045d03faa3, 2026-04-13 21:48:34.115079+05, 2026-04-13 21:48:34.115079+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$0ZLZ7XZFTcWfAEybqRPU9OBC5FiFOGo28fWJfWnHxrxt9LKZcY53K', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('eb3f1376-de3d-4496-b0e8-8f045d03faa3')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:48:34.484 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:48:34.485 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 21:48:35.228 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 21:48:35.607 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.NotNullViolation) null value in column "email" of relation "admin_users" violates not-null constraint
+DETAIL:  Failing row contains (admin, null, Environment Superadmin, $2b$12$gt6kynuHA.w2s0s4WMk.3eR3d9Z8trdnK97V36Ai80Mnr6R7gJ5D2, admin, t, t, null, 8301140c-162d-4e02-9b07-fe8627964893, 2026-04-13 21:48:35.268717+05, 2026-04-13 21:48:35.268717+05).
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$gt6kynuHA.w2s0s4WMk.3eR3d9Z8trdnK97V36Ai80Mnr6R7gJ5D2', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('8301140c-162d-4e02-9b07-fe8627964893')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 21:48:35.617 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 21:48:35.618 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:04:22.286 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:04:22.301 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:04:22.326 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:04:22.356 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:04:24.035 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:04:24.036 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:04:24.042 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:04:24.046 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:04:24.225 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:04:24.263 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:04:24.266 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:04:24.955 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.UniqueViolation) duplicate key value violates unique constraint "ix_admin_users_username"
+DETAIL:  Key (username)=(admin) already exists.
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$Ht8ItYz31fRnolds90cRbObCOZJb4O22xns9N7KfudOlVPNA/EvT6', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('1bd972e8-7120-451a-9f61-6beb62bd96ce')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 22:04:24.956 | ERROR    | database | database.connection:session:106 | Session rollback | error=(psycopg.errors.UniqueViolation) duplicate key value violates unique constraint "ix_admin_users_username"
+DETAIL:  Key (username)=(admin) already exists.
+[SQL: INSERT INTO admin_users (username, email, name, hashed_password, role, is_active, is_superadmin, last_login, id) VALUES (%(username)s::VARCHAR, %(email)s::VARCHAR, %(name)s::VARCHAR, %(hashed_password)s::VARCHAR, %(role)s::VARCHAR, %(is_active)s, %(is_superadmin)s, %(last_login)s::TIMESTAMP WITH TIME ZONE, %(id)s::UUID) RETURNING admin_users.created_at, admin_users.updated_at]
+[parameters: {'username': 'admin', 'email': None, 'name': 'Environment Superadmin', 'hashed_password': '$2b$12$BGkF7IGj.PBTr8K1TYkjx.GNgQzwL9U/qga5AztZY/IkpfER8R9f2', 'role': <AdminRole.ADMIN: 'admin'>, 'is_active': True, 'is_superadmin': True, 'last_login': None, 'id': UUID('85f27c57-2a61-4d60-be7d-89513d58b702')}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-04-13 22:04:25.381 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:12:01.352 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:12:01.353 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:12:01.358 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:12:01.361 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:12:01.361 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:12:01.362 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:12:01.359 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:12:01.362 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:12:13.751 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:12:13.758 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:12:13.784 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:12:13.816 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:12:14.112 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:12:14.123 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:12:14.132 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:12:14.139 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:12:14.431 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:12:14.454 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:12:14.485 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:12:15.935 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:21:01.836 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:21:01.838 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:21:01.839 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:21:01.839 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:21:01.840 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:21:01.839 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:21:01.840 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:21:01.842 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:21:16.938 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:21:16.945 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:21:16.966 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:21:17.008 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:21:17.530 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:21:17.534 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:21:17.531 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:21:17.538 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:21:17.769 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:21:17.788 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:21:17.832 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:21:18.424 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:39:13.465 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:39:13.466 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:39:13.470 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:39:13.470 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:39:13.471 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:39:13.471 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:39:13.474 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 22:39:13.475 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 22:39:25.874 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:39:25.894 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:39:25.907 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:39:25.979 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:5432/mediaflow
+2026-04-13 22:39:26.316 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:39:26.316 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:39:26.342 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:39:26.349 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-04-13 22:39:26.566 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:39:26.640 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:39:26.659 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 22:39:27.126 | WARNING  | database | database.connection:connect:50 | Database already connected
+2026-04-13 23:46:36.873 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-13 23:53:24.775 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 23:53:24.776 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 23:53:24.779 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 23:53:24.781 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 23:53:24.783 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 23:53:24.782 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-04-13 23:53:24.783 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-04-13 23:53:24.787 | INFO     | database | database.connection:disconnect:92 | Database disconnected

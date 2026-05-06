@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in · Azar Stream</title>
+    <link rel="icon" type="image/jpeg" href="/static/azar-logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #08060a;
+            color: #e5e5e5;
+        }
+        .brand-text {
+            background: linear-gradient(90deg, #ffb020 0%, #ff6a1a 55%, #e63946 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glow-ring {
+            box-shadow: 0 0 40px rgba(255, 106, 26, 0.35), 0 0 80px rgba(230, 57, 70, 0.2);
+        }
+        .field {
+            background: #0d0a0d;
+            border: 1px solid rgba(255, 106, 26, 0.15);
+            transition: all .2s ease;
+        }
+        .field:focus {
+            border-color: rgba(255, 106, 26, 0.6);
+            box-shadow: 0 0 0 3px rgba(255, 106, 26, 0.15);
+            outline: none;
+        }
+        .btn-fire {
+            background: linear-gradient(90deg, #e6531a 0%, #ff6a1a 50%, #ffb020 100%);
+            transition: all .2s ease;
+            box-shadow: 0 10px 30px -10px rgba(255, 106, 26, 0.6);
+        }
+        .btn-fire:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+        .btn-fire:active { transform: translateY(0); }
+
+        .ember-bg::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0;
+            background:
+              radial-gradient(circle at 15% 20%, rgba(255,106,26,0.18), transparent 45%),
+              radial-gradient(circle at 85% 30%, rgba(255,176,32,0.12), transparent 45%),
+              radial-gradient(circle at 50% 90%, rgba(230,57,70,0.15), transparent 50%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="ember-bg min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md relative z-10">
+        <div class="bg-[#0d0a0d]/80 backdrop-blur-xl border border-ember-500/10 rounded-3xl shadow-2xl p-10" style="border-color: rgba(255,106,26,0.12)">
+            <div class="flex flex-col items-center mb-8">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden glow-ring ring-2 ring-orange-500/40 mb-5">
+                    <img src="/static/azar-logo.jpg" alt="Azar Stream" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-3xl font-extrabold tracking-tight brand-text">Azar Stream</h1>
+                <p class="text-xs uppercase tracking-[0.3em] text-orange-400/70 font-bold mt-2">Admin Portal</p>
+            </div>
+
+            {% if error %}
+            <div class="mb-6 px-4 py-3 rounded-xl flex items-center text-sm"
+                 style="background: rgba(230,57,70,0.1); border: 1px solid rgba(230,57,70,0.3); color: #ff6b76;">
+                <i class="fas fa-triangle-exclamation mr-3"></i>
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+
+            <form action="/admin/login" method="post" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-orange-300/70 mb-2">
+                        Username
+                    </label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-orange-500/50 text-sm"></i>
+                        <input
+                            type="text"
+                            name="username"
+                            required
+                            autocomplete="username"
+                            class="field w-full pl-11 pr-4 py-3 rounded-xl text-white placeholder-gray-600"
+                            placeholder="Enter your username"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-orange-300/70 mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-orange-500/50 text-sm"></i>
+                        <input
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="current-password"
+                            class="field w-full pl-11 pr-4 py-3 rounded-xl text-white placeholder-gray-600"
+                            placeholder="Enter your password"
+                        >
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn-fire w-full py-3 px-4 text-white font-semibold rounded-xl tracking-wide flex items-center justify-center group"
+                >
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
+                </button>
+            </form>
+        </div>
+
+        <p class="text-center text-gray-600 text-xs mt-6 tracking-wider">
+            <span class="text-orange-500/60">◆</span>
+            Azar Stream &middot; v1.0
+            <span class="text-orange-500/60">◆</span>
+        </p>
+    </div>
+</body>
+</html>

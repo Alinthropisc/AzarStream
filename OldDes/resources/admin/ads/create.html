@@ -1,0 +1,755 @@
+{% extends "base.html" %}
+
+{% block title %}Create Campaign - MediaFlow{% endblock %}
+{% block header %}Create Campaign{% endblock %}
+
+{% block content %}
+<style>
+[contenteditable]:empty:before {
+    content: attr(placeholder);
+    color: #475569;
+    pointer-events: none;
+}
+/* Emoji Picker Telegram Style */
+.emoji-grid-btn {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; font-size: 20px;
+    transition: background 0.15s, transform 0.1s;
+    cursor: pointer;
+}
+.emoji-grid-btn:hover { background: rgba(255,255,255,0.1); transform: scale(1.15); }
+.emoji-grid-btn:active { transform: scale(0.95); }
+.active-tab { border-bottom-color: #3b82f6 !important; background: rgba(59,130,246,0.1); }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+</style>
+<div class="max-w-4xl mx-auto">
+    <div class="mb-8">
+        <a href="/admin/ads" class="text-slate-500 hover:text-white transition-colors flex items-center text-sm">
+            <i class="fas fa-arrow-left mr-2"></i>
+            Back to Campaigns
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="flex items-center space-x-4 mb-8">
+            <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center border border-purple-500/20">
+                <i class="fas fa-bullhorn text-purple-400 text-xl"></i>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white">Broadcast Campaign</h3>
+                <p class="text-slate-500 text-sm">Design and schedule a message for your bot users</p>
+            </div>
+        </div>
+
+        <form action="/admin/ads/create" method="post" class="space-y-8">
+            <!-- Ad Type Selection -->
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-slate-400 mb-3">Campaign Type</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label class="p-4 bg-slate-950/50 rounded-2xl border border-white/5 cursor-pointer hover:bg-white/5 transition-colors has-[:checked]:border-primary-500/30 has-[:checked]:bg-primary-500/5">
+                        <input type="radio" name="ad_type" value="broadcast" checked class="sr-only peer">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-primary-500/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-paper-plane text-primary-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Broadcast</h4>
+                                <p class="text-[10px] text-slate-500">Mass mail to all users</p>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="p-4 bg-slate-950/50 rounded-2xl border border-white/5 cursor-pointer hover:bg-white/5 transition-colors has-[:checked]:border-emerald-500/30 has-[:checked]:bg-emerald-500/5">
+                        <input type="radio" name="ad_type" value="post_download" class="sr-only peer">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-download text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Post-Download Ad</h4>
+                                <p class="text-[10px] text-slate-500">Shown after each download</p>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- General Info -->
+                <div class="md:col-span-2 space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Internal Campaign Name</label>
+                        <input type="text" name="name" required class="input-field" placeholder="e.g. Summer Promo 2026">
+                    </div>
+
+                    <!-- Media Upload Section -->
+                    <div class="border border-white/5 rounded-xl p-4 bg-slate-950/30">
+                        <h4 class="text-sm font-bold text-white mb-4 flex items-center">
+                            <i class="fas fa-photo-film mr-2 text-primary-500 text-xs"></i>
+                            Media Attachment (Optional)
+                        </h4>
+                        
+                        <!-- Media Type Selection -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Media Type</label>
+                            <div class="grid grid-cols-4 gap-2">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="media_type" value="none" checked class="sr-only peer" onchange="toggleMediaUpload()">
+                                    <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-primary-500/30 peer-checked:bg-primary-500/5 hover:bg-white/5 transition-all">
+                                        <div class="text-2xl mb-1">📝</div>
+                                        <div class="text-[10px] text-slate-400">Text Only</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="media_type" value="photo" class="sr-only peer" onchange="toggleMediaUpload()">
+                                    <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-primary-500/30 peer-checked:bg-primary-500/5 hover:bg-white/5 transition-all">
+                                        <div class="text-2xl mb-1">📷</div>
+                                        <div class="text-[10px] text-slate-400">Photo</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="media_type" value="video" class="sr-only peer" onchange="toggleMediaUpload()">
+                                    <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-primary-500/30 peer-checked:bg-primary-500/5 hover:bg-white/5 transition-all">
+                                        <div class="text-2xl mb-1">🎥</div>
+                                        <div class="text-[10px] text-slate-400">Video</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="media_type" value="animation" class="sr-only peer" onchange="toggleMediaUpload()">
+                                    <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-primary-500/30 peer-checked:bg-primary-500/5 hover:bg-white/5 transition-all">
+                                        <div class="text-2xl mb-1">🎞️</div>
+                                        <div class="text-[10px] text-slate-400">GIF</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- File Upload (shown when media type selected) -->
+                        <div id="file_upload_section" class="hidden border-t border-white/5 pt-4 mt-4">
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Upload File</label>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-1">
+                                    <input type="file" id="media_file_input" accept="image/*,video/*,.gif" class="hidden" onchange="handleFileSelect(this)">
+                                    <button type="button" onclick="document.getElementById('media_file_input').click()" class="w-full p-3 bg-slate-800/50 rounded-xl border border-white/5 hover:border-primary-500/30 hover:bg-primary-500/5 transition-all text-center cursor-pointer">
+                                        <i class="fas fa-cloud-upload-alt text-xl text-slate-400 mb-1"></i>
+                                        <div class="text-xs text-slate-400">Click to select file</div>
+                                    </button>
+                                    <button type="button" id="upload_btn" onclick="uploadFile()" class="w-full mt-2 p-2 bg-primary-500/20 rounded-lg border border-primary-500/30 text-xs text-primary-400 hover:bg-primary-500/30 transition-all hidden cursor-pointer">
+                                        <i class="fas fa-upload mr-1"></i> Upload to Telegram
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Upload Status -->
+                            <div id="upload_status" class="mt-3 hidden">
+                                <div class="flex items-center space-x-2 text-xs">
+                                    <i id="upload_icon" class="fas fa-spinner fa-spin text-primary-400"></i>
+                                    <span id="upload_text" class="text-slate-400">Uploading...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hidden field to store file_id -->
+                        <input type="hidden" name="media_file_id" id="media_file_id" value="">
+                        <!-- Hidden field to store cache channel message_id -->
+                        <input type="hidden" name="cache_channel_message_id" id="cache_channel_message_id" value="">
+                    </div>
+
+                    <div style="position: relative;">
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Message Content</label>
+
+                        <!-- Formatting Toolbar -->
+                        <div class="flex flex-wrap items-center gap-1 p-2 bg-slate-900/80 border border-white/5 rounded-t-xl border-b-0">
+                            <button type="button" onclick="execCmd('bold')" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-sm font-bold" title="Bold">B</button>
+                            <button type="button" onclick="execCmd('italic')" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-sm italic" title="Italic">I</button>
+                            <button type="button" onclick="execCmd('underline')" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-sm underline" title="Underline">U</button>
+                            <button type="button" onclick="execCmd('strikeThrough')" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-sm line-through" title="Strikethrough">S</button>
+                            <div class="w-px h-6 bg-white/10 mx-1"></div>
+                            <button type="button" onclick="execCmd('code')" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-xs font-mono" title="Inline Code">&lt;/&gt;</button>
+                            <button type="button" onclick="insertBlock('pre')" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-xs" title="Code Block">{ }</button>
+                            <div class="w-px h-6 bg-white/10 mx-1"></div>
+                            <button type="button" onclick="insertUrl()" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-xs" title="Hyperlink">🔗</button>
+                            <button type="button" onclick="insertBlock('blockquote')" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-xs" title="Quote">❝</button>
+                            <div class="w-px h-6 bg-white/10 mx-1"></div>
+                            <button type="button" onclick="insertSpoiler()" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-xs" title="Spoiler">👁️</button>
+                            <button type="button" onclick="toggleEmojiPicker()" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10 transition-all text-lg relative" title="Emoji" id="emoji_btn">😊</button>
+                            <div class="flex-1"></div>
+                            <button type="button" onclick="togglePreview()" class="h-8 px-3 flex items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 transition-all text-xs" title="Toggle Preview"> Preview</button>
+                            <button type="button" onclick="insertVar()" class="h-8 px-3 flex items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 transition-all text-xs" title="Insert {name}">{name}</button>
+                        </div>
+
+                        <!-- Emoji Picker Panel -->
+                        <div id="emoji_picker" class="hidden absolute z-50 mt-2 w-[340px] bg-[#1e1e2e] border border-white/10 rounded-2xl shadow-2xl overflow-hidden" style="top: 100%; left: 0;">
+                            <!-- Search Bar -->
+                            <div class="p-2 border-b border-white/5">
+                                <input type="text" id="emoji_search" placeholder="Search emoji..." 
+                                       class="w-full px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary-500/30"
+                                       oninput="searchEmoji(this.value)">
+                            </div>
+                            
+                            <!-- Category Tabs (scrollable) -->
+                            <div id="emoji_tabs" class="flex overflow-x-auto border-b border-white/5 scrollbar-hide">
+                                <button onclick="showEmojiTab('frequent')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="frequent" title="Recent">🕐</button>
+                                <button onclick="showEmojiTab('smileys')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent active-tab" data-tab="smileys" title="Smileys">😊</button>
+                                <button onclick="showEmojiTab('gestures')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="gestures" title="Gestures">👋</button>
+                                <button onclick="showEmojiTab('people')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="people" title="People">👥</button>
+                                <button onclick="showEmojiTab('animals')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="animals" title="Animals">🐾</button>
+                                <button onclick="showEmojiTab('food')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="food" title="Food">🍕</button>
+                                <button onclick="showEmojiTab('travel')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="travel" title="Travel">✈️</button>
+                                <button onclick="showEmojiTab('objects')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="objects" title="Objects">💡</button>
+                                <button onclick="showEmojiTab('symbols')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="symbols" title="Symbols">❤️</button>
+                                <button onclick="showEmojiTab('flags')" class="emoji-tab flex-none px-3 py-2 text-sm hover:bg-white/5 text-center transition-all border-b-2 border-transparent" data-tab="flags" title="Flags">🏁</button>
+                            </div>
+                            
+                            <!-- Emoji Grid -->
+                            <div id="emoji_grid" class="grid grid-cols-9 gap-0.5 p-2 max-h-[320px] overflow-y-auto custom-scrollbar"></div>
+                        </div>
+
+                        <div id="editor" contenteditable="true" 
+                             class="min-h-[200px] max-h-[400px] overflow-y-auto p-4 bg-slate-950/50 border border-t-0 border-white/5 rounded-b-xl text-sm text-slate-300 focus:outline-none focus:border-primary-500/30 focus:ring-1 focus:ring-primary-500/20 transition-all leading-relaxed"
+                             placeholder="Write your message here..."></div>
+                        <input type="hidden" name="content" id="content_hidden">
+                        
+                        <!-- Preview Pane -->
+                        <div id="preview_pane" class="hidden mt-2 p-4 bg-slate-950/50 rounded-xl border border-white/5">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Preview</span>
+                                <button type="button" onclick="togglePreview()" class="text-xs text-slate-500 hover:text-white">✕ Close</button>
+                            </div>
+                            <div id="preview_content" class="text-sm text-slate-300 leading-relaxed space-y-2"></div>
+                        </div>
+
+                        <p class="mt-2 text-[10px] text-slate-500 uppercase tracking-widest font-bold">Telegram HTML supported • Use {name} for personalization</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="md:col-span-2 border-t border-white/5 pt-8">
+                    <h4 class="text-sm font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-arrow-pointer mr-2 text-primary-500 text-xs"></i>
+                        Inline Button (Optional)
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Button Label</label>
+                            <input type="text" name="button_text" class="input-field" placeholder="e.g. Visit Website">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Destination URL</label>
+                            <input type="url" name="button_url" class="input-field" placeholder="https://...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duration (Post-Download Ads only) -->
+                <div id="duration_section" class="md:col-span-2 border-t border-white/5 pt-8 hidden">
+                    <h4 class="text-sm font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-clock mr-2 text-amber-500 text-xs"></i>
+                        Ad Duration — How long to show after downloads?
+                    </h4>
+                    <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="duration_days" value="7" class="sr-only peer">
+                            <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-emerald-500/50 peer-checked:bg-emerald-500/10 hover:bg-white/5 transition-all">
+                                <div class="text-xl mb-1">⏱️</div>
+                                <div class="text-xs text-slate-400 peer-checked:text-white font-bold">7 days</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="duration_days" value="14" class="sr-only peer">
+                            <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-emerald-500/50 peer-checked:bg-emerald-500/10 hover:bg-white/5 transition-all">
+                                <div class="text-xl mb-1">📅</div>
+                                <div class="text-xs text-slate-400 peer-checked:text-white font-bold">14 days</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="duration_days" value="30" checked class="sr-only peer">
+                            <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-emerald-500/50 peer-checked:bg-emerald-500/10 hover:bg-white/5 transition-all">
+                                <div class="text-xl mb-1">🗓️</div>
+                                <div class="text-xs text-slate-400 peer-checked:text-white font-bold">1 month</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="duration_days" value="90" class="sr-only peer">
+                            <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-emerald-500/50 peer-checked:bg-emerald-500/10 hover:bg-white/5 transition-all">
+                                <div class="text-xl mb-1">📆</div>
+                                <div class="text-xs text-slate-400 peer-checked:text-white font-bold">3 months</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="duration_days" value="180" class="sr-only peer">
+                            <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-emerald-500/50 peer-checked:bg-emerald-500/10 hover:bg-white/5 transition-all">
+                                <div class="text-xl mb-1">📅</div>
+                                <div class="text-xs text-slate-400 peer-checked:text-white font-bold">6 months</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="duration_days" value="0" class="sr-only peer">
+                            <div class="p-3 bg-slate-900/50 rounded-xl border border-white/5 text-center peer-checked:border-emerald-500/50 peer-checked:bg-emerald-500/10 hover:bg-white/5 transition-all">
+                                <div class="text-xl mb-1">♾️</div>
+                                <div class="text-xs text-slate-400 peer-checked:text-white font-bold">Forever</div>
+                            </div>
+                        </label>
+                    </div>
+                    <p class="mt-3 text-xs text-slate-500">After expiration, the ad will automatically stop showing. "Forever" means no expiry.</p>
+                    <div id="expiry_preview" class="mt-2 text-sm text-emerald-400"></div>
+                </div>
+
+                <!-- Targeting -->
+                <div class="md:col-span-2 border-t border-white/5 pt-8">
+                    <h4 class="text-sm font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-crosshairs mr-2 text-rose-500 text-xs"></i>
+                        Targeting & Distribution
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Target Language</label>
+                            <select name="target_language" class="input-field">
+                                <option value="">All Languages</option>
+                                {% for lang in languages %}
+                                <option value="{{ lang }}">{{ lang|upper }} Users</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-4">Select Source Bots</label>
+                            <div class="space-y-3 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                                {% for bot in bots %}
+                                <label class="flex items-center p-3 bg-slate-950/50 rounded-xl border border-white/5 cursor-pointer hover:bg-white/5 transition-colors">
+                                    <input type="checkbox" name="bot_ids" value="{{ bot.bot_id }}" checked class="w-4 h-4 rounded border-slate-800 bg-slate-900 text-primary-600 focus:ring-primary-500 focus:ring-offset-slate-950">
+                                    <span class="ml-3 text-sm text-slate-300">@{{ bot.username }}</span>
+                                    <span class="ml-auto badge badge-primary text-[10px]">{{ bot.total_users }}</span>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex justify-end space-x-3">
+                <a href="/admin/ads" class="btn-secondary">Save as Draft</a>
+                <button type="submit" class="btn-primary flex items-center">
+                    <i class="fas fa-paper-plane mr-2 text-xs"></i>
+                    Initialize Campaign
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+let selectedFile = null;
+
+function toggleMediaUpload() {
+    const selectedType = document.querySelector('input[name="media_type"]:checked').value;
+    const fileSection = document.getElementById('file_upload_section');
+    const fileIdInput = document.getElementById('media_file_id');
+
+    if (selectedType === 'none') {
+        fileSection.classList.add('hidden');
+        fileIdInput.value = '';
+        selectedFile = null;
+        document.getElementById('upload_btn').classList.add('hidden');
+        document.getElementById('upload_status').classList.add('hidden');
+    } else {
+        fileSection.classList.remove('hidden');
+    }
+}
+
+function toggleDurationSection() {
+    const adType = document.querySelector('input[name="ad_type"]:checked').value;
+    const section = document.getElementById('duration_section');
+    if (adType === 'post_download') {
+        section.classList.remove('hidden');
+        updateExpiryPreview();
+    } else {
+        section.classList.add('hidden');
+    }
+}
+
+function updateExpiryPreview() {
+    const adType = document.querySelector('input[name="ad_type"]:checked').value;
+    const preview = document.getElementById('expiry_preview');
+    if (adType !== 'post_download') {
+        preview.textContent = '';
+        return;
+    }
+    const selected = document.querySelector('input[name="duration_days"]:checked');
+    const days = selected ? parseInt(selected.value) : 30;
+    if (days === 0) {
+        preview.textContent = '♾️ This ad will run forever (no expiration)';
+    } else {
+        const expires = new Date();
+        expires.setDate(expires.getDate() + days);
+        preview.textContent = `📅 Expires on: ${expires.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+    }
+}
+
+function handleFileSelect(input) {
+    selectedFile = input.files[0];
+    if (selectedFile) {
+        document.getElementById('upload_text').textContent = `Selected: ${selectedFile.name} — starting upload...`;
+        document.getElementById('upload_icon').className = 'fas fa-spinner fa-spin text-primary-400';
+        document.getElementById('upload_status').classList.remove('hidden');
+        // Auto-upload on file select
+        uploadFile();
+    }
+}
+
+async function uploadFile() {
+    if (!selectedFile) return;
+
+    const selectedType = document.querySelector('input[name="media_type"]:checked').value;
+
+    // Show uploading
+    document.getElementById('upload_icon').className = 'fas fa-spinner fa-spin text-primary-400';
+    document.getElementById('upload_text').textContent = 'Uploading to Telegram...';
+    document.getElementById('upload_btn').classList.add('hidden');
+
+    console.log('📤 Uploading file:', selectedFile.name, 'type:', selectedType, 'size:', selectedFile.size);
+
+    try {
+        const formData = new FormData();
+        formData.append('media_file', selectedFile);
+        formData.append('media_type', selectedType);
+
+        // Get CSRF token from cookie
+        const csrfToken = getCookie('csrf_token') || getCookie('session_id');
+
+        const response = await fetch('/admin/ads/upload-media', {
+            method: 'POST',
+            body: formData,
+            credentials: 'include',  // Send cookies for auth
+            headers: csrfToken ? { 'X-CSRF-Token': csrfToken } : {},
+        });
+
+        console.log('📥 Upload response status:', response.status);
+
+        // Check if redirected to login (auth failed)
+        if (response.redirected || response.url.includes('/login')) {
+            throw new Error('Authentication failed. Please refresh the page and try again.');
+        }
+
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status} ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log('📦 Upload response:', result);
+
+        if (result.error) {
+            throw new Error(result.error);
+        }
+
+        // Success - set file_id and message_id
+        document.getElementById('media_file_id').value = result.file_id;
+        document.getElementById('cache_channel_message_id').value = result.message_id || '';
+        document.getElementById('upload_icon').className = 'fas fa-check-circle text-green-400';
+        document.getElementById('upload_text').textContent = `✅ Uploaded: ${result.filename} (${result.file_type})`;
+        document.getElementById('upload_status').classList.remove('hidden');
+
+        console.log('✅ File uploaded! file_id:', result.file_id, 'message_id:', result.message_id);
+
+    } catch (error) {
+        console.error('❌ Upload failed:', error);
+        document.getElementById('upload_icon').className = 'fas fa-exclamation-circle text-red-400';
+        document.getElementById('upload_text').textContent = `❌ ${error.message}`;
+        document.getElementById('upload_btn').classList.remove('hidden');
+        // Clear file_id on error
+        document.getElementById('media_file_id').value = '';
+        document.getElementById('cache_channel_message_id').value = '';
+    }
+}
+
+function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+}
+
+// === WYSIWYG Editor Functions ===
+
+function getEditor() { return document.getElementById('editor'); }
+
+function execCmd(cmd) { 
+    getEditor().focus(); 
+    document.execCommand(cmd, false, null); 
+}
+
+function insertBlock(tag) {
+    const editor = getEditor();
+    editor.focus();
+    document.execCommand('formatBlock', false, tag);
+}
+
+function insertUrl() {
+    const url = prompt('Enter URL:', 'https://');
+    if (url) {
+        getEditor().focus();
+        document.execCommand('createLink', false, url);
+    }
+}
+
+function insertSpoiler() {
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    const text = range.toString() || 'hidden text';
+    const span = document.createElement('span');
+    span.setAttribute('data-tg', 'spoiler');
+    span.textContent = text;
+    span.style.background = 'rgba(255,255,255,0.1)';
+    span.style.borderRadius = '4px';
+    span.style.padding = '0 4px';
+    range.deleteContents();
+    range.insertNode(span);
+    sel.removeAllRanges();
+}
+
+function insertVar() {
+    const editor = getEditor();
+    editor.focus();
+    const sel = window.getSelection();
+    if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        range.deleteContents();
+        const span = document.createElement('span');
+        span.setAttribute('data-var', 'name');
+        span.textContent = '{name}';
+        span.style.color = '#f59e0b';
+        span.style.fontWeight = 'bold';
+        range.insertNode(span);
+        sel.collapseToEnd();
+    }
+}
+
+function togglePreview() {
+    const pane = document.getElementById('preview_pane');
+    const content = document.getElementById('preview_content');
+    if (pane.classList.contains('hidden')) {
+        syncContent();
+        let html = document.getElementById('content_hidden').value;
+
+        // Convert newlines to <br> for HTML preview display
+        html = html.replace(/\n/g, '<br>');
+
+        // Replace {name} with styled version
+        html = html.replace(/\{name\}/g, '<span style="color:#3b82f6;font-weight:bold">User</span>');
+
+        content.innerHTML = html;
+        pane.classList.remove('hidden');
+    } else {
+        pane.classList.add('hidden');
+    }
+}
+
+function syncContent() {
+    const editor = getEditor();
+    const hidden = document.getElementById('content_hidden');
+    if (!hidden) return;
+    
+    // Clone to avoid modifying the actual editor
+    const clone = editor.cloneNode(true);
+    
+    // Convert spoiler spans to tg-spoiler tags
+    clone.querySelectorAll('span[data-tg="spoiler"]').forEach(el => {
+        const tag = document.createElement('tg-spoiler');
+        tag.textContent = el.textContent;
+        el.parentNode.replaceChild(tag, el);
+    });
+    
+    // Convert {name} spans back to {name}
+    clone.querySelectorAll('span[data-var="name"]').forEach(el => {
+        el.textContent = '{name}';
+    });
+    
+    let html = clone.innerHTML;
+    
+    // Clean up Telegram-unsupported tags
+    html = html.replace(/style="[^"]*"/g, ''); // Remove inline styles
+    html = html.replace(/<div>/g, '\n');
+    html = html.replace(/<\/div>/g, '');
+    html = html.replace(/<br\s*\/?>/g, '\n');
+    html = html.replace(/&nbsp;/g, ' ');
+    
+    hidden.value = html.trim();
+}
+
+// Auto-sync on input
+document.addEventListener('input', function() {
+    if (document.getElementById('editor')) syncContent();
+});
+
+// Validate form before submit
+document.addEventListener('DOMContentLoaded', function() {
+    toggleMediaUpload();
+    toggleDurationSection();
+
+    // Listen for ad type changes
+    document.querySelectorAll('input[name="ad_type"]').forEach(radio => {
+        radio.addEventListener('change', toggleDurationSection);
+    });
+
+    // Listen for duration changes
+    document.querySelectorAll('input[name="duration_days"]').forEach(radio => {
+        radio.addEventListener('change', updateExpiryPreview);
+    });
+
+    // Add form validation
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const selectedType = document.querySelector('input[name="media_type"]:checked').value;
+            const fileId = document.getElementById('media_file_id').value;
+
+            if (selectedType !== 'none' && !fileId) {
+                e.preventDefault();
+                alert('⚠️ Please wait for the media file to finish uploading before submitting the form.');
+                return false;
+            }
+            
+            syncContent();
+            const content = document.getElementById('content_hidden').value;
+            if (!content || content.trim() === '' || content.trim() === '<br>') {
+                e.preventDefault();
+                alert('⚠️ Please enter message content.');
+                return false;
+            }
+        });
+    }
+});
+
+// Comprehensive Emoji Data (~2000+ emojis, Telegram-equivalent)
+const EMOJI_DATA = {
+    frequent: [], // Will be populated from localStorage
+    smileys: ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🫢','🫣','🤫','🤔','🫡','🤐','🤨','😐','😑','😶','🫥','😶‍🌫️','😏','😒','🙄','😬','😮‍💨','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','😵‍💫','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','🫤','😟','🙁','☹️','😮','😯','😲','😳','🥺','🥹','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🫶','🙈','🙉','🙊','💋','💌','💘','💝','💖','💗','💓','💞','💕','💟','❣️','💔','❤️‍🔥','❤️‍🩹','❤️','🧡','💛','💚','💙','💜','🤎','🖤','🤍','💯','💢','💥','💫','💦','💨','🕳️','💬','🗨️','🗯️','💭','💤'],
+    gestures: ['👋','🤚','🖐️','✋','🖖','🫱','🫲','🫳','🫴','👌','🤌','🤏','✌️','🤞','🫰','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝️','🫵','👍','👎','✊','👊','🤛','🤜','👏','🙌','🫶','👐','🤲','🤝','🙏','✍️','💅','🤳','💪','🦾','🦿','🦵','🦶','👂','🦻','👃','🧠','🫀','🫁','🦷','🦴','👀','👁️','👅','👄','🫦','👶','🧒','👦','👧','🧑','👱','👨','🧔','🧔‍♂️','🧔‍♀️','👨‍🦰','👨‍🦱','👨‍🦳','👨‍🦲','👩','👩‍🦰','🧑‍🦰','👩‍🦱','🧑‍🦱','👩‍🦳','🧑‍🦳','👩‍🦲','🧑‍🦲','👱‍♀️','👱‍♂️','🧓','👴','👵','🙍','🙍‍♂️','🙍‍♀️','🙎','🙎‍♂️','🙎‍♀️','🙅','🙅‍♂️','🙅‍♀️','🙆','🙆‍♂️','🙆‍♀️','💁','💁‍♂️','💁‍♀️','🙋','🙋‍♂️','🙋‍♀️','🧏','🧏‍♂️','🧏‍♀️','🙇','🙇‍♂️','🙇‍♀️','🤦','🤦‍♂️','🤦‍♀️','🤷','🤷‍♂️','🤷‍♀️','🧑‍⚕️','👨‍⚕️','👩‍⚕️','🧑‍🎓','👨‍🎓','👩‍🎓','🧑‍🏫','👨‍🏫','👩‍🏫','🧑‍⚖️','👨‍⚖️','👩‍⚖️','🧑‍🌾','👨‍🌾','👩‍🌾','🧑‍🍳','👨‍🍳','👩‍🍳','🧑‍🔧','👨‍🔧','👩‍🔧','🧑‍🏭','👨‍🏭','👩‍🏭','🧑‍💼','👨‍💼','👩‍💼','🧑‍🔬','👨‍🔬','👩‍🔬','🧑‍💻','👨‍💻','👩‍💻','🧑‍🎤','👨‍🎤','👩‍🎤','🧑‍🎨','👨‍🎨','👩‍🎨','🧑‍✈️','👨‍✈️','👩‍✈️','🧑‍🚀','👨‍🚀','👩‍🚀','🧑‍🚒','👨‍🚒','👩‍🚒','👮','👮‍♂️','👮‍♀️','🕵️','🕵️‍♂️','🕵️‍♀️','💂','💂‍♂️','💂‍♀️','🥷','👷','👷‍♂️','👷‍♀️','🫅','🤴','👸','👳','👳‍♂️','👳‍♀️','👲','🧕','🤵','🤵‍♂️','🤵‍♀️','👰','👰‍♂️','👰‍♀️','🤰','🫃','🫄','🤱','👩‍🍼','👨‍🍼','🧑‍🍼'],
+    animals: ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐻‍❄️','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🙈','🙉','🙊','🐒','🐔','🐧','🐦','🐤','🐣','🐥','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🪱','🐛','🦋','🐌','🐞','🐜','🪰','🪲','🪳','🦟','🦗','🕷️','🦂','🐢','🐍','🦎','🦖','🦕','🐙','🦑','🦐','🦞','🦀','🐡','🐠','🐟','🐬','🐳','🐋','🦈','🐊','🐅','🐆','🦓','🦍','🦧','🐘','🦛','🦏','🐪','🐫','🦒','🦘','🦬','🐃','🐂','🐄','🐎','🐖','🐏','🐑','🦙','🐐','🦌','🐕','🐩','🦮','🐕‍🦺','🐈','🐈‍⬛','🪶','🐓','🦃','🦤','🦚','🦜','🦢','🦩','🕊️','🐇','🦝','🦨','🦡','🦫','🦦','🦥','🐁','🐀','🐿️','🦔','🌵','🎄','🌲','🌳','🌴','🪵','🌱','🌿','☘️','🍀','🎍','🪴','🎋','🍃','🍂','🍁','🍄','🐚','🪸','🪨','🌾','💐','🌷','🌹','🥀','🌺','🌸','🌼','🌻','🌞','🌝','🌛','🌜','🌚','🌕','🌖','🌗','🌘','🌑','🌒','🌓','🌔','🌙','🌎','🌍','🌏','🪐','💫','⭐','🌟','✨','⚡','☄️','💥','🔥','🌪️','🌈','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','⛈️','🌩️','🌨️','❄️','☃️','⛄','🌬️','💨','💧','💦','🫧','☔','☂️','🌊','🌫️'],
+    food: ['🍏','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍈','🍒','🍑','🥭','🍍','🥥','🥝','🍅','🍆','🥑','🥦','🥬','🥒','🌶️','🫑','🌽','🥕','🫒','🧄','🧅','🥔','🍠','🥐','🥖','🍞','🥨','🥯','🧀','🥚','🍳','🧈','🥞','🧇','🥓','🥩','🍗','🍖','🌭','🍔','🍟','🍕','🫓','🥪','🥙','🧆','🌮','🌯','🫔','🥗','🥘','🫕','🥫','🍝','🍜','🍲','🍛','🍣','🍱','🥟','🦪','🍤','🍙','🍚','🍘','🍥','🥠','🥮','🍢','🍡','🍧','🍨','🍦','🥧','🧁','🍰','🎂','🍮','🍭','🍬','🍫','🍩','🍪','🌰','🥜','🍯','🥛','🍼','🫖','☕','🍵','🧃','🥤','🧋','🍶','🍺','🍻','🥂','🍷','🥃','🍸','🍹','🧉','🍾','🧊','🥄','🍴','🍽️','🥣','🥡','🥢','🧂','⚽','🏀','🏈','⚾','🥎','🎾','🏐','🏉','🥏','🎱','🪀','🏓','🏸','🏒','🏑','🥍','🏏','🪃','🥅','⛳','🪁','🏹','🎣','🤿','🥊','🥋','🎽','🛹','🛼','🛷','⛸️','🥌','🎿','⛷️','🏂','🪂','🏋️','🤼','🤸','🤺','⛹️','🤾','🏌️','🏇','🧘','🏄','🏊','🤽','🚣','🧗','🚴','🚵','🎖️','🏆','🥇','🥈','🥉','🏅','🎪','🤹','🎗️','🎟️','🎫'],
+    travel: ['🚗','🚕','🚙','🚌','🚎','🏎️','🚓','🚑','🚒','🚐','🛻','🚚','🚛','🚜','🏍️','🛵','🚲','🛴','🛺','🚔','🚍','🚘','🚖','🛞','🚡','🚠','🚟','🚃','🚋','🚞','🚝','🚄','🚅','🚈','🚂','🚆','🚇','🚊','🚉','✈️','🛫','🛬','🛩️','💺','🛰️','🚀','🛸','🚁','🛶','⛵','🚤','🛥️','🛳️','⛴️','🚢','⚓','🪝','⛽','🚧','🚦','🚥','🗿','🗽','🏰','🏯','🏟️','🎡','🎢','🎠','⛲','⛱️','🏖️','🏝️','🏜️','🌋','⛰️','🏔️','🗻','🏕️','⛺','🛖','🏠','🏡','🏘️','🏚️','🏗️','🏢','🏬','🏣','🏤','🏥','🏦','🏨','🏪','🏫','🏩','💒','🏛️','⛪','🕌','🕍','🛕','🕋','⛩️','🗼','🌉','⌚','📱','📲','💻','⌨️','🖥️','🖨️','🖱️','🖲️','💾','💿','📀','📷','📸','📹','🎥','📽️','🎞️','📞','☎️','📟','📠','📺','📻','🎙️','🎚️','🎛️','🧭','⏱️','⏲️','⏰','🕰️','⌛','⏳','📡','🔋','🔌','💡','🔦','🕯️','🧯','🗑️','🛢️','💸','💵','💴','💶','💷','🪙','💰','💳','💎','⚖️','🧰','🔧','🔨','⚒️','🛠️','⛏️','🪚','🔩','⚙️','🧲','🔫','💣','🧨','🪓','🔪','🗡️','⚔️','🛡️','🚬','⚰️','🪦','⚱️','🏺','🔮','📿','🧿','🪬','💈','⚗️','🔭','🔬','🕳️','🩹','🩺','🩻','🩼','💊','💉','🩸','🧬','🦠','🧫','🧪','🌡️','🧹','🪠','🧺','🧻','🚽','🚰','🚿','🛁','🛀','🧼','🪥','🪒','🧽','🪣','🔑','🗝️','🚪','🪑','🛋️','🛏️','🛌','🧸','🪆','🖼️','🪞','🪟','🛍️','🛒','🎁','🎈','🎏','🎀','🪄','🪅','🎊','🎉','🎎','🏮','🎐','🧧','✉️','📩','📨','📧','💌','📥','📤','📦','🏷️','🪧'],
+    objects: ['⌚','📱','📲','💻','⌨️','🖥️','🖨️','🖱️','🖲️','💾','💿','📀','📷','📸','📹','🎥','📽️','🎞️','📞','☎️','📟','📠','📺','📻','🎙️','🎚️','🎛️','🧭','⏱️','⏲️','⏰','🕰️','⌛','⏳','📡','🔋','🔌','💡','🔦','🕯️','🧯','🗑️','🛢️','💸','💵','💴','💶','💷','🪙','💰','💳','💎','⚖️','🧰','🔧','🔨','⚒️','🛠️','⛏️','🪚','🔩','⚙️','🧲','🔫','💣','🧨','🪓','🔪','🗡️','⚔️','🛡️','🚬','⚰️','🪦','⚱️','🏺','🔮','📿','🧿','🪬','💈','⚗️','🔭','🔬','🕳️','🩹','🩺','🩻','🩼','💊','💉','🩸','🧬','🦠','🧫','🧪','🌡️','🧹','🪠','🧺','🧻','🚽','🚰','🚿','🛁','🛀','🧼','🪥','🪒','🧽','🪣','🔑','🗝️','🚪','🪑','🛋️','🛏️','🛌','🧸','🪆','🖼️','🪞','🪟','🛍️','🛒','🎁','🎈','🎏','🎀','🪄','🪅','🎊','🎉','🎎','🏮','🎐','🧧','✉️','📩','📨','📧','💌','📥','📤','📦','🏷️','🪧','📪','📫','📬','📭','📮','📯','📜','📃','📄','📑','🧾','📊','📈','📉','📆','📅','🗓️','📇','🗃️','🗳️','🗄️','📋','📁','📂','🗂️','🗞️','📰','📓','📔','📒','📕','📗','📘','📙','📚','📖','🔖','🧷','🔗','📎','🖇️','📐','📏','🧮','📌','📍','✂️','🖊️','🖋️','✒️','🖌️','🖍️','📝','✏️','🔍','🔎','🔏','🔐','🔒','🔓'],
+    symbols: ['❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❤️‍🔥','❤️‍🩹','❣️','💕','💞','💓','💗','💖','💘','💝','💟','☮️','✝️','☪️','🕉️','☸️','✡️','🔯','🕎','☯️','☦️','🛐','⛎','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','🆔','⚛️','🉑','☢️','☣️','📴','📳','🈶','🈚','🈸','🈺','🈷️','✴️','🆚','💮','🉐','㊙️','㊗️','🈴','🈵','🈹','🈲','🅰️','🅱️','🆎','🆑','🅾️','🆘','❌','⭕','🛑','⛔','📛','🚫','💯','💢','♨️','🚷','🚯','🚳','🚱','🔞','📵','🚭','❗','❕','❓','❔','‼️','⁉️','🔅','🔆','〽️','⚠️','🚸','🔱','⚜️','🔰','♻️','✅','🈯','💹','❇️','✳️','❎','🌐','💠','Ⓜ️','🌀','💤','🏧','🚾','♿','🅿️','🛗','🈳','🈂️','🛂','🛃','🛄','🛅','🚹','🚺','🚼','⚧','🚻','🚮','🎦','📶','🈁','🔣','ℹ️','🔤','🔡','🔠','🆖','🆗','🆙','🆒','🆕','🆓','0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟','🔢','#️⃣','*️⃣','⏏️','▶️','⏸️','⏯️','⏹️','⏺️','⏭️','⏮️','⏩','⏪','⏫','⏬','◀️','🔼','🔽','➡️','⬅️','⬆️','⬇️','↗️','↘️','↙️','↖️','↕️','↔️','↪️','↩️','⤴️','⤵️','🔀','🔁','🔂','🔄','🔃','🎵','🎶','➕','➖','➗','✖️','🟰','♾️','💲','💱','™️','©️','®️','〰️','➰','➿','🔚','🔙','🔛','🔝','🔜','✔️','☑️','🔘','🔴','🟠','🟡','🟢','🔵','🟣','⚫','⚪','🟤','🔺','🔻','🔸','🔹','🔶','🔷','🔳','🔲','▪️','▫️','◾','◽','◼️','◻️','🟥','🟧','🟨','🟩','🟦','🟪','⬛','⬜','🟫','🔈','🔇','🔉','🔊','🔔','🔕','📣','📢','♠️','♣️','♥️','♦️','🃏','🎴','🀄','🕐','🕑','🕒','🕓','🕔','🕕','🕖','🕗','🕘','🕙','🕚','🕛','🕜','🕝','🕞','🕟','🕠','🕡','🕢','🕣','🕤','🕥','🕦','🕧'],
+    flags: ['🏁','🚩','🎌','🏴','🏳️','🏳️‍🌈','🏳️‍⚧️','🏴‍☠️','🇦🇨','🇦🇩','🇦🇪','🇦🇫','🇦🇬','🇦🇮','🇦🇱','🇦🇲','🇦🇴','🇦🇶','🇦🇷','🇦🇸','🇦🇹','🇦🇺','🇦🇼','🇦🇽','🇦🇿','🇧🇦','🇧🇧','🇧🇩','🇧🇪','🇧🇫','🇧🇬','🇧🇭','🇧🇮','🇧🇯','🇧🇱','🇧🇲','🇧🇳','🇧🇴','🇧🇶','🇧🇷','🇧🇸','🇧🇹','🇧🇻','🇧🇼','🇧🇾','🇧🇿','🇨🇦','🇨🇨','🇨🇩','🇨🇫','🇨🇬','🇨🇭','🇨🇮','🇨🇰','🇨🇱','🇨🇲','🇨🇳','🇨🇴','🇨🇵','🇨🇷','🇨🇺','🇨🇻','🇨🇼','🇨🇽','🇨🇾','🇨🇿','🇩🇪','🇩🇬','🇩🇯','🇩🇰','🇩🇲','🇩🇴','🇩🇿','🇪🇦','🇪🇨','🇪🇪','🇪🇬','🇪🇭','🇪🇷','🇪🇸','🇪🇹','🇪🇺','🇫🇮','🇫🇯','🇫🇰','🇫🇲','🇫🇴','🇫🇷','🇬🇦','🇬🇧','🇬🇩','🇬🇪','🇬🇫','🇬🇬','🇬🇭','🇬🇮','🇬🇱','🇬🇲','🇬🇳','🇬🇵','🇬🇶','🇬🇷','🇬🇸','🇬🇹','🇬🇺','🇬🇼','🇬🇾','🇭🇰','🇭🇲','🇭🇳','🇭🇷','🇭🇹','🇭🇺','🇮🇨','🇮🇩','🇮🇪','🇮🇱','🇮🇲','🇮🇳','🇮🇴','🇮🇶','🇮🇷','🇮🇸','🇮🇹','🇯🇪','🇯🇲','🇯🇴','🇯🇵','🇰🇪','🇰🇬','🇰🇭','🇰🇮','🇰🇲','🇰🇳','🇰🇵','🇰🇷','🇰🇼','🇰🇾','🇰🇿','🇱🇦','🇱🇧','🇱🇨','🇱🇮','🇱🇰','🇱🇷','🇱🇸','🇱🇹','🇱🇺','🇱🇻','🇱🇾','🇲🇦','🇲🇨','🇲🇩','🇲🇪','🇲🇫','🇲🇬','🇲🇭','🇲🇰','🇲🇱','🇲🇲','🇲🇳','🇲🇴','🇲🇵','🇲🇶','🇲🇷','🇲🇸','🇲🇹','🇲🇺','🇲🇻','🇲🇼','🇲🇽','🇲🇾','🇲🇿','🇳🇦','🇳🇨','🇳🇪','🇳🇫','🇳🇬','🇳🇮','🇳🇱','🇳🇴','🇳🇵','🇳🇷','🇳🇺','🇳🇿','🇴🇲','🇵🇦','🇵🇪','🇵🇫','🇵🇬','🇵🇭','🇵🇰','🇵🇱','🇵🇲','🇵🇳','🇵🇷','🇵🇸','🇵🇹','🇵🇼','🇵🇾','🇶🇦','🇷🇪','🇷🇴','🇷🇸','🇷🇺','🇷🇼','🇸🇦','🇸🇧','🇸🇨','🇸🇩','🇸🇪','🇸🇬','🇸🇭','🇸🇮','🇸🇯','🇸🇰','🇸🇱','🇸🇲','🇸🇳','🇸🇴','🇸🇷','🇸🇸','🇸🇹','🇸🇻','🇸🇽','🇸🇾','🇸🇿','🇹🇦','🇹🇨','🇹🇩','🇹🇫','🇹🇬','🇹🇭','🇹🇯','🇹🇰','🇹🇱','🇹🇲','🇹🇳','🇹🇴','🇹🇷','🇹🇹','🇹🇻','🇹🇼','🇹🇿','🇺🇦','🇺🇬','🇺🇲','🇺🇳','🇺🇸','🇺🇾','🇺🇿','🇻🇦','🇻🇨','🇻🇪','🇻🇬','🇻🇮','🇻🇳','🇻🇺','🇼🇫','🇼🇸','🇽🇰','🇾🇪','🇾🇹','🇿🇦','🇿🇲','🇿🇼']
+};
+
+// Initialize frequent emojis from localStorage
+function loadFrequentEmojis() {
+    try {
+        const stored = localStorage.getItem('frequent_emoji');
+        if (stored) {
+            EMOJI_DATA.frequent = JSON.parse(stored);
+        }
+    } catch(e) {
+        EMOJI_DATA.frequent = ['😀','😂','😍','🥰','😎','👍','❤️','🔥','🎉','✨','😊','🙏','💪','🤣','😘'];
+    }
+}
+
+function saveFrequentEmoji(emoji) {
+    try {
+        let freq = EMOJI_DATA.frequent || [];
+        // Remove if exists, add to front
+        freq = freq.filter(e => e !== emoji);
+        freq.unshift(emoji);
+        // Keep only top 30
+        freq = freq.slice(0, 30);
+        EMOJI_DATA.frequent = freq;
+        localStorage.setItem('frequent_emoji', JSON.stringify(freq));
+    } catch(e) {}
+}
+
+let currentEmojiTab = 'smileys';
+loadFrequentEmojis();
+
+function toggleEmojiPicker() {
+    const picker = document.getElementById('emoji_picker');
+    if (picker.classList.contains('hidden')) {
+        picker.classList.remove('hidden');
+        showEmojiTab(currentEmojiTab);
+    } else {
+        picker.classList.add('hidden');
+    }
+}
+
+function showEmojiTab(tab) {
+    currentEmojiTab = tab;
+    
+    // Update active tab
+    document.querySelectorAll('.emoji-tab').forEach(btn => {
+        btn.classList.toggle('active-tab', btn.dataset.tab === tab);
+    });
+    
+    const grid = document.getElementById('emoji_grid');
+    grid.innerHTML = '';
+    
+    const emojis = EMOJI_DATA[tab] || [];
+    emojis.forEach(emoji => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'emoji-grid-btn';
+        btn.textContent = emoji;
+        btn.onclick = () => insertEmoji(emoji);
+        btn.title = emoji;
+        grid.appendChild(btn);
+    });
+}
+
+function searchEmoji(query) {
+    if (!query.trim()) {
+        showEmojiTab(currentEmojiTab);
+        return;
+    }
+    // Simple search: show all emojis (in a real app, you'd have emoji names)
+    const grid = document.getElementById('emoji_grid');
+    grid.innerHTML = '';
+    
+    // Flatten all emojis for search
+    const allEmojis = Object.values(EMOJI_DATA).flat();
+    const unique = [...new Set(allEmojis)].slice(0, 100); // Show first 100
+    
+    unique.forEach(emoji => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'emoji-grid-btn';
+        btn.textContent = emoji;
+        btn.onclick = () => insertEmoji(emoji);
+        grid.appendChild(btn);
+    });
+}
+
+function insertEmoji(emoji) {
+    const editor = document.getElementById('editor');
+    editor.focus();
+    
+    // Save to frequent
+    saveFrequentEmoji(emoji);
+    
+    const sel = window.getSelection();
+    if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(document.createTextNode(emoji));
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else {
+        editor.textContent += emoji;
+    }
+    
+    // Keep picker open for multiple selections
+    document.getElementById('emoji_picker').classList.remove('hidden');
+}
+
+// Close emoji picker when clicking outside
+document.addEventListener('click', function(e) {
+    const picker = document.getElementById('emoji_picker');
+    if (picker && !picker.contains(e.target) && !e.target.closest('[onclick*="toggleEmojiPicker"]')) {
+        picker.classList.add('hidden');
+    }
+});
+</script>
+{% endblock %}

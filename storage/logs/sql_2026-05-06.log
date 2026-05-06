@@ -1,0 +1,19 @@
+2026-05-06 16:59:21.888 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/azarstream
+2026-05-06 16:59:23.165 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-05-06 16:59:24.356 | ERROR    | database | database.connection:session:106 | Session rollback | error=(pymysql.err.ProgrammingError) (1146, "Table 'azarstream.bots' doesn't exist")
+[SQL: SELECT bots.id, bots.token, bots.bot_id, bots.username, bots.name, bots.description, bots.status, bots.is_webhook, bots.webhook_url, bots.webhook_secret, bots.total_users, bots.active_users, bots.total_downloads, bots.created_at, bots.updated_at 
+FROM bots 
+WHERE bots.status = %s ORDER BY bots.created_at DESC 
+ LIMIT %s, %s]
+[parameters: ('ACTIVE', 0, 100)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-05-06 17:09:35.531 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/azarstream
+2026-05-06 17:09:35.578 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-05-06 17:18:45.636 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-05-06 17:18:45.638 | INFO     | database | database.connection:disconnect:92 | Database disconnected
+2026-05-06 17:19:09.712 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/azarstream
+2026-05-06 17:19:10.251 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-05-06 17:39:53.066 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/azarstream
+2026-05-06 17:39:53.205 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
+2026-05-06 17:51:54.752 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
+2026-05-06 17:51:55.163 | INFO     | database | database.connection:disconnect:92 | Database disconnected

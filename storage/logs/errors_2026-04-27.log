@@ -1,0 +1,149 @@
+2026-04-27 22:39:37.406 | ERROR    | downloader.youtube | services.media.youtube:refresh:140 | Token generator failed | stderr=npm error code E404
+npm error 404 Not Found - GET https://registry.npmjs.org/@iv-org%2fyoutube-po-token-generator - Not found
+npm error 404
+npm error 404  The requested resource '@iv-org/youtube-po-to
+2026-04-27 22:59:02.634 | ERROR    | downloader.youtube | services.media.youtube:refresh:140 | Token generator failed | stderr=npm error code E404
+npm error 404 Not Found - GET https://registry.npmjs.org/@iv-org%2fyoutube-po-token-generator - Not found
+npm error 404
+npm error 404  The requested resource '@iv-org/youtube-po-to
+2026-04-27 23:03:47.339 | ERROR    | bot.processor | bot.processor:_handle_youtube_url:538 | Failed to get YouTube info | error='YouTubeDownloader' object has no attribute '_token_manager'
+Traceback (most recent call last):
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/main.py", line 85, in <module>
+    main()
+    └ <function main at 0x7c9431f01bc0>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/main.py", line 81, in main
+    run_server()
+    └ <function run_server at 0x7c9431ef8220>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/main.py", line 35, in run_server
+    granian.Granian(**kwargs).serve()
+    │       │         └ {'target': 'app.lifecycle:app', 'address': '127.0.0.1', 'port': 8000, 'interface': <Interfaces.ASGI: 'asgi'>, 'workers': 4, '...
+    │       └ <class 'granian.server.mp.MPServer'>
+    └ <module 'granian' from '/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/__...
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/mp.py", line 458, in serve
+    super().serve(spawn_target, target_loader, wrap_loader)
+                  │             │              └ True
+                  │             └ None
+                  └ None
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 720, in serve
+    serve_method(spawn_target, target_loader)
+    │            │             └ functools.partial(<function load_target at 0x7c942e967920>, 'app.lifecycle:app', wd=None, factory=False)
+    │            └ <function MPServer._spawn_asgi_lifespan_worker at 0x7c942e7b44a0>
+    └ <bound method AbstractServer._serve of <granian.server.mp.MPServer object at 0x7c941b0d8b60>>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 562, in _serve
+    self.startup(spawn_target, target_loader)
+    │    │       │             └ functools.partial(<function load_target at 0x7c942e967920>, 'app.lifecycle:app', wd=None, factory=False)
+    │    │       └ <function MPServer._spawn_asgi_lifespan_worker at 0x7c942e7b44a0>
+    │    └ <function AbstractServer.startup at 0x7c942e74fc40>
+    └ <granian.server.mp.MPServer object at 0x7c941b0d8b60>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 473, in startup
+    self._spawn_workers(spawn_target, target_loader)
+    │    │              │             └ functools.partial(<function load_target at 0x7c942e967920>, 'app.lifecycle:app', wd=None, factory=False)
+    │    │              └ <function MPServer._spawn_asgi_lifespan_worker at 0x7c942e7b44a0>
+    │    └ <function AbstractServer._spawn_workers at 0x7c942e74f380>
+    └ <granian.server.mp.MPServer object at 0x7c941b0d8b60>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 335, in _spawn_workers
+    wrk.start()
+    │   └ <function AbstractWorker.start at 0x7c942e74e8e0>
+    └ <granian.server.mp.WorkerProcess object at 0x7c941aa09460>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/common.py", line 65, in start
+    self.inner.start()
+    │    │     └ <function BaseProcess.start at 0x7c942ed78900>
+    │    └ <ForkProcess name='granian-worker' parent=564460 started>
+    └ <granian.server.mp.WorkerProcess object at 0x7c941aa09460>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+    │    │        │    │      └ <ForkProcess name='granian-worker' parent=564460 started>
+    │    │        │    └ <staticmethod(<function ForkProcess._Popen at 0x7c942ed9d6c0>)>
+    │    │        └ <ForkProcess name='granian-worker' parent=564460 started>
+    │    └ None
+    └ <ForkProcess name='granian-worker' parent=564460 started>
+  File "/usr/lib/python3.12/multiprocessing/context.py", line 282, in _Popen
+    return Popen(process_obj)
+           │     └ <ForkProcess name='granian-worker' parent=564460 started>
+           └ <class 'multiprocessing.popen_fork.Popen'>
+  File "/usr/lib/python3.12/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+    │    │       └ <ForkProcess name='granian-worker' parent=564460 started>
+    │    └ <function Popen._launch at 0x7c941a87f600>
+    └ <multiprocessing.popen_fork.Popen object at 0x7c941aa09490>
+  File "/usr/lib/python3.12/multiprocessing/popen_fork.py", line 71, in _launch
+    code = process_obj._bootstrap(parent_sentinel=child_r)
+           │           │                          └ 32
+           │           └ <function BaseProcess._bootstrap at 0x7c942ed79300>
+           └ <ForkProcess name='granian-worker' parent=564460 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x7c942ed78860>
+    └ <ForkProcess name='granian-worker' parent=564460 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <ForkProcess name='granian-worker' parent=564460 started>
+    │    │        │    └ (2, None, functools.partial(<function load_target at 0x7c942e967920>, 'app.lifecycle:app', wd=None, factory=False), (<granian...
+    │    │        └ <ForkProcess name='granian-worker' parent=564460 started>
+    │    └ <function MPServer._spawn_asgi_lifespan_worker at 0x7c942e7b44a0>
+    └ <ForkProcess name='granian-worker' parent=564460 started>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/mp.py", line 91, in wrapped
+    return target(worker_id, callback, sock, _ipc_handle, loop, *args, **kwargs)
+           │      │          │         │     │            │      │       └ {}
+           │      │          │         │     │            │      └ (<RuntimeModes.mt: 'mt'>, 1, 512, 1, 30, 256, <TaskImpl.asyncio: 'asyncio'>, <HTTPModes.auto: 'auto'>, None, None, False, Non...
+           │      │          │         │     │            └ <uvloop.Loop running=True closed=False debug=False>
+           │      │          │         │     └ None
+           │      │          │         └ <granian._granian.SocketHolder object at 0x7c942ea904f0>
+           │      │          └ <litestar.app.Litestar object at 0x7c941ab72040>
+           │      └ 2
+           └ <function MPServer._spawn_asgi_lifespan_worker at 0x7c942e7b4400>
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/.venv/lib/python3.12/site-packages/granian/server/mp.py", line 221, in _spawn_asgi_lifespan_worker
+    serve(scheduler, loop, shutdown_event)
+    │     │          │     └ <granian._granian.WorkerSignal object at 0x7c941aa09aa0>
+    │     │          └ <uvloop.Loop running=True closed=False debug=False>
+    │     └ <granian._futures._CBSchedulerAIO object at 0x7c941a70de10>
+    └ <built-in method serve_mtr of granian._granian.ASGIWorker object at 0x7c941a8179f0>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/app/controllers/webhook.py", line 80, in _process_in_background
+    await update_processor.process(bot_token, data)
+          │                │       │          └ {'update_id': 689715852, 'message': {'message_id': 20317, 'from': {'id': 6597464835, 'is_bot': False, 'first_name': 'الأنصار ...
+          │                │       └ '7039033833:AAGOhZLTiBUQ5K54_Qcds06auoW5k0D8aUo'
+          │                └ <function UpdateProcessor.process at 0x7c941ab0a840>
+          └ <bot.processor.UpdateProcessor object at 0x7c941b0d9040>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/bot/processor.py", line 185, in process
+    return await self._handle_message(ctx, update.message)
+                 │    │               │    │      └ Message(message_id=20317, date=datetime.datetime(2026, 4, 27, 18, 3, 46, tzinfo=TzInfo(0)), chat=Chat(id=6597464835, type='pr...
+                 │    │               │    └ Update(update_id=689715852, message=Message(message_id=20317, date=datetime.datetime(2026, 4, 27, 18, 3, 46, tzinfo=TzInfo(0)...
+                 │    │               └ ProcessingContext(bot=<aiogram.client.bot.Bot object at 0x7c941aa2ca70>, bot_model=<Bot(id=1)>, update=Update(update_id=68971...
+                 │    └ <function UpdateProcessor._handle_message at 0x7c941ab0aa20>
+                 └ <bot.processor.UpdateProcessor object at 0x7c941b0d9040>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/bot/processor.py", line 241, in _handle_message
+    return await self._handle_url(ctx, message, url)
+                 │    │           │    │        └ 'https://www.youtube.com/watch?v=usXhiWE2Uc0'
+                 │    │           │    └ Message(message_id=20317, date=datetime.datetime(2026, 4, 27, 18, 3, 46, tzinfo=TzInfo(0)), chat=Chat(id=6597464835, type='pr...
+                 │    │           └ ProcessingContext(bot=<aiogram.client.bot.Bot object at 0x7c941aa2ca70>, bot_model=<Bot(id=1)>, update=Update(update_id=68971...
+                 │    └ <function UpdateProcessor._handle_url at 0x7c941ab0ad40>
+                 └ <bot.processor.UpdateProcessor object at 0x7c941b0d9040>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/bot/processor.py", line 389, in _handle_url
+    return await self._handle_youtube_url(ctx, message, url, status_msg)
+                 │    │                   │    │        │    └ Message(message_id=20318, date=datetime.datetime(2026, 4, 27, 18, 3, 47, tzinfo=TzInfo(0)), chat=Chat(id=6597464835, type='pr...
+                 │    │                   │    │        └ 'https://www.youtube.com/watch?v=usXhiWE2Uc0'
+                 │    │                   │    └ Message(message_id=20317, date=datetime.datetime(2026, 4, 27, 18, 3, 46, tzinfo=TzInfo(0)), chat=Chat(id=6597464835, type='pr...
+                 │    │                   └ ProcessingContext(bot=<aiogram.client.bot.Bot object at 0x7c941aa2ca70>, bot_model=<Bot(id=1)>, update=Update(update_id=68971...
+                 │    └ <function UpdateProcessor._handle_youtube_url at 0x7c941ab0ade0>
+                 └ <bot.processor.UpdateProcessor object at 0x7c941b0d9040>
+
+> File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/bot/processor.py", line 430, in _handle_youtube_url
+    info = await downloader.get_video_info(url)
+                 │          │              └ 'https://www.youtube.com/watch?v=usXhiWE2Uc0'
+                 │          └ <function YouTubeDownloader.get_video_info at 0x7c941bea0720>
+                 └ <services.media.youtube.YouTubeDownloader object at 0x7c94193b7860>
+
+  File "/home/sayavdera/Desktop/projects/TelegramBots/MediaFlow/services/media/youtube.py", line 867, in get_video_info
+    await self._token_manager.ensure_fresh()
+          └ <services.media.youtube.YouTubeDownloader object at 0x7c94193b7860>
+
+AttributeError: 'YouTubeDownloader' object has no attribute '_token_manager'

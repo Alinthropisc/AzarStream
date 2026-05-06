@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Advertising - MediaFlow{% endblock %}
+{% block header %}Ad Campaigns{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-8">
+    <div>
+        <h3 class="text-2xl font-bold text-white">Campaigns</h3>
+        <p class="text-slate-500 text-sm">Manage broadcast and inline advertising</p>
+    </div>
+    <a href="/admin/ads/create" class="btn-primary flex items-center">
+        <i class="fas fa-bullhorn mr-2 text-xs"></i>
+        Create Campaign
+    </a>
+</div>
+
+<div class="table-container">
+    <table class="w-full text-left">
+        <thead>
+            <tr>
+                <th class="table-header">Campaign Name</th>
+                <th class="table-header">Type</th>
+                <th class="table-header">Status</th>
+                <th class="table-header">Performance</th>
+                <th class="table-header text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+            {% for ad in ads %}
+            <tr class="table-row group">
+                <td class="px-6 py-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-rectangle-ad text-purple-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-white">{{ ad.name }}</div>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-tighter">ID: {{ ad.id }}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="text-xs font-medium text-slate-400 border border-white/10 px-2 py-0.5 rounded-md bg-white/5">
+                        {{ ad.media_type|upper }}
+                    </span>
+                </td>
+                <td class="px-6 py-4">
+                    {% if ad.status == 'active' %}
+                    <span class="badge badge-success">Running</span>
+                    {% elif ad.status == 'completed' %}
+                    <span class="badge badge-primary">Completed</span>
+                    {% else %}
+                    <span class="badge badge-warning">{{ ad.status }}</span>
+                    {% endif %}
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <div class="text-xs font-bold text-white">{{ ad.clicks }}</div>
+                            <div class="text-[10px] uppercase text-slate-500">Clicks</div>
+                        </div>
+                        <div class="w-px h-6 bg-white/5"></div>
+                        <div>
+                            <div class="text-xs font-bold text-white">{{ ad.views }}</div>
+                            <div class="text-[10px] uppercase text-slate-500">Views</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end space-x-2">
+                        <a href="/admin/ads/{{ ad.id }}" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:text-white transition-all border border-white/5" title="View Details">
+                            <i class="fas fa-eye text-xs"></i>
+                        </a>
+                        {% if ad.status == 'completed' %}
+                        <form action="/admin/ads/{{ ad.id }}/delete-with-messages" method="post" class="inline" onsubmit="return confirm('Delete this campaign and remove all sent messages from Telegram chats?')">
+                            <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:text-rose-400 hover:bg-rose-400/10 transition-all border border-white/5" title="Delete and remove messages">
+                                <i class="fas fa-trash-can text-xs"></i>
+                            </button>
+                        </form>
+                        {% else %}
+                        <form action="/admin/ads/{{ ad.id }}/delete" method="post" class="inline" onsubmit="return confirm('Delete this campaign?')">
+                            <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:text-rose-400 hover:bg-rose-400/10 transition-all border border-white/5" title="Delete">
+                                <i class="fas fa-trash-can text-xs"></i>
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="px-6 py-12 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-slate-800/50 rounded-2xl flex items-center justify-center mb-4 border border-white/5">
+                            <i class="fas fa-rectangle-ad text-slate-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-white font-semibold">No active campaigns</h4>
+                        <p class="text-slate-500 text-sm max-w-xs mt-1">Start monetizing your bots by creating an advertising campaign.</p>
+                        <a href="/admin/ads/create" class="mt-6 btn-primary">New Campaign</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

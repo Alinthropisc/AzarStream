@@ -1,0 +1,15 @@
+2026-04-24 23:00:06.663 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:209 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Flood control exceeded on method 'SetWebhook'. Retry in 1 seconds.
+Original description: Too Many Requests: retry after 1
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-04-24 23:00:06.663 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:209 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Flood control exceeded on method 'SetWebhook'. Retry in 1 seconds.
+Original description: Too Many Requests: retry after 1
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-04-24 23:00:06.663 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:209 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Flood control exceeded on method 'SetWebhook'. Retry in 1 seconds.
+Original description: Too Many Requests: retry after 1
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-04-24 23:00:08.802 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:209 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Flood control exceeded on method 'SetWebhook'. Retry in 1 seconds.
+Original description: Too Many Requests: retry after 1
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-04-24 23:00:08.808 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:209 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Flood control exceeded on method 'SetWebhook'. Retry in 1 seconds.
+Original description: Too Many Requests: retry after 1
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)

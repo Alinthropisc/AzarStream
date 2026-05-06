@@ -1,0 +1,58 @@
+2026-04-25 00:05:27.349 | INFO     | bot.processor | bot.processor:process:111 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715616 | has_message=False | has_callback=False
+2026-04-25 00:05:27.350 | INFO     | bot.processor | bot.processor:process:125 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 00:07:31.304 | INFO     | bot.processor | bot.processor:process:111 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715617 | has_message=False | has_callback=False
+2026-04-25 00:07:31.305 | INFO     | bot.processor | bot.processor:process:125 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 00:07:51.202 | INFO     | bot.processor | bot.processor:process:111 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715618 | has_message=False | has_callback=False
+2026-04-25 00:07:51.203 | INFO     | bot.processor | bot.processor:process:125 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 00:07:53.212 | INFO     | bot.processor | bot.processor:process:111 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715619 | has_message=False | has_callback=False
+2026-04-25 00:07:53.213 | INFO     | bot.processor | bot.processor:process:125 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 00:08:40.247 | INFO     | bot.processor | bot.processor:process:111 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715620 | has_message=False | has_callback=False
+2026-04-25 00:08:40.247 | INFO     | bot.processor | bot.processor:process:125 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 22:54:16.981 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715694 | has_message=True | has_callback=False
+2026-04-25 22:54:16.981 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 22:54:17.158 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-04-25 22:54:20.877 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715695 | has_message=True | has_callback=False
+2026-04-25 22:54:20.877 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 22:54:20.903 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:54:21.140 | INFO     | bot.processor | bot.processor:_handle_direct_download:824 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:54:21.330 | INFO     | bot.processor | bot.processor:_process_download:893 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2 | platform=instagram
+2026-04-25 22:54:30.736 | INFO     | bot.processor | bot.processor:_process_download:919 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-04-25 22:54:31.589 | DEBUG    | bot.processor | bot.processor:_save_download_record:1251 | Download record saved | user_id=1 | total_downloads=25
+2026-04-25 22:54:31.590 | DEBUG    | bot.processor | bot.processor:_process_download:996 | Download record saved (new) | user_id=6597464835 | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10cz
+2026-04-25 22:54:31.862 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1479 | Found ad to send | ad_id=1 | ad_name=Иш Топиш | media_type=none | has_content=True
+2026-04-25 22:54:32.121 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1533 | Ad sent as text | chat_id=6597464835
+2026-04-25 22:55:00.233 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715696 | has_message=True | has_callback=False
+2026-04-25 22:55:00.234 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 22:55:00.256 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:55:00.758 | INFO     | bot.processor | bot.processor:_handle_direct_download:824 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:55:00.936 | INFO     | bot.processor | bot.processor:_process_download:893 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2 | platform=instagram
+2026-04-25 22:55:01.116 | INFO     | bot.processor | bot.processor:_process_download:919 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-04-25 22:55:01.481 | DEBUG    | bot.processor | bot.processor:_process_download:998 | Cache hit — not counting as new download | user_id=6597464835
+2026-04-25 22:55:01.687 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1479 | Found ad to send | ad_id=1 | ad_name=Иш Топиш | media_type=none | has_content=True
+2026-04-25 22:55:01.895 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1533 | Ad sent as text | chat_id=6597464835
+2026-04-25 22:58:30.414 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715697 | has_message=True | has_callback=False
+2026-04-25 22:58:30.415 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 22:58:30.433 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:58:31.006 | INFO     | bot.processor | bot.processor:_handle_direct_download:824 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:58:31.261 | INFO     | bot.processor | bot.processor:_process_download:893 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2 | platform=instagram
+2026-04-25 22:58:31.539 | INFO     | bot.processor | bot.processor:_process_download:919 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-04-25 22:58:31.917 | DEBUG    | bot.processor | bot.processor:_process_download:998 | Cache hit — not counting as new download | user_id=6597464835
+2026-04-25 22:58:32.195 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1479 | Found ad to send | ad_id=1 | ad_name=Иш Топиш | media_type=none | has_content=True
+2026-04-25 22:58:32.398 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1533 | Ad sent as text | chat_id=6597464835
+2026-04-25 22:58:34.899 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715698 | has_message=True | has_callback=False
+2026-04-25 22:58:34.900 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 22:58:34.925 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:58:35.115 | INFO     | bot.processor | bot.processor:_handle_direct_download:824 | 📥 Direct download started | platform=instagram | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2
+2026-04-25 22:58:35.354 | INFO     | bot.processor | bot.processor:_process_download:893 | ⬇️ Starting download | user_id=6597464835 | url=https://www.instagram.com/p/DXdmulNDFGp/?igsh=Yjkwd2dxem10czd2 | platform=instagram
+2026-04-25 22:58:35.545 | INFO     | bot.processor | bot.processor:_process_download:919 | ✅ Download completed | user_id=6597464835 | success=True | error=None
+2026-04-25 22:58:36.065 | DEBUG    | bot.processor | bot.processor:_process_download:998 | Cache hit — not counting as new download | user_id=6597464835
+2026-04-25 22:58:36.250 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1479 | Found ad to send | ad_id=1 | ad_name=Иш Топиш | media_type=none | has_content=True
+2026-04-25 22:58:36.438 | INFO     | bot.processor | bot.processor:_send_post_download_ad:1533 | Ad sent as text | chat_id=6597464835
+2026-04-25 23:10:37.738 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715699 | has_message=False | has_callback=False
+2026-04-25 23:10:37.739 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 23:24:36.664 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715700 | has_message=False | has_callback=False
+2026-04-25 23:24:36.664 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 23:33:17.322 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715701 | has_message=False | has_callback=False
+2026-04-25 23:33:17.322 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-25 23:51:58.547 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715702 | has_message=False | has_callback=False
+2026-04-25 23:51:58.548 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot

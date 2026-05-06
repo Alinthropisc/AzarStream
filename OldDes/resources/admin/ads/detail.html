@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}Ad Details - Media Downloader Admin{% endblock %}
+{% block header %}Ad: {{ ad.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-8">
+        <a href="/admin/ads" class="text-slate-500 hover:text-white transition-colors flex items-center text-sm">
+            <i class="fas fa-arrow-left mr-2"></i>
+            Back to Campaigns
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center border border-purple-500/20">
+                    <i class="fas fa-bullhorn text-purple-400 text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">{{ ad.name }}</h3>
+                    <p class="text-slate-500 text-sm flex items-center mt-1">
+                        Status:
+                        <span class="ml-2 px-2 py-0.5 rounded-full text-xs font-semibold
+                            {{ 'bg-slate-800 text-slate-300 border border-slate-700' if ad.status == 'draft' }}
+                            {{ 'bg-blue-500/10 text-blue-400 border border-blue-500/20' if ad.status == 'scheduled' }}
+                            {{ 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' if ad.status == 'running' }}
+                            {{ 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' if ad.status == 'completed' }}
+                            {{ 'bg-red-500/10 text-red-400 border border-red-500/20' if ad.status == 'failed' }}">
+                            {{ ad.status|capitalize }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="flex space-x-3">
+                {% if ad.status == 'draft' %}
+                <form action="/admin/ads/{{ ad.id }}/send" method="post">
+                    <button type="submit" class="btn-primary flex items-center">
+                        <i class="fas fa-paper-plane mr-2 text-xs"></i>
+                        Start Broadcast
+                    </button>
+                </form>
+                {% endif %}
+                <form action="/admin/ads/{{ ad.id }}/delete" method="post" onsubmit="return confirm('Delete ad?')">
+                    <button type="submit" class="btn-secondary flex items-center text-red-400 hover:text-red-300 border-red-500/20 hover:border-red-500/40">
+                        <i class="fas fa-trash mr-2 text-xs"></i>
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Content -->
+            <div class="bg-slate-900/50 rounded-2xl border border-white/5 p-6">
+                <h4 class="text-sm font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-file-alt mr-2 text-primary-500 text-xs"></i>
+                    Campaign Content
+                </h4>
+                <div class="bg-slate-950/50 rounded-xl p-4 border border-white/5">
+                    <p class="text-sm text-slate-300 whitespace-pre-wrap font-mono">{{ ad.content }}</p>
+                </div>
+                {% if ad.button_text and ad.button_url %}
+                <div class="mt-4">
+                    <span class="text-xs text-slate-500 uppercase tracking-widest font-bold mr-2">CTA Button:</span>
+                    <a href="{{ ad.button_url }}" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary-500/10 hover:bg-primary-500/20 text-primary-400 text-sm rounded-xl border border-primary-500/20 transition-colors">
+                        <i class="fas fa-external-link-alt mr-2 text-xs"></i>
+                        {{ ad.button_text }}
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Information -->
+            <div class="bg-slate-900/50 rounded-2xl border border-white/5 p-6">
+                <h4 class="text-sm font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-info-circle mr-2 text-slate-400 text-xs"></i>
+                    Campaign Info
+                </h4>
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Type</span>
+                        <p class="text-sm text-slate-300 mt-1 flex items-center">
+                            {% if ad.ad_type == 'post_download' %}
+                            <i class="fas fa-download mr-2 text-emerald-400"></i>
+                            {% else %}
+                            <i class="fas fa-paper-plane mr-2 text-primary-400"></i>
+                            {% endif %}
+                            {{ ad.ad_type|capitalize }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Target Bots</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {% if ad.target_bots %}
+                                {% for tb in ad.target_bots %}
+                                <span class="px-3 py-1 bg-slate-800 rounded-xl border border-white/5 text-xs text-slate-300">
+                                    @{{ tb.bot.username }}
+                                </span>
+                                {% endfor %}
+                            {% else %}
+                                <span class="text-sm text-slate-500 italic">All bots</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Language</span>
+                        <p class="text-sm text-slate-300 mt-1">{{ ad.target_language or "All Languages" }}</p>
+                    </div>
+
+                    <div>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Created</span>
+                        <p class="text-sm text-slate-300 mt-1 flex items-center">
+                            <i class="fas fa-calendar mr-2 text-slate-500"></i>
+                            {{ ad.created_at.strftime('%Y-%m-%d %H:%M') if ad.created_at else 'N/A' }}
+                        </p>
+                    </div>
+
+                    {% if ad.ad_type == 'post_download' %}
+                    <div class="border-t border-white/5 pt-4 mt-4">
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Duration</span>
+                        <p class="text-sm text-slate-300 mt-1 flex items-center">
+                            {% if ad.duration_days %}
+                            <i class="fas fa-clock mr-2 text-amber-400"></i>
+                            {{ ad.duration_days }} days
+                            {% else %}
+                            <i class="fas fa-infinity mr-2 text-emerald-400"></i>
+                            Forever
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-bold">Expires</span>
+                        <p class="text-sm text-slate-300 mt-1 flex items-center">
+                            {% if ad.expires_at %}
+                                {% if ad.expires_at < now() %}
+                                <i class="fas fa-exclamation-triangle mr-2 text-red-400"></i>
+                                <span class="text-red-400">Expired {{ ad.expires_at.strftime('%Y-%m-%d %H:%M') }}</span>
+                                {% else %}
+                                <i class="fas fa-clock mr-2 text-emerald-400"></i>
+                                {{ ad.expires_at.strftime('%Y-%m-%d %H:%M') }}
+                                {% endif %}
+                            {% else %}
+                            <i class="fas fa-infinity mr-2 text-emerald-400"></i>
+                            Never
+                            {% endif %}
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

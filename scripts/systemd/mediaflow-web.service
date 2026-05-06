@@ -1,0 +1,47 @@
+[Unit]
+Description=MediaFlow Web Server (Granian ASGI)
+Documentation=https://github.com/emmett-framework/granian
+After=network-online.target postgresql.service redis.service
+Wants=network-online.target
+
+[Service]
+Type=exec
+User=${SERVICE_USER}
+Group=${SERVICE_USER}
+WorkingDirectory=${PROJECT_DIR}
+EnvironmentFile=${PROJECT_DIR}/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=GRANIAN_LOG_LEVEL=warning
+ExecStart=${PROJECT_DIR}/.venv/bin/granian \
+    --host 127.0.0.1 \
+    --port 8000 \
+    --workers ${APP_WORKERS:-4} \
+    --threads 2 \
+    --interface asgi \
+    --loop uvloop \
+    --log-level warning \
+    --backlog 2048 \
+    main:app
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=3
+TimeoutStartSec=60
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mediaflow-web
+LimitNOFILE=65536
+LimitNPROC=4096
+MemoryMax=2G
+CPUQuota=90%
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=${PROJECT_DIR}/storage
+ReadWritePaths=${PROJECT_DIR}/.venv
+ReadWritePaths=/tmp
+
+[Install]
+WantedBy=multi-user.target

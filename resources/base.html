@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Azar Stream Admin{% endblock %}</title>
+    <link rel="icon" type="image/jpeg" href="/static/azar-logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        ink: {
+                            950: '#070509', 900: '#0c0a0e', 800: '#141015',
+                            700: '#1d1820', 600: '#2a232c',
+                        },
+                        ember: {
+                            50:'#fff5ec',100:'#ffe4c8',200:'#ffc98a',300:'#ffac4d',
+                            400:'#ff921f',500:'#ff6a1a',600:'#e6531a',700:'#bf3d18',
+                            800:'#8c2a14',900:'#5c1c0e',950:'#2e0d06',
+                        },
+                        flame:   { 400:'#ffd166', 500:'#ffb020', 600:'#e69300' },
+                        crimson: { 500:'#e63946', 600:'#c1232f' },
+                        primary: {
+                            50:'#fff5ec',100:'#ffe4c8',200:'#ffc98a',300:'#ffac4d',
+                            400:'#ff921f',500:'#ff6a1a',600:'#e6531a',700:'#bf3d18',
+                            800:'#8c2a14',900:'#5c1c0e',950:'#2e0d06',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Plain CSS — independent of Tailwind compile, won't break if CDN hiccups -->
+    <style>
+        :root {
+            --ink-950:#070509; --ink-900:#0c0a0e; --ink-800:#141015;
+            --ink-700:#1d1820; --ink-600:#2a232c;
+            --ember-300:#ffac4d; --ember-400:#ff921f; --ember-500:#ff6a1a;
+            --ember-600:#e6531a; --ember-700:#bf3d18; --ember-900:#5c1c0e;
+            --flame-500:#ffb020; --flame-400:#ffd166;
+            --crimson-500:#e63946;
+        }
+        html, body { background: var(--ink-950); color: #e5e7eb; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(255,106,26,0.12), transparent 40%),
+                radial-gradient(circle at 92% 18%, rgba(255,176,32,0.09), transparent 40%),
+                radial-gradient(circle at 60% 95%, rgba(230,57,70,0.10), transparent 45%);
+            background-attachment: fixed;
+            margin: 0;
+        }
+        h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; }
+
+        ::selection { background: rgba(255,106,26,0.3); color: #ffe4c8; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--ink-950); }
+        ::-webkit-scrollbar-thumb { background: rgba(191,61,24,0.6); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,106,26,0.7); }
+
+        /* ----- Surfaces ----- */
+        .panel, .glass-panel {
+            background: rgba(12, 10, 14, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 106, 26, 0.10);
+            box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
+        }
+        .as-card, .card {
+            position: relative; overflow: hidden;
+            background: rgba(12,10,14,0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,106,26,0.10);
+            border-radius: 16px;
+            padding: 24px;
+            clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+            box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
+        }
+        .as-card::after, .card::after {
+            content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
+            background: linear-gradient(90deg, transparent, #ff6a1a 20%, #ffb020 50%, #e63946 80%, transparent);
+            opacity: .55;
+        }
+
+        /* ----- Top brand bar ----- */
+        .as-topbar {
+            position: fixed; top:0; left:0; right:0; height:64px; z-index:40;
+            display:flex; align-items:center; padding: 0 20px;
+            background: rgba(12,10,14,0.7);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,106,26,0.10);
+        }
+        .as-brand-logo {
+            position: relative; width:40px; height:40px; border-radius:10px;
+            overflow:hidden; box-shadow: 0 0 22px rgba(255,106,26,0.35);
+            outline: 1px solid rgba(255,106,26,0.4);
+        }
+        .as-brand-logo img { width:100%; height:100%; object-fit:cover; display:block; }
+        .as-brand-text {
+            background: linear-gradient(90deg,#ffb020 0%,#ff6a1a 55%,#e63946 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            font-family:'Space Grotesk',sans-serif; font-weight:700;
+            font-size:1.05rem; letter-spacing:-0.01em; line-height:1;
+        }
+        .brand-text { /* legacy alias */
+            background: linear-gradient(90deg,#ffb020 0%,#ff6a1a 55%,#e63946 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+
+        /* scanline */
+        @keyframes scan { 0%{transform:translateX(-100%);} 100%{transform:translateX(250%);} }
+        .scanline { position:absolute; left:0; right:0; bottom:-1px; height:1px; overflow:hidden; }
+        .scanline::after {
+            content:''; position:absolute; inset:0; width:30%;
+            background: linear-gradient(90deg, transparent, #ff6a1a, #ffb020, #ff6a1a, transparent);
+            animation: scan 6s linear infinite;
+            filter: blur(1px);
+        }
+
+        /* ----- Left rail (floating glass panel — like a phone screen) ----- */
+        .as-rail {
+            position: fixed; left:18px; top:82px; bottom:58px; width:208px; z-index:30;
+            display:flex; flex-direction:column; align-items:stretch; padding:14px 12px;
+            background: rgba(20, 16, 26, 0.32);
+            backdrop-filter: blur(22px) saturate(140%);
+            -webkit-backdrop-filter: blur(22px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            box-shadow:
+                0 24px 60px -20px rgba(0, 0, 0, 0.75),
+                0 0 0 1px rgba(255, 106, 26, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+        }
+        .as-rail::before {
+            content:''; position:absolute; inset:0; border-radius:22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 30%, transparent 70%, rgba(255,106,26,0.03) 100%);
+            pointer-events:none;
+        }
+        .as-rail nav {
+            flex:1; display:flex; flex-direction:column; align-items:stretch; gap:4px;
+            overflow-y:auto; overflow-x:visible; width:100%;
+        }
+        .rail-item, .sidebar-link {
+            position: relative; display:flex; align-items:center; justify-content:flex-start;
+            gap:12px; width:100%; height:42px; padding: 0 12px;
+            border-radius:12px;
+            color:#a1a1aa; transition: all .2s ease;
+            text-decoration: none; flex-shrink:0;
+            font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+        }
+        .rail-item i, .sidebar-link i {
+            width: 20px; text-align: center; font-size: 0.95rem; flex-shrink:0;
+        }
+        .rail-item > span:not(.tip), .sidebar-link > span:not(.tip) {
+            display: inline; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .rail-item .tip, .sidebar-link .tip { display: none !important; }
+        .rail-item:hover, .sidebar-link:hover {
+            color:#fff; background: rgba(255,106,26,0.08);
+        }
+        .rail-item.active, .sidebar-link.active {
+            color:#ffac4d;
+            background: linear-gradient(135deg, rgba(255,106,26,0.18), rgba(230,57,70,0.10));
+            box-shadow: inset 0 0 0 1px rgba(255,106,26,0.35), 0 0 24px -4px rgba(255,106,26,0.45);
+        }
+        .rail-item.active::before, .sidebar-link.active::before {
+            content:''; position:absolute; left:-12px; top:8px; bottom:8px; width:3px;
+            background: linear-gradient(180deg,#ffb020,#ff6a1a,#e63946);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 12px rgba(255,106,26,0.7);
+        }
+        .rail-divider {
+            width:auto; margin:10px 8px;
+        }
+
+        .rail-item .tip {
+            pointer-events:none; position:absolute; left:100%; margin-left:14px;
+            white-space:nowrap; padding:6px 12px; border-radius:8px;
+            font-size:11px; font-weight:600; letter-spacing:0.02em;
+            background: rgba(20,16,21,0.97); color:#ffd9b3;
+            border:1px solid rgba(255,106,26,0.25);
+            box-shadow: 0 8px 24px -8px rgba(255,106,26,0.4);
+            opacity:0; transform:translateX(-6px);
+            transition: all .15s ease; z-index:50;
+        }
+        .rail-item:hover .tip { opacity:1; transform:translateX(0); }
+
+        .rail-divider {
+            width:32px; height:1px; margin:12px 0;
+            background: linear-gradient(90deg, transparent, rgba(255,106,26,0.5), transparent);
+        }
+
+        /* ----- Main + content ----- */
+        .as-main { margin-left:244px; margin-top:64px; margin-bottom:40px; }
+        .as-content { padding:32px; max-width:1600px; margin: 0 auto; }
+
+        /* ----- Bottom status bar ----- */
+        .as-statusbar {
+            position: fixed; bottom:0; left:0; right:0; height:40px; z-index:40;
+            display:flex; align-items:center; justify-content:space-between;
+            padding: 0 20px; font-family:'JetBrains Mono', monospace;
+            font-size: 11px;
+            background: rgba(12,10,14,0.7);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-top: 1px solid rgba(255,106,26,0.10);
+        }
+        .as-statusbar .group { display:flex; align-items:center; gap:14px; color:#71717a; }
+        .as-divider-v { height:12px; width:1px; background: rgba(255,106,26,0.2); }
+
+        .as-onair { display:flex; align-items:center; gap:8px; color:#34d399;
+                    text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
+        .as-pulse { position:relative; display:inline-flex; height:8px; width:8px; }
+        .as-pulse::before {
+            content:''; position:absolute; inset:0; border-radius:9999px;
+            background:#34d399; opacity:.6; animation: as-ping 1.6s cubic-bezier(0,0,0.2,1) infinite;
+        }
+        .as-pulse::after {
+            content:''; position:relative; display:inline-flex; height:8px; width:8px;
+            border-radius:9999px; background:#10b981;
+        }
+        @keyframes as-ping {
+            75%, 100% { transform: scale(2.2); opacity: 0; }
+        }
+
+        .sync-btn {
+            background: transparent; border: 0; color: inherit; cursor: pointer;
+            padding: 4px 10px; border-radius: 6px; font: inherit;
+            transition: all .15s ease;
+        }
+        .sync-btn:hover { color:#ffac4d; background: rgba(255,106,26,0.08); }
+
+        /* ----- Buttons ----- */
+        .btn-primary {
+            display:inline-flex; align-items:center; justify-content:center;
+            padding: 8px 16px; color:#fff; border-radius:12px; border:0;
+            font-weight:600; letter-spacing:0.02em; cursor:pointer;
+            background: linear-gradient(90deg,#e6531a,#ff6a1a 50%,#ffb020);
+            box-shadow: 0 12px 28px -12px rgba(255,106,26,0.7);
+            transition: all .2s ease; text-decoration:none;
+        }
+        .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-secondary {
+            display:inline-flex; align-items:center; justify-content:center;
+            padding: 8px 16px; color:#fff; border-radius:12px;
+            background: var(--ink-800); border:1px solid rgba(255,106,26,0.15);
+            font-weight:500; cursor:pointer; transition: all .2s ease; text-decoration:none;
+        }
+        .btn-secondary:hover { background: var(--ink-700); }
+
+        /* ----- Inputs ----- */
+        .input-field {
+            width:100%; background: var(--ink-950);
+            border:1px solid rgba(255,106,26,0.12);
+            border-radius:12px; padding:10px 16px; color:#fff;
+            outline:none; transition: all .2s ease;
+        }
+        .input-field::placeholder { color:#52525b; }
+        .input-field:focus {
+            border-color: rgba(255,106,26,0.55);
+            box-shadow: 0 0 0 3px rgba(255,106,26,0.15);
+        }
+
+        /* ----- Tables ----- */
+        .table-container {
+            background: rgba(12,10,14,0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,106,26,0.10);
+            border-radius: 16px; overflow: hidden;
+        }
+        .table-header {
+            padding: 16px 24px;
+            font-family:'Space Grotesk',sans-serif;
+            font-size: 11px; font-weight:600;
+            text-transform: uppercase; letter-spacing: 0.18em;
+            background: rgba(7,5,9,0.6);
+            color: rgba(255,172,77,0.75);
+            border-bottom: 1px solid rgba(255,106,26,0.12);
+        }
+        .table-row { border-bottom:1px solid rgba(255,106,26,0.06); transition: background .15s ease; }
+        .table-row:hover { background: rgba(255,106,26,0.04); }
+
+        /* ----- Badges ----- */
+        .badge { display:inline-block; padding:2px 10px; border-radius:9999px;
+                 font-size:11px; font-weight:500; border:1px solid; }
+        .badge-success { background: rgba(16,185,129,0.10); color:#34d399; border-color: rgba(16,185,129,0.20); }
+        .badge-warning { background: rgba(255,176,32,0.10); color:#ffb020; border-color: rgba(255,176,32,0.20); }
+        .badge-danger  { background: rgba(230,57,70,0.10);  color:#e63946; border-color: rgba(230,57,70,0.30); }
+        .badge-primary { background: rgba(255,106,26,0.10); color:#ffac4d; border-color: rgba(255,106,26,0.20); }
+
+        /* ----- Section title with wave accent ----- */
+        .section-title {
+            font-family:'Space Grotesk',sans-serif;
+            font-size: 1.25rem; font-weight: 700;
+            color:#fff; letter-spacing:-0.01em;
+            display:flex; align-items:center; gap:12px;
+        }
+        .section-title::before {
+            content:''; width:28px; height:14px; flex-shrink:0;
+            background:#ff6a1a;
+            -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 14'><path d='M0 7 Q3.5 0 7 7 T14 7 T21 7 T28 7' stroke='black' fill='none' stroke-width='2'/></svg>") center/contain no-repeat;
+                    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 14'><path d='M0 7 Q3.5 0 7 7 T14 7 T21 7 T28 7' stroke='black' fill='none' stroke-width='2'/></svg>") center/contain no-repeat;
+        }
+
+        /* ----- Notifications ----- */
+        .notice { display:flex; align-items:center; padding:12px 16px;
+                  border-radius:14px; font-size:14px; font-weight:500;
+                  margin-bottom: 24px; }
+        .notice i { margin-right: 12px; }
+        .notice-ok    { background: rgba(16,185,129,0.08);  border:1px solid rgba(16,185,129,0.25); color:#34d399; }
+        .notice-error { background: rgba(230,57,70,0.08);   border:1px solid rgba(230,57,70,0.30);  color:#ff8a93; }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <!-- Top brand bar -->
+    <header class="as-topbar">
+        <a href="/admin" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+            <div class="as-brand-logo">
+                <img src="/static/azar-logo.jpg" alt="Azar Stream">
+            </div>
+            <div style="line-height:1;">
+                <div class="as-brand-text">AZAR STREAM</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:9px;
+                            text-transform:uppercase; letter-spacing:0.35em;
+                            color: rgba(255,106,26,0.75); margin-top:6px;">
+                    // control deck
+                </div>
+            </div>
+        </a>
+
+        <div style="margin-left:auto; display:flex; align-items:center; gap:8px;
+                    font-family:'JetBrains Mono',monospace; font-size:11px; color:#a1a1aa;">
+            <i class="fas fa-fire-flame-curved" style="color:#ff6a1a;"></i>
+            <span>{% block header %}OVERVIEW{% endblock %}</span>
+        </div>
+
+        <div class="scanline"></div>
+    </header>
+
+    <!-- Left icon rail -->
+    <aside class="as-rail">
+        <nav>
+            <a href="/admin" class="rail-item {% if request.url.path == '/admin' %}active{% endif %}">
+                <i class="fas fa-signal"></i><span>Dashboard</span>
+            </a>
+            <a href="/admin/bots" class="rail-item {% if '/bots' in request.url.path %}active{% endif %}">
+                <i class="fas fa-meteor"></i><span>Bots</span>
+            </a>
+            <a href="/admin/users" class="rail-item {% if '/users' in request.url.path %}active{% endif %}">
+                <i class="fas fa-users-viewfinder"></i><span>Users</span>
+            </a>
+
+            <div class="rail-divider"></div>
+
+            <a href="/admin/ads" class="rail-item {% if '/ads' in request.url.path %}active{% endif %}">
+                <i class="fas fa-bullhorn"></i><span>Campaigns</span>
+            </a>
+            <a href="/admin/subscriptions" class="rail-item {% if '/subscriptions' in request.url.path %}active{% endif %}">
+                <i class="fas fa-tower-broadcast"></i><span>Sub Gate</span>
+            </a>
+            <a href="/admin/cache_channels" class="rail-item {% if '/cache_channels' in request.url.path %}active{% endif %}">
+                <i class="fas fa-database"></i><span>Cache Nodes</span>
+            </a>
+            <a href="/admin/cookies" class="rail-item {% if '/cookies' in request.url.path %}active{% endif %}">
+                <i class="fas fa-circle-nodes"></i><span>Cookies</span>
+            </a>
+
+            <div class="rail-divider"></div>
+
+            <a href="/admin/admins" class="rail-item {% if '/admins' in request.url.path %}active{% endif %}">
+                <i class="fas fa-shield-halved"></i><span>Admins</span>
+            </a>
+            <a href="/admin/telemetry" class="rail-item {% if '/telemetry' in request.url.path %}active{% endif %}">
+                <i class="fas fa-wave-square"></i><span>Telemetry</span>
+            </a>
+            <a href="/admin/queues" class="rail-item {% if '/queues' in request.url.path %}active{% endif %}">
+                <i class="fas fa-diagram-project"></i><span>Workers</span>
+            </a>
+            <a href="/admin/stats" class="rail-item {% if '/stats' in request.url.path %}active{% endif %}">
+                <i class="fas fa-chart-area"></i><span>Performance</span>
+            </a>
+        </nav>
+
+        <form action="/admin/logout" method="post" style="margin:0;">
+            <button type="submit" class="rail-item" style="background:transparent; border:0; cursor:pointer; width:100%;">
+                <i class="fas fa-power-off"></i><span>Sign out</span>
+            </button>
+        </form>
+    </aside>
+
+    <!-- Main content -->
+    <main class="as-main">
+        <div class="as-content">
+
+            {% if request.query_params.get('message') %}
+            <div class="notice notice-ok">
+                <i class="fas fa-circle-check"></i>
+                <span>{{ request.query_params.get('message') }}</span>
+            </div>
+            {% endif %}
+            {% if request.query_params.get('error') %}
+            <div class="notice notice-error">
+                <i class="fas fa-triangle-exclamation"></i>
+                <span>{{ request.query_params.get('error') }}</span>
+            </div>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Bottom status bar -->
+    <footer class="as-statusbar">
+        <div class="group">
+            <div class="as-onair">
+                <span class="as-pulse"></span>
+                <span>ON AIR</span>
+            </div>
+            <div class="as-divider-v"></div>
+            <span style="text-transform:uppercase; letter-spacing:0.08em;">{{ now().strftime('%d %b · %H:%M') }}</span>
+        </div>
+        <div class="group">
+            <span style="text-transform:uppercase; letter-spacing:0.08em;">azar.stream / admin</span>
+            <button onclick="location.reload()" class="sync-btn">
+                <i class="fas fa-rotate" style="margin-right:4px;"></i>sync
+            </button>
+        </div>
+    </footer>
+
+</body>
+</html>

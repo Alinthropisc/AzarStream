@@ -1,0 +1,36 @@
+[Unit]
+Description=MediaFlow ARQ Worker (Download Queue + Broadcasts)
+After=network-online.target postgresql.service redis.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=${SERVICE_USER}
+Group=${SERVICE_USER}
+WorkingDirectory=${PROJECT_DIR}
+EnvironmentFile=${PROJECT_DIR}/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=${PROJECT_DIR}/.venv/bin/python main.py worker
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=5
+TimeoutStartSec=60
+TimeoutStopSec=60
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mediaflow-worker
+LimitNOFILE=65536
+LimitNPROC=4096
+MemoryMax=4G
+CPUQuota=95%
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=${PROJECT_DIR}/storage
+ReadWritePaths=${PROJECT_DIR}/.venv
+ReadWritePaths=/tmp
+
+[Install]
+WantedBy=multi-user.target

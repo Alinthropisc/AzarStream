@@ -1,0 +1,20 @@
+2026-04-30 01:33:03.952 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:603 | send_to_user: no file_ids and no file_paths
+2026-04-30 01:34:20.991 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:36:07.900 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:36:19.244 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:603 | send_to_user: no file_ids and no file_paths
+2026-04-30 01:37:21.850 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:603 | send_to_user: no file_ids and no file_paths
+2026-04-30 01:37:45.223 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:37:59.745 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:603 | send_to_user: no file_ids and no file_paths
+2026-04-30 01:41:35.421 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:41:48.120 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:603 | send_to_user: no file_ids and no file_paths
+2026-04-30 01:49:51.119 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:50:04.615 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:620 | send_to_user: no file_ids and no file_paths
+2026-04-30 01:53:04.003 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 01:53:20.299 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:620 | send_to_user: no file_ids and no file_paths
+2026-04-30 10:37:03.711 | ERROR    | database | database.connection:session:106 | Session rollback | error=Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2026-04-30 10:37:16.949 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:648 | send_to_user: no file_ids and no file_paths
+2026-04-30 11:00:45.726 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:232 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Bad Request: bad webhook: Failed to resolve host: Name or service not known
+2026-04-30 11:00:48.226 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:232 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Bad Request: bad webhook: Failed to resolve host: Name or service not known
+2026-04-30 16:39:59.586 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:648 | send_to_user: no file_ids and no file_paths
+2026-04-30 17:12:17.206 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:655 | send_to_user: no file_ids and no file_paths
+2026-04-30 17:39:55.474 | ERROR    | service.downloader | services.downloaders.downloader:send_to_user:655 | send_to_user: no file_ids and no file_paths

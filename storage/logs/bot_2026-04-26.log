@@ -1,0 +1,23 @@
+2026-04-26 00:10:31.902 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715703 | has_message=True | has_callback=False
+2026-04-26 00:10:31.904 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-26 00:10:32.074 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.youtube.com/watch?v=-PDQJZ7dN1Q
+2026-04-26 00:30:26.649 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715704 | has_message=True | has_callback=False
+2026-04-26 00:30:26.650 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-26 00:30:26.683 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.youtube.com/watch?v=-PDQJZ7dN1Qs
+2026-04-26 00:30:35.555 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715705 | has_message=True | has_callback=False
+2026-04-26 00:30:35.555 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-26 00:30:35.582 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-04-26 00:30:48.342 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715706 | has_message=True | has_callback=False
+2026-04-26 00:30:48.342 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-26 00:30:48.356 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.youtube.com/watch?v=-PDQJZ7dN1Q
+2026-04-26 00:30:48.494 | INFO     | bot.processor | bot.processor:_handle_url:394 | 📋 Download queued | user_id=6597464835 | position=1 | url=https://www.youtube.com/watch?v=-PDQJZ7dN1Q
+2026-04-26 00:32:09.539 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715707 | has_message=True | has_callback=False
+2026-04-26 00:32:09.540 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-26 00:32:09.554 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=s
+2026-04-26 00:32:10.667 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715708 | has_message=True | has_callback=False
+2026-04-26 00:32:10.667 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-26 00:32:10.682 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=6597464835 | chat_id=6597464835 | text=https://www.youtube.com/watch?v=-PDQJZ7dN1Q
+2026-04-26 00:32:10.809 | INFO     | bot.processor | bot.processor:_handle_url:394 | 📋 Download queued | user_id=6597464835 | position=2 | url=https://www.youtube.com/watch?v=-PDQJZ7dN1Q
+2026-04-26 00:32:21.138 | INFO     | bot.processor | bot.processor:process:112 | 📥 UpdateProcessor.process called | token=7039033833 | update_id=689715709 | has_message=True | has_callback=False
+2026-04-26 00:32:21.138 | INFO     | bot.processor | bot.processor:process:126 | ✅ Bot instance acquired | username=testingmodeonbot
+2026-04-26 00:32:23.895 | INFO     | bot.processor | bot.processor:_handle_message:220 | 💬 Handling message | user_id=1271868935 | chat_id=1271868935 | text=https://www.youtube.com/watch?v=-PDQJZ7dN1Q

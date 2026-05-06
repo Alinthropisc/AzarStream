@@ -1,0 +1,34 @@
+[Unit]
+Description=MediaFlow ARQ Scheduler (Cron Jobs + Expired Ads)
+After=network-online.target postgresql.service redis.service mediaflow-worker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=${SERVICE_USER}
+Group=${SERVICE_USER}
+WorkingDirectory=${PROJECT_DIR}
+EnvironmentFile=${PROJECT_DIR}/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=${PROJECT_DIR}/.venv/bin/python main.py worker
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=5
+TimeoutStartSec=30
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mediaflow-scheduler
+LimitNOFILE=16384
+MemoryMax=512M
+CPUQuota=50%
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=${PROJECT_DIR}/storage
+ReadWritePaths=${PROJECT_DIR}/.venv
+
+[Install]
+WantedBy=multi-user.target
