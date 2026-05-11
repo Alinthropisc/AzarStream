@@ -46,7 +46,7 @@ class AdminController(Controller):
             cc_repo = CacheChannelRepository(session)
 
             bots = await bot_repo.get_all()
-            total_users = await user_repo.count()
+            total_users = await user_repo.count_unique_telegram_users()
 
             # Real download count (from downloads table — every download attempt)
             dl_count = await session.execute(select(func.count()).select_from(Download))
@@ -62,7 +62,17 @@ class AdminController(Controller):
                 log.error("Failed to count cached media", error=str(e))
                 total_cached = 0
 
-            source_stats = await media_repo.get_stats_by_source()
+            # Platform breakdown — by actual downloads, not by cached-media table.
+            source_rows = await session.execute(
+                select(Download.source, func.count(Download.id))
+                .group_by(Download.source)
+            )
+            source_stats = {
+                (s.value if hasattr(s, "value") else str(s)): int(c or 0)
+                for s, c in source_rows.all()
+                if s is not None
+            }
+            source_stats = dict(sorted(source_stats.items(), key=lambda kv: kv[1], reverse=True))
             language_stats = await user_repo.get_language_stats()
 
             # Recent downloads (last 10)

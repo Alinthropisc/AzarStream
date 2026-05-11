@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Ingest Job #{{ job.id }} - Azar Stream{% endblock %}
+{% block header %}Ingest Job #{{ job.id }}{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <a href="/admin/tracks/jobs" class="text-slate-500 hover:text-white text-sm"><i class="fas fa-arrow-left mr-2"></i>Back to Jobs</a>
+</div>
+
+{% if not job %}
+<div class="card text-center text-slate-400">Job not found.</div>
+{% else %}
+{% set st = job.status.value if job.status.value is defined else job.status %}
+<div class="card mb-6" {% if st in ('pending','running') %}data-autorefresh="3000"{% endif %}>
+    <div class="flex justify-between items-start">
+        <div>
+            <h3 class="text-lg font-bold text-white">{{ job.source_filename or job.source_url or 'Job' }}</h3>
+            <p class="text-slate-500 text-xs mt-1">{{ job.created_at.strftime('%d %b %Y · %H:%M:%S') if job.created_at else '' }}</p>
+        </div>
+        <div>
+            {% if st == 'completed' %}<span class="badge badge-success">Completed</span>
+            {% elif st == 'running' %}<span class="badge badge-primary">Running</span>
+            {% elif st == 'pending' %}<span class="badge badge-warning">Pending</span>
+            {% elif st == 'partial' %}<span class="badge badge-warning">Partial</span>
+            {% else %}<span class="badge badge-danger">Failed</span>{% endif %}
+        </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-3 gap-4">
+        <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 text-center">
+            <div class="text-2xl font-bold text-white">{{ job.processed_count }}</div>
+            <div class="text-[10px] uppercase tracking-widest text-slate-500">Processed</div>
+        </div>
+        <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 text-center">
+            <div class="text-2xl font-bold text-rose-400">{{ job.failed_count }}</div>
+            <div class="text-[10px] uppercase tracking-widest text-slate-500">Failed</div>
+        </div>
+        <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 text-center">
+            <div class="text-2xl font-bold text-slate-300">{{ job.total_count or '?' }}</div>
+            <div class="text-[10px] uppercase tracking-widest text-slate-500">Total</div>
+        </div>
+    </div>
+
+    {% if job.error_message %}
+    <div class="mt-6 p-4 bg-rose-500/5 border border-rose-500/20 rounded-xl text-xs text-rose-300 font-mono">
+        {{ job.error_message }}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+const card = document.querySelector('[data-autorefresh]');
+if (card) setTimeout(() => location.reload(), parseInt(card.dataset.autorefresh, 10));
+</script>
+{% endif %}
+{% endblock %}

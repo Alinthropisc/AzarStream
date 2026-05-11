@@ -1,8 +1,0 @@
-2026-04-29 19:20:53.783 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
-2026-04-29 19:20:55.336 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
-2026-04-29 19:20:55.337 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
-2026-04-29 19:20:55.337 | INFO     | database | database.connection:disconnect:92 | Database disconnected
-2026-04-29 19:21:17.513 | INFO     | database | database.connection:connect:56 | Connecting to database... | url=localhost:3306/mediaflow
-2026-04-29 19:21:17.603 | SUCCESS  | database | database.connection:connect:76 | Database connected successfully
-2026-04-29 19:21:19.972 | INFO     | database | database.connection:disconnect:85 | Disconnecting from database...
-2026-04-29 19:21:19.973 | INFO     | database | database.connection:disconnect:92 | Database disconnected

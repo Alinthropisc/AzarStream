@@ -209,6 +209,38 @@
             background: linear-gradient(90deg, transparent, rgba(255,106,26,0.5), transparent);
         }
 
+        /* ----- Collapsible group (Media Stream / Media Search) ----- */
+        .rail-group { display:flex; flex-direction:column; width:100%; }
+        .rail-group-toggle {
+            background:transparent; border:0; cursor:pointer;
+            font:inherit; text-align:left;
+        }
+        .rail-group-toggle .chevron {
+            margin-left:auto; font-size:0.7rem; transition: transform .2s ease;
+            color: rgba(255,172,77,0.55);
+        }
+        .rail-group.open .rail-group-toggle .chevron { transform: rotate(90deg); color: var(--ember-400); }
+        .rail-sublist {
+            display:none; flex-direction:column; gap:2px;
+            padding: 4px 0 6px 10px;
+            margin: 2px 0 2px 14px;
+            border-left:1px solid rgba(255,106,26,0.20);
+        }
+        .rail-group.open .rail-sublist { display:flex; }
+        .rail-subitem {
+            position:relative; display:flex; align-items:center; gap:10px;
+            height:32px; padding: 0 10px; border-radius:8px;
+            color:#a1a1aa; font-size:12px; font-weight:500;
+            text-decoration:none; transition: all .15s ease;
+        }
+        .rail-subitem i { width:14px; text-align:center; font-size:0.72rem; flex-shrink:0; }
+        .rail-subitem:hover { color:#fff; background: rgba(255,106,26,0.08); }
+        .rail-subitem.active {
+            color: #ffac4d;
+            background: linear-gradient(90deg, rgba(255,106,26,0.20), rgba(230,57,70,0.08));
+            box-shadow: inset 0 0 0 1px rgba(255,106,26,0.32);
+        }
+
         /* ----- Main + content ----- */
         .as-main { margin-left:244px; margin-top:64px; margin-bottom:40px; }
         .as-content { padding:32px; max-width:1600px; margin: 0 auto; }
@@ -366,11 +398,27 @@
             <a href="/admin" class="rail-item {% if request.url.path == '/admin' %}active{% endif %}">
                 <i class="fas fa-signal"></i><span>Dashboard</span>
             </a>
-            <a href="/admin/bots" class="rail-item {% if '/bots' in request.url.path %}active{% endif %}">
-                <i class="fas fa-meteor"></i><span>Bots</span>
-            </a>
+            {% set bots_active = '/bots' in request.url.path %}
+            {% set bots_type = request.query_params.get('type', '') %}
+            <div class="rail-group {% if bots_active %}open{% endif %}" data-rail-group>
+                <button type="button" class="rail-item rail-group-toggle {% if bots_active %}active{% endif %}">
+                    <i class="fas fa-meteor"></i><span>Bots Manager</span>
+                    <i class="fas fa-chevron-right chevron"></i>
+                </button>
+                <div class="rail-sublist">
+                    <a href="/admin/bots?type=media_stream" class="rail-subitem {% if bots_active and bots_type == 'media_stream' %}active{% endif %}">
+                        <i class="fas fa-cloud-arrow-down"></i><span>Media Stream</span>
+                    </a>
+                    <a href="/admin/bots?type=media_search" class="rail-subitem {% if bots_active and bots_type == 'media_search' %}active{% endif %}">
+                        <i class="fas fa-magnifying-glass"></i><span>Media Search</span>
+                    </a>
+                </div>
+            </div>
             <a href="/admin/users" class="rail-item {% if '/users' in request.url.path %}active{% endif %}">
                 <i class="fas fa-users-viewfinder"></i><span>Users</span>
+            </a>
+            <a href="/admin/tracks" class="rail-item {% if '/tracks' in request.url.path %}active{% endif %}">
+                <i class="fas fa-music"></i><span>Music Library</span>
             </a>
 
             <div class="rail-divider"></div>
@@ -381,9 +429,22 @@
             <a href="/admin/subscriptions" class="rail-item {% if '/subscriptions' in request.url.path %}active{% endif %}">
                 <i class="fas fa-tower-broadcast"></i><span>Sub Gate</span>
             </a>
-            <a href="/admin/cache_channels" class="rail-item {% if '/cache_channels' in request.url.path %}active{% endif %}">
-                <i class="fas fa-database"></i><span>Cache Nodes</span>
-            </a>
+            {% set cc_active = '/cache_channels' in request.url.path %}
+            {% set cc_type = request.query_params.get('type', '') %}
+            <div class="rail-group {% if cc_active %}open{% endif %}" data-rail-group>
+                <button type="button" class="rail-item rail-group-toggle {% if cc_active %}active{% endif %}">
+                    <i class="fas fa-database"></i><span>Cache Nodes</span>
+                    <i class="fas fa-chevron-right chevron"></i>
+                </button>
+                <div class="rail-sublist">
+                    <a href="/admin/cache_channels?type=media_stream" class="rail-subitem {% if cc_active and cc_type == 'media_stream' %}active{% endif %}">
+                        <i class="fas fa-cloud-arrow-down"></i><span>Media Stream</span>
+                    </a>
+                    <a href="/admin/cache_channels?type=media_search" class="rail-subitem {% if cc_active and cc_type == 'media_search' %}active{% endif %}">
+                        <i class="fas fa-magnifying-glass"></i><span>Media Search</span>
+                    </a>
+                </div>
+            </div>
             <a href="/admin/cookies" class="rail-item {% if '/cookies' in request.url.path %}active{% endif %}">
                 <i class="fas fa-circle-nodes"></i><span>Cookies</span>
             </a>
@@ -449,6 +510,14 @@
             </button>
         </div>
     </footer>
+
+    <script>
+        document.querySelectorAll('[data-rail-group]').forEach(group => {
+            const toggle = group.querySelector('.rail-group-toggle');
+            if (!toggle) return;
+            toggle.addEventListener('click', () => group.classList.toggle('open'));
+        });
+    </script>
 
 </body>
 </html>

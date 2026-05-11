@@ -24,6 +24,14 @@
         </div>
 
         <form action="/admin/cache_channels/create" method="post" class="space-y-6">
+            <div class="mb-2">
+                <label class="block text-sm font-medium text-slate-400 mb-2">Bot Type</label>
+                <select name="bot_type" class="input-field">
+                    <option value="media_stream" {% if selected_bot_type == 'media_stream' %}selected{% endif %}>Media Stream — кеш для бота-загрузчика</option>
+                    <option value="media_search" {% if selected_bot_type == 'media_search' %}selected{% endif %}>Media Search — кеш для бота-поисковика аудио</option>
+                </select>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-slate-400 mb-2">Node Name</label>

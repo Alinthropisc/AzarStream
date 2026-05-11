@@ -24,7 +24,7 @@ from services.downloaders.types import (
 
 log = get_logger(__name__)
 
-TMP_ROOT = Path("storage/tmp")
+TMP_ROOT = Path(__file__).resolve().parent.parent.parent / "storage" / "temp"
 
 
 class BasePlatformDownloader(ABC):

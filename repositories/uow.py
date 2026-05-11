@@ -1,4 +1,5 @@
 from types import TracebackType
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.connection import db
@@ -10,6 +11,11 @@ from repositories import (
     AdDeliveryRepository,
     CacheChannelRepository,
     AdminUserRepository,
+    TrackRepository,
+    TrackVoteRepository,
+    TrackCacheMirrorRepository,
+    SearchQueryRepository,
+    IngestJobRepository,
 )
 from app.logging import get_logger
 
@@ -41,6 +47,11 @@ class UnitOfWork:
         self.ad_deliveries = AdDeliveryRepository(self._session)
         self.cache_channels = CacheChannelRepository(self._session)
         self.admins = AdminUserRepository(self._session)
+        self.tracks = TrackRepository(self._session)
+        self.track_votes = TrackVoteRepository(self._session)
+        self.track_mirrors = TrackCacheMirrorRepository(self._session)
+        self.search_queries = SearchQueryRepository(self._session)
+        self.ingest_jobs = IngestJobRepository(self._session)
 
         return self
 
@@ -59,7 +70,10 @@ class UnitOfWork:
     ) -> None:
         if exc_type is not None:
             await self.rollback()
-            log.error("UoW rollback", error=str(exc_val))
+            if isinstance(exc_val, IntegrityError):
+                log.debug("UoW rollback (integrity)", error=str(exc_val))
+            else:
+                log.error("UoW rollback", error=str(exc_val))
         await self._session.close()
 
     async def commit(self) -> None:

@@ -200,6 +200,7 @@ def create_app(lifespan_handlers: list | None = None) -> Litestar:
     from app.controllers.cache_channels import CacheChannelWebController
     from app.controllers.admin_mgmt import AdminManagementController
     from app.controllers.cookies import CookieController
+    from app.controllers.tracks import TrackController
     from app.controllers.media_upload import upload_media_to_telegram
     from app.middleware.rate_limit import RateLimitMiddleware
     from app.middleware.auth import AuthMiddleware
@@ -224,6 +225,7 @@ def create_app(lifespan_handlers: list | None = None) -> Litestar:
             CacheChannelWebController,
             AdminManagementController,
             CookieController,
+            TrackController,
             upload_media_to_telegram,
             create_static_files_router(path="/static", directories=["static"]),
         ],

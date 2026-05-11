@@ -1,2 +1,0 @@
-2026-04-26 11:06:48.579 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:209 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Bad Request: bad webhook: Failed to resolve host: Name or service not known
-2026-04-26 11:06:50.696 | ERROR    | service.bot_manager | services.bot_manager:setup_webhook:209 | Failed to set webhook | username=testingmodeonbot | error=Telegram server says - Bad Request: bad webhook: Failed to resolve host: Name or service not known

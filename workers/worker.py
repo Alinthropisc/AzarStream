@@ -19,6 +19,7 @@ from workers.tasks import (
     health_check,
     expire_expired_ads,
 )
+from workers.ingest import ingest_audio
 
 log = get_logger("workers")
 
@@ -67,6 +68,7 @@ class WorkerSettings:
         aggregate_daily_stats,
         health_check,
         expire_expired_ads,
+        ingest_audio,
     ]
 
     # Cron задачи

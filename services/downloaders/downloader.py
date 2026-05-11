@@ -411,7 +411,14 @@ class DownloadService:
                 async with UnitOfWork() as uow:
                     channel_service = CacheChannelService(uow.session)
                     try:
-                        storage_channel = await channel_service.get_next_active_channel()
+                        bot_type_for_pool = None
+                        try:
+                            bot_model = await uow.bots.get_by_bot_id(request.bot_id)
+                            if bot_model is not None:
+                                bot_type_for_pool = bot_model.bot_type
+                        except Exception:
+                            bot_type_for_pool = None
+                        storage_channel = await channel_service.get_next_active_channel(bot_type=bot_type_for_pool)
                         storage_chat_id = storage_channel.telegram_id
                         await uow.commit()
                     except Exception:

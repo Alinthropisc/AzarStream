@@ -11,7 +11,7 @@ log = get_logger("service.user")
 
 @dataclass
 class UserDTO:
-    """Data Transfer Object для пользователя"""
+    """Data Transfer Object — плоское представление per-bot записи + global профиля."""
     id: int
     telegram_id: int
     bot_id: int
@@ -19,6 +19,7 @@ class UserDTO:
     first_name: str | None
     last_name: str | None
     language: str
+    language_selected: bool
     is_blocked: bool
     is_banned: bool
     total_downloads: int
@@ -30,17 +31,19 @@ class UserDTO:
 
     @classmethod
     def from_model(cls, model: User) -> "UserDTO":
+        profile = model.profile
         return cls(
             id=model.id,
             telegram_id=model.telegram_id,
             bot_id=model.bot_id,
-            username=model.username,
-            first_name=model.first_name,
-            last_name=model.last_name,
+            username=profile.username if profile else None,
+            first_name=profile.first_name if profile else None,
+            last_name=profile.last_name if profile else None,
             language=model.language,
+            language_selected=bool(getattr(model, "language_selected", False)),
             is_blocked=model.is_blocked,
-            is_banned=model.is_banned,
-            total_downloads=model.total_downloads,
+            is_banned=profile.is_banned if profile else False,
+            total_downloads=profile.total_downloads if profile else 0,
         )
 
 
@@ -63,12 +66,6 @@ class UserService:
         telegram_user: AiogramUser,
         bot_id: int,
     ) -> tuple[UserDTO, bool]:
-        """
-        Получить или создать пользователя
-
-        Returns:
-            (UserDTO, created: bool)
-        """
         user, created = await self.repo.get_or_create(
             telegram_id=telegram_user.id,
             bot_id=bot_id,
@@ -93,23 +90,16 @@ class UserService:
         telegram_user: AiogramUser,
         bot_id: int,
     ) -> UserDTO:
-        """
-        Быстрое получение/создание пользователя с commit
-        Используется при каждом сообщении для скорости
-        """
-        user = await self.repo.get_by_telegram_id(telegram_user.id, bot_id)
-
-        if not user:
-            # Создаём и сразу коммитим
-            user = await self.repo.create(
-                telegram_id=telegram_user.id,
-                bot_id=bot_id,
-                username=telegram_user.username,
-                first_name=telegram_user.first_name,
-                last_name=telegram_user.last_name,
-                language=telegram_user.language_code or "en",
-            )
-            # Explicit commit для новых пользователей
+        """Быстрый upsert, вызывается на каждое сообщение."""
+        user, created = await self.repo.get_or_create(
+            telegram_id=telegram_user.id,
+            bot_id=bot_id,
+            username=telegram_user.username,
+            first_name=telegram_user.first_name,
+            last_name=telegram_user.last_name,
+            language=telegram_user.language_code or "en",
+        )
+        if created:
             await self.uow.commit()
             log.info(
                 "New user registered and committed",
@@ -117,12 +107,6 @@ class UserService:
                 bot_id=bot_id,
                 language=user.language,
             )
-        else:
-            # Update profile data if changed (SQLAlchemy dirty-tracks, so no
-            # UPDATE is issued when values are unchanged)
-            user.username = telegram_user.username
-            user.first_name = telegram_user.first_name
-            user.last_name = telegram_user.last_name
 
         return UserDTO.from_model(user)
 
@@ -131,7 +115,6 @@ class UserService:
         telegram_id: int,
         bot_id: int,
     ) -> UserDTO | None:
-        """Получить пользователя"""
         user = await self.repo.get_by_telegram_id(telegram_id, bot_id)
         return UserDTO.from_model(user) if user else None
 
@@ -140,28 +123,26 @@ class UserService:
         user_id: int,
         language: str,
     ) -> UserDTO | None:
-        """Обновить язык"""
-        user = await self.repo.update(user_id, language=language)
+        """Per-bot язык. Помечает выбор как явный (language_selected=True)."""
+        user = await self.repo.update(user_id, language=language, language_selected=True)
         if user:
             log.debug("Language updated", user_id=user_id, language=language)
             return UserDTO.from_model(user)
         return None
 
     async def increment_downloads(self, user_id: int) -> None:
-        """Увеличить счётчик загрузок"""
         await self.repo.increment_downloads(user_id)
 
     async def set_blocked(self, user_id: int, blocked: bool = True) -> None:
-        """Отметить как заблокированного (бот заблокирован пользователем)"""
+        """Per-bot: бот заблокирован пользователем."""
         await self.repo.update(user_id, is_blocked=blocked)
 
-    async def ban_user(self, user_id: int) -> None:
-        """Забанить пользователя"""
-        await self.repo.update(user_id, is_banned=True)
-        log.warning("User banned", user_id=user_id)
+    async def ban_user(self, telegram_id: int) -> None:
+        """Глобальный бан по telegram_id — действует во всех ботах."""
+        await self.repo.set_global_ban(telegram_id, banned=True)
+        log.warning("User banned globally", telegram_id=telegram_id)
 
     async def get_language(self, telegram_id: int, bot_id: int) -> str:
-        """Получить язык пользователя"""
         user = await self.get_by_telegram_id(telegram_id, bot_id)
         return user.language if user else "en"
 
@@ -170,12 +151,10 @@ class UserService:
         bot_ids: list[int],
         language: str | None = None,
     ) -> list[UserDTO]:
-        """Получить пользователей для рассылки"""
         users = await self.repo.get_users_for_broadcast(bot_ids, language)
         return [UserDTO.from_model(u) for u in users]
 
     async def get_stats(self, bot_id: int | None = None) -> dict:
-        """Статистика пользователей"""
         total = await self.repo.count(bot_id=bot_id) if bot_id else await self.repo.count()
         language_stats = await self.repo.get_language_stats(bot_id)
 

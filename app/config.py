@@ -1,7 +1,10 @@
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 from pydantic import Field, PostgresDsn, RedisDsn, AnyUrl  # ty:ignore[unresolved-import]
 from pydantic_settings import BaseSettings, SettingsConfigDict  # ty:ignore[unresolved-import]
+
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 class Settings(BaseSettings):
@@ -58,7 +61,7 @@ class Settings(BaseSettings):
     downloads_per_minute: int = 100
 
     # Paths
-    temp_download_path: str = "../storage/temp/"
+    temp_download_path: str = str(_PROJECT_ROOT / "storage" / "temp") + "/"
 
     # Webhook
     webhook_base_url: str | None = None  # https://yourdomain.com

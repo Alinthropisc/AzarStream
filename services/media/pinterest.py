@@ -207,21 +207,11 @@ class PinterestDownloader(BaseDownloader):
                 output_dir = self.temp_dir / f"pinterest_{pin_id}"
                 output_dir.mkdir(parents=True, exist_ok=True)
 
-                # 1. pinterest-dl
-                if HAS_PINTEREST_DL:
-                    result = await asyncio.get_event_loop().run_in_executor(
-                        None,
-                        partial(self._strategy_pinterest_dl, clean_url, pin_id, output_dir),
-                    )
-                    if result and result["success"]:
-                        self.log.info(
-                            "✅ Pinterest via pinterest-dl",
-                            files=len(result.get("file_paths", [])),
-                            type=result.get("media_type"),
-                        )
-                        return self._build_result(result)
+                is_single_pin = "/pin/" in clean_url
 
-                # 2. yt-dlp (только для видео)
+                # 1. yt-dlp (видео) — для одиночных пинов запускаем первым,
+                #    т.к. pinterest-dl.scrape() для /pin/ URL отдаёт ПОХОЖИЕ
+                #    пины (часто фото-обложку чужого пина), а не само видео.
                 self.log.info("Trying yt-dlp")
                 result = await asyncio.get_event_loop().run_in_executor(
                     None,
@@ -235,12 +225,29 @@ class PinterestDownloader(BaseDownloader):
                     )
                     return self._build_result(result)
 
-                # 3. HTML парсинг + requests (для фото)
+                # 2. HTML парсинг (видео + фото оригинального пина)
                 self.log.info("Trying HTML + requests fallback")
-                result = await self._strategy_html_photo(clean_url, pin_id, output_dir)
+                result = await self._strategy_html_media(clean_url, pin_id, output_dir)
                 if result and result["success"]:
-                    self.log.info("✅ Pinterest via HTML fallback")
+                    self.log.info(
+                        "✅ Pinterest via HTML fallback",
+                        type=result.get("media_type"),
+                    )
                     return self._build_result(result)
+
+                # 3. pinterest-dl — только если это НЕ одиночный пин (борды/секции).
+                if HAS_PINTEREST_DL and not is_single_pin:
+                    result = await asyncio.get_event_loop().run_in_executor(
+                        None,
+                        partial(self._strategy_pinterest_dl, clean_url, pin_id, output_dir),
+                    )
+                    if result and result["success"]:
+                        self.log.info(
+                            "✅ Pinterest via pinterest-dl",
+                            files=len(result.get("file_paths", [])),
+                            type=result.get("media_type"),
+                        )
+                        return self._build_result(result)
 
                 return DownloadResult(
                     success=False,
@@ -391,13 +398,19 @@ class PinterestDownloader(BaseDownloader):
             if isinstance(pin, dict):
                 # Dict формат
                 title = pin.get("description") or pin.get("title") or pin.get("alt") or ""
-                video_url = (
-                    pin.get("video_url") or pin.get("video_src")
-                    or pin.get("videos", {}).get("url")
-                )
+                # pinterest-dl PinterestMedia.to_dict() -> media_stream.video.url
+                media_stream = pin.get("media_stream") or {}
+                video_block = media_stream.get("video") if isinstance(media_stream, dict) else None
+                if isinstance(video_block, dict):
+                    video_url = video_block.get("url")
+                if not video_url:
+                    video_url = (
+                        pin.get("video_url") or pin.get("video_src")
+                        or (pin.get("videos") or {}).get("url")
+                    )
                 image_url = (
                     pin.get("src") or pin.get("url") or pin.get("image_url")
-                    or pin.get("images", {}).get("orig", {}).get("url")
+                    or (pin.get("images") or {}).get("orig", {}).get("url")
                 )
             else:
                 # Object формат
@@ -407,14 +420,22 @@ class PinterestDownloader(BaseDownloader):
                     or str(getattr(pin, "description", "") or "")
                 )
 
-                # Ищем видео URL во всех возможных атрибутах
-                for attr in ["video_url", "video_src", "vid_url", "mp4_url"]:
-                    val = getattr(pin, attr, None)
-                    if val and isinstance(val, str) and val.startswith("http"):
-                        video_url = val
-                        break
+                # pinterest-dl PinterestMedia: видео лежит в .video_stream.url
+                vs = getattr(pin, "video_stream", None)
+                if vs is not None:
+                    vs_url = getattr(vs, "url", None)
+                    if vs_url and isinstance(vs_url, str) and vs_url.startswith("http"):
+                        video_url = vs_url
 
-                # Ищем image URL
+                # Запасные имена атрибутов на всякий случай
+                if not video_url:
+                    for attr in ["video_url", "video_src", "vid_url", "mp4_url"]:
+                        val = getattr(pin, attr, None)
+                        if val and isinstance(val, str) and val.startswith("http"):
+                            video_url = val
+                            break
+
+                # Ищем image URL (обложка/фото)
                 for attr in ["src", "url", "image_url", "img_url", "original_url"]:
                     val = getattr(pin, attr, None)
                     if val and isinstance(val, str) and val.startswith("http"):
@@ -597,26 +618,46 @@ class PinterestDownloader(BaseDownloader):
     # Strategy 3: HTML парсинг для фото-пинов
     # ──────────────────────────────────────────────────────────────────────────
 
-    async def _strategy_html_photo(
+    async def _strategy_html_media(
         self,
         url: str,
         pin_id: str,
         output_dir: Path,
     ) -> dict | None:
         """
-        Для фото-пинов:
-        1. Скачиваем HTML страницы
-        2. Ищем URL оригинального изображения
-        3. Скачиваем через requests
+        HTML-фолбэк для оригинального пина:
+        1. Скачиваем HTML страницы пина
+        2. Сначала ищем URL видео (v.pinimg.com/videos/.../*.mp4)
+        3. Если видео нет — ищем URL оригинального изображения
+        4. Скачиваем через requests
         """
         try:
             html = await self._fetch_html(url)
             if not html:
                 return None
 
+            title = self._find_title_in_html(html)
+
+            video_url = self._find_video_in_html(html)
+            if video_url:
+                self.log.info("Found video URL in HTML", url=video_url[:80])
+                ext = self._guess_ext(video_url, "video")
+                out_path = output_dir / f"video_{pin_id}.{ext}"
+                ok = await asyncio.get_event_loop().run_in_executor(
+                    None,
+                    partial(self._download_file_sync, video_url, out_path, self._video_headers()),
+                )
+                if ok:
+                    return {
+                        "success": True,
+                        "file_paths": [str(out_path)],
+                        "title": title,
+                        "media_type": "video",
+                    }
+
             image_url = self._find_image_in_html(html)
             if not image_url:
-                self.log.warning("No image URL found in HTML")
+                self.log.warning("No media URL found in HTML")
                 return None
 
             self.log.info("Found image URL in HTML", url=image_url[:80])
@@ -624,14 +665,12 @@ class PinterestDownloader(BaseDownloader):
             ext = self._guess_ext(image_url, "image")
             out_path = output_dir / f"photo_{pin_id}.{ext}"
 
-            # Скачиваем в executor (sync)
             ok = await asyncio.get_event_loop().run_in_executor(
                 None,
                 partial(self._download_file_sync, image_url, out_path, self._media_headers()),
             )
 
             if ok:
-                title = self._find_title_in_html(html)
                 return {
                     "success": True,
                     "file_paths": [str(out_path)],
@@ -642,11 +681,40 @@ class PinterestDownloader(BaseDownloader):
             return None
 
         except Exception as e:
-            self.log.warning("HTML photo strategy failed", error=str(e))
+            self.log.warning("HTML media strategy failed", error=str(e))
             return None
 
+    def _find_video_in_html(self, html: str) -> str | None:
+        """Найти прямой MP4 URL видео в HTML страницы пина."""
+        patterns = [
+            r'(https://v1?\.pinimg\.com/videos/[^\s"\'\\<>]+\.mp4)',
+            r'"url"\s*:\s*"(https://v1?\.pinimg\.com/videos/[^"]+\.mp4)"',
+            r'"contentUrl"\s*:\s*"(https://v1?\.pinimg\.com/videos/[^"]+\.mp4)"',
+        ]
+        candidates: list[str] = []
+        for pat in patterns:
+            for m in re.finditer(pat, html):
+                u = m.group(1).replace("\\/", "/").replace("\\u002F", "/").strip().split("?")[0]
+                if u not in candidates:
+                    candidates.append(u)
+
+        if not candidates:
+            return None
+
+        # Приоритет: HD (720p) > 480p > что есть.
+        for tag in ("720p", "480p", "_720p", "hd"):
+            for u in candidates:
+                if tag in u.lower():
+                    return u
+        return candidates[0]
+
     async def _fetch_html(self, url: str) -> str | None:
-        """Загрузить HTML страницы."""
+        """Загрузить HTML страницы.
+
+        ВАЖНО: без cookies. С залогиненными Pinterest-cookies сервер отдаёт
+        SPA-скелет без inline видео URL — остаются только превью-картинки
+        связанных пинов, из-за чего видео-пин подменяется фото-обложкой.
+        """
         for attempt in range(3):
             try:
                 connector = aiohttp.TCPConnector(ssl=False)
@@ -654,7 +722,6 @@ class PinterestDownloader(BaseDownloader):
                 async with aiohttp.ClientSession(
                     connector=connector,
                     timeout=timeout,
-                    cookies=self._load_cookies_dict(),
                 ) as session:
                     async with session.get(
                         url,

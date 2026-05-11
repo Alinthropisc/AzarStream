@@ -5,6 +5,13 @@ from repositories.media import MediaRepository
 from repositories.cache_channel import CacheChannelRepository
 from repositories.ad import AdRepository, AdDeliveryRepository
 from repositories.admin import AdminUserRepository
+from repositories.track import (
+    TrackRepository,
+    TrackVoteRepository,
+    TrackCacheMirrorRepository,
+    SearchQueryRepository,
+)
+from repositories.ingest_job import IngestJobRepository
 
 __all__ = [
     "BaseRepository",
@@ -15,4 +22,9 @@ __all__ = [
     "AdDeliveryRepository",
     "CacheChannelRepository",
     "AdminUserRepository",
+    "TrackRepository",
+    "TrackVoteRepository",
+    "TrackCacheMirrorRepository",
+    "SearchQueryRepository",
+    "IngestJobRepository",
 ]

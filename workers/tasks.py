@@ -525,7 +525,7 @@ async def cleanup_old_downloads(ctx: dict, days: int = 30) -> dict[str, Any]:
 async def update_bot_stats(ctx: dict) -> dict[str, Any]:
     """Refresh cached stats (total_users, active_users, total_downloads) for all bots."""
     from sqlalchemy import select, func
-    from models import Bot, TelegramUser, Download
+    from models import Bot, TelegramUser, TelegramUserGlobal, Download
 
     log.info("Updating bot stats")
     updated = 0
@@ -534,7 +534,7 @@ async def update_bot_stats(ctx: dict) -> dict[str, Any]:
         bots = await uow.bots.get_all()
 
         for bot in bots:
-            user_count = await uow.users.count(bot_id=bot.id, is_banned=False)
+            user_count = await uow.users.count_active_in_bot(bot.bot_id)
 
             download_count = await uow.session.execute(
                 select(func.count()).select_from(Download).where(Download.bot_id == bot.id)
@@ -543,10 +543,13 @@ async def update_bot_stats(ctx: dict) -> dict[str, Any]:
 
             active_cutoff = datetime.now() - timedelta(days=30)
             active_count = await uow.session.execute(
-                select(func.count()).select_from(TelegramUser).where(
-                    TelegramUser.bot_id == bot.id,
+                select(func.count())
+                .select_from(TelegramUser)
+                .join(TelegramUserGlobal, TelegramUser.telegram_id == TelegramUserGlobal.telegram_id)
+                .where(
+                    TelegramUser.bot_id == bot.bot_id,
                     TelegramUser.updated_at >= active_cutoff,
-                    ~TelegramUser.is_banned,
+                    ~TelegramUserGlobal.is_banned,
                 )
             )
             active = active_count.scalar() or 0

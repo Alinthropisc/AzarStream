@@ -42,6 +42,14 @@
                 </div>
 
                 <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-2">Bot Type</label>
+                    <select name="bot_type" class="input-field">
+                        <option value="media_stream" {% if selected_bot_type == 'media_stream' %}selected{% endif %}>Media Stream — скачивает медиа из YouTube / Instagram / TikTok и т.д.</option>
+                        <option value="media_search" {% if selected_bot_type == 'media_search' %}selected{% endif %}>Media Search — поиск аудио (музыка, нашиды, подкасты)</option>
+                    </select>
+                </div>
+
+                <div>
                     <label class="block text-sm font-medium text-slate-400 mb-2">Status</label>
                     <select name="status" class="input-field">
                         <option value="active">Active</option>

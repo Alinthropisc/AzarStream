@@ -82,3 +82,8 @@ TROUBLESHOOTING.md
 # Cookies
 storage/cookies/*.txt
 cookies/*.txt
+
+# Runtime logs
+storage/logs/
+storage/temp/
+storage/ingest_uploads/

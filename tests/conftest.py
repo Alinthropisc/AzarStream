@@ -42,6 +42,7 @@ from models import (
     MediaSource,
     MediaType,
     TelegramUser,
+    TelegramUserGlobal,
 )
 from services.cache import CacheService, cache
 from services.metrics import MetricsService, metrics
@@ -190,19 +191,51 @@ def bot_factory():
 
 @pytest.fixture
 def user_factory():
+    """
+    Создаёт TelegramUser + связанный TelegramUserGlobal (профиль).
+
+    Поля, переданные через kwargs, корректно разводятся по двум моделям:
+    - username/first_name/last_name/phone/bio/is_banned/is_premium/total_downloads → global
+    - bot_id/language/is_blocked → per-bot
+
+    Возвращает TelegramUser, в котором .profile уже привязан.
+    """
+    PROFILE_FIELDS = {
+        "username", "first_name", "last_name", "phone", "bio",
+        "is_banned", "is_premium", "total_downloads",
+    }
+    PER_BOT_FIELDS = {"language", "is_blocked"}
+
     def _create(bot_id: int = 1, **kwargs):
-        defaults = {
-            "telegram_id": fake.random_int(100000000, 999999999),
-            "bot_id": bot_id,
+        telegram_id = kwargs.pop("telegram_id", fake.random_int(100000000, 999999999))
+
+        profile_kwargs = {
+            "telegram_id": telegram_id,
             "username": fake.user_name()[:32],
             "first_name": fake.first_name()[:64],
             "last_name": fake.last_name()[:64],
-            "language": fake.random_element(["en", "ru"]),
-            "is_blocked": False,
             "is_banned": False,
         }
-        defaults.update(kwargs)
-        return TelegramUser(**defaults)
+        per_bot_kwargs = {
+            "telegram_id": telegram_id,
+            "bot_id": bot_id,
+            "language": fake.random_element(["en", "ru"]),
+            "is_blocked": False,
+        }
+
+        for k, v in kwargs.items():
+            if k in PROFILE_FIELDS:
+                profile_kwargs[k] = v
+            elif k in PER_BOT_FIELDS:
+                per_bot_kwargs[k] = v
+            else:
+                # Неизвестное поле — пробуем как per-bot (для обратной совместимости)
+                per_bot_kwargs[k] = v
+
+        profile = TelegramUserGlobal(**profile_kwargs)
+        user = TelegramUser(**per_bot_kwargs)
+        user.profile = profile
+        return user
     return _create
 
 

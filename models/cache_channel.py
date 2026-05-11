@@ -1,10 +1,11 @@
 from typing import Optional
 
 from datetime import datetime
-from sqlalchemy import BigInteger, String, Boolean, Text, DateTime, func
+from sqlalchemy import BigInteger, String, Boolean, Text, DateTime, Enum as SAEnum, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from models.base import UUIDBase
+from models.bot import BotType, _enum_values
 
 
 class CacheChannel(UUIDBase):
@@ -18,6 +19,13 @@ class CacheChannel(UUIDBase):
     # Описание / заметки
     description: Mapped[str | None] = mapped_column(Text,nullable=True,comment="Описание или заметки о канале")
     is_active: Mapped[bool] = mapped_column(Boolean,default=True,server_default="1",nullable=False,comment="Используется ли канал для кэширования")
+    # Какому типу ботов принадлежит канал — Media Stream или Media Search.
+    bot_type: Mapped[BotType] = mapped_column(
+        SAEnum(BotType, values_callable=_enum_values, name="bot_type"),
+        default=BotType.MEDIA_STREAM,
+        index=True,
+        nullable=False,
+    )
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True, comment="Когда в последний раз использовали этот канал для загрузки")
 
     def __repr__(self) -> str:

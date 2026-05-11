@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Ingest Jobs - Azar Stream{% endblock %}
+{% block header %}Ingest Jobs{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <div>
+        <h3 class="text-2xl font-bold text-white">Ingest Queue</h3>
+        <p class="text-slate-500 text-sm">Фоновые задачи на пополнение библиотеки</p>
+    </div>
+    <a href="/admin/tracks/ingest" class="btn-primary"><i class="fas fa-plus mr-2 text-xs"></i>New Ingest</a>
+</div>
+
+<div class="table-container">
+    <table class="w-full text-left">
+        <thead>
+            <tr>
+                <th class="table-header">#</th>
+                <th class="table-header">Source</th>
+                <th class="table-header">Status</th>
+                <th class="table-header">Progress</th>
+                <th class="table-header">Created</th>
+                <th class="table-header text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+            {% for j in jobs %}
+            {% set st = j.status.value if j.status.value is defined else j.status %}
+            <tr class="table-row">
+                <td class="px-6 py-3 text-xs text-slate-500">#{{ j.id }}</td>
+                <td class="px-6 py-3 text-xs">
+                    {% set src = j.source_type.value if j.source_type.value is defined else j.source_type %}
+                    <span class="capitalize text-slate-200">{{ src }}</span>
+                    <div class="text-[10px] text-slate-500 truncate max-w-[280px]">{{ j.source_filename or j.source_url or '' }}</div>
+                </td>
+                <td class="px-6 py-3">
+                    {% if st == 'completed' %}<span class="badge badge-success">Completed</span>
+                    {% elif st == 'running' %}<span class="badge badge-primary">Running</span>
+                    {% elif st == 'pending' %}<span class="badge badge-warning">Pending</span>
+                    {% elif st == 'partial' %}<span class="badge badge-warning">Partial</span>
+                    {% else %}<span class="badge badge-danger">Failed</span>{% endif %}
+                </td>
+                <td class="px-6 py-3 text-xs text-slate-300">
+                    {{ j.processed_count }}/{{ j.total_count or '?' }}{% if j.failed_count %} <span class="text-rose-400">·{{ j.failed_count }} failed</span>{% endif %}
+                </td>
+                <td class="px-6 py-3 text-xs text-slate-500">{{ j.created_at.strftime('%d %b %H:%M') if j.created_at else '' }}</td>
+                <td class="px-6 py-3 text-right">
+                    <a href="/admin/tracks/jobs/{{ j.id }}" class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:text-white"><i class="fas fa-eye text-xs"></i></a>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="6" class="px-6 py-12 text-center text-slate-500">No ingest jobs yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

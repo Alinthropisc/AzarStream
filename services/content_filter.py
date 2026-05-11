@@ -1,0 +1,242 @@
+from __future__ import annotations
+
+from urllib.parse import urlparse
+
+NSFW_DOMAINS: frozenset[str] = frozenset(
+    {
+        "pornhub.com",
+        "rt.pornhub.com",
+        "xnxx.com",
+        "xnxx2.com",
+        "xnxx3.com",
+        "xvideos.com",
+        "xvideos2.com",
+        "xvideos3.com",
+        "xvideos.es",
+        "xvideos.red",
+        "noodlemagazine.com",
+        "thisvid.com",
+        "redtube.com",
+        "youporn.com",
+        "tube8.com",
+        "spankbang.com",
+        "spankwire.com",
+        "porn.com",
+        "porntrex.com",
+        "porntube.com",
+        "porn300.com",
+        "porngo.com",
+        "porndoe.com",
+        "ashemaletube.com",
+        "txxx.com",
+        "txxx.tube",
+        "hclips.com",
+        "hqporner.com",
+        "eporner.com",
+        "drtuber.com",
+        "sunporno.com",
+        "extremetube.com",
+        "keezmovies.com",
+        "perfectgirls.net",
+        "tnaflix.com",
+        "empflix.com",
+        "fapality.com",
+        "fapster.xxx",
+        "freeomovie.com",
+        "porntn.com",
+        "vporn.com",
+        "yespornplease.com",
+        "javhd.com",
+        "javhub.net",
+        "javdoe.tv",
+        "javbangers.com",
+        "javynow.com",
+        "javgg.net",
+        "javfinder.li",
+        "missav.com",
+        "xhamster.com",
+        "xhamster1.com",
+        "xhamster2.com",
+        "xhamster3.com",
+        "xhamster.desi",
+        "xhamsterlive.com",
+        "stripchat.com",
+        "chaturbate.com",
+        "bongacams.com",
+        "cam4.com",
+        "myfreecams.com",
+        "livejasmin.com",
+        "camsoda.com",
+        "onlyfans.com",
+        "fansly.com",
+        "manyvids.com",
+        "iwantclips.com",
+        "clips4sale.com",
+        "anysex.com",
+        "beeg.com",
+        "shameless.com",
+        "fuq.com",
+        "tubegalore.com",
+        "alphaporno.com",
+        "porndig.com",
+        "pornone.com",
+        "pornhd.com",
+        "hdzog.com",
+        "upornia.com",
+        "vjav.com",
+        "ahme.com",
+        "tube.com",
+        "ixxx.com",
+        "okxxx.com",
+        "anyporn.com",
+        "voyeurhit.com",
+        "fux.com",
+        "porn00.org",
+        "pornhat.com",
+        "porn7.com",
+        "tubepornclassic.com",
+        "youjizz.com",
+        "yourporn.sexy",
+        "yourlust.com",
+        "shooshtime.com",
+        "tubev.sex",
+        "thumbzilla.com",
+        "tnaflix.com",
+        "rule34.xxx",
+        "rule34video.com",
+        "e-hentai.org",
+        "exhentai.org",
+        "nhentai.net",
+        "hanime.tv",
+        "hentaihaven.xxx",
+        "hentaihaven.org",
+        "hentai-foundry.com",
+        "hentaiera.com",
+        "hentaifox.com",
+        "hentai2read.com",
+        "hentai.tv",
+        "f95zone.to",
+        "kemono.party",
+        "kemono.su",
+        "coomer.party",
+        "coomer.su",
+        "motherless.com",
+        "heavy-r.com",
+        "watchmygf.net",
+        "watchmygf.me",
+        "homemoviestube.com",
+        "ouo.io",
+        "javbus.com",
+        "javlibrary.com",
+        "iwara.tv",
+        "ecchi.iwara.tv",
+        "anonib.al",
+        "thotsbay.com",
+        "thothub.tv",
+        "thothub.lol",
+        "leakhive.com",
+        "leakedzone.com",
+        "fapello.com",
+        "fapello.su",
+        "erome.com",
+        "scrolller.com",
+        "redgifs.com",
+        "gfycat.com",
+        "fikfap.com",
+        "fapdrop.com",
+        "porneq.com",
+        "tubxporn.xxx",
+        "porntop.com",
+        "freeones.com",
+        "metart.com",
+        "femjoy.com",
+        "x-art.com",
+        "naughtyamerica.com",
+        "brazzers.com",
+        "bangbros.com",
+        "realitykings.com",
+        "digitalplayground.com",
+        "mofos.com",
+        "mylf.com",
+        "milfhunter.com",
+        "twistys.com",
+        "nubilefilms.com",
+        "teamskeet.com",
+        "vixen.com",
+        "blacked.com",
+        "tushy.com",
+        "deeper.com",
+        "babes.com",
+        "kink.com",
+        "evilangel.com",
+        "wicked.com",
+        "adulttime.com",
+        "metart.com",
+        "joymii.com",
+        "wowporn.com",
+        "21naturals.com",
+        "21sextury.com",
+        "private.com",
+    }
+)
+
+NSFW_KEYWORDS: tuple[str, ...] = (
+    "porn",
+    "porno",
+    "xxx",
+    "sex",
+    "hentai",
+    "nude",
+    "nudes",
+    "fuck",
+    "milf",
+    "shemale",
+    "tranny",
+    "anal",
+    "incest",
+    "rape",
+    "fetish",
+    "ahegao",
+    "boobs",
+    "tits",
+    "nsfw",
+    "18plus",
+    "adult-only",
+    "ecchi",
+)
+
+
+def _normalize_host(host: str) -> str:
+    host = host.lower().strip()
+    if host.startswith("www."):
+        host = host[4:]
+    return host
+
+
+def is_nsfw_url(url: str) -> bool:
+    if not url:
+        return False
+    try:
+        parsed = urlparse(url if "://" in url else f"http://{url}")
+    except Exception:
+        return False
+
+    host = _normalize_host(parsed.hostname or "")
+    if not host:
+        return False
+
+    if host in NSFW_DOMAINS:
+        return True
+
+    parts = host.split(".")
+    for i in range(len(parts) - 1):
+        candidate = ".".join(parts[i:])
+        if candidate in NSFW_DOMAINS:
+            return True
+
+    sld = parts[-2] if len(parts) >= 2 else host
+    for kw in NSFW_KEYWORDS:
+        if kw in sld:
+            return True
+
+    return False

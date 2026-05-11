@@ -10,11 +10,20 @@ import re
 from app.config import settings
 from app.logging import get_logger
 from database.connection import get_session
-from repositories import BotRepository
-from models import BotStatus
+from repositories import BotRepository, UserRepository
+from models import BotStatus, BotType
 from services import bot_manager
 
 log = get_logger("controller.bots")
+
+
+def _parse_bot_type(raw: str | None) -> BotType | None:
+    if not raw:
+        return None
+    try:
+        return BotType(raw)
+    except ValueError:
+        return None
 
 
 class BotController(Controller):
@@ -22,17 +31,30 @@ class BotController(Controller):
     dependencies = {"session": Provide(get_session)}
 
     @get("/", name="bots:list")
-    async def list_bots(self, session: AsyncSession) -> Template:
+    async def list_bots(self, session: AsyncSession, type: str | None = None) -> Template:
         repo = BotRepository(session)
-        bots = await repo.get_all(order_by="created_at")
+        filters: dict = {}
+        bot_type = _parse_bot_type(type)
+        if bot_type is not None:
+            filters["bot_type"] = bot_type
+        bots = await repo.get_all(order_by="created_at", **filters)
+
+        user_repo = UserRepository(session)
+        for bot in bots:
+            bot.total_users = await user_repo.count_active_in_bot(bot.bot_id)
+
         return Template(
             template_name="admin/bots/list.html",
-            context={"bots": bots}
+            context={"bots": bots, "bot_type": bot_type.value if bot_type else None},
         )
 
     @get("/create", name="bots:create_form")
-    async def create_form(self) -> Template:
-        return Template(template_name="admin/bots/create.html")
+    async def create_form(self, type: str | None = None) -> Template:
+        bot_type = _parse_bot_type(type) or BotType.MEDIA_STREAM
+        return Template(
+            template_name="admin/bots/create.html",
+            context={"selected_bot_type": bot_type.value},
+        )
 
     @post("/create", name="bots:create")
     async def create_bot(
@@ -46,6 +68,7 @@ class BotController(Controller):
         name = data.get("name", "").strip()
         description = data.get("description", "").strip() or None
         status = data.get("status", BotStatus.ACTIVE)
+        bot_type = _parse_bot_type(data.get("bot_type")) or BotType.MEDIA_STREAM
         is_webhook = data.get("is_webhook") == "true"
         webhook_url = data.get("webhook_url", "").strip() or None
         webhook_secret = data.get("webhook_secret", "").strip() or None
@@ -77,6 +100,7 @@ class BotController(Controller):
             name=name or bot_info.first_name,
             description=description,
             status=status,
+            bot_type=bot_type,
             is_webhook=is_webhook,
             webhook_url=webhook_url,
             webhook_secret=webhook_secret,

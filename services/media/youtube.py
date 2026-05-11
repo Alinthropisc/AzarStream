@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import asyncio, os, re, shutil, tempfile, yt_dlp, concurrent.futures,json, sys, subprocess
+import asyncio, atexit, os, re, shutil, tempfile, yt_dlp, concurrent.futures,json, sys, subprocess
 import datetime
 
 from concurrent.futures import ThreadPoolExecutor
@@ -322,9 +322,12 @@ class YouTubeDownloader(BaseDownloader):
         self.has_ffmpeg = shutil.which("ffmpeg") is not None
         log.info("YouTube downloader ready", aria2c=self.has_aria2c, ffmpeg=self.has_ffmpeg)
 
+        self._purge_stale_runtime_cookiefiles()
         self._cookies_path = self._find_cookies_path()
         self._runtime_cookiefile = self._build_runtime_cookiefile(self._cookies_path)
         self._prefer_cookies = self._runtime_cookiefile is not None
+        if self._runtime_cookiefile:
+            atexit.register(self._cleanup_runtime_cookiefile)
 
         if self._cookies_path:
             log.info("YouTube cookies found", path=str(self._cookies_path))
@@ -445,6 +448,25 @@ class YouTubeDownloader(BaseDownloader):
 
     def _get_cookies_path(self) -> Path | None:
         return self._runtime_cookiefile or self._cookies_path
+
+    def _purge_stale_runtime_cookiefiles(self) -> None:
+        try:
+            for stale in Path(self.temp_dir).glob("youtube-cookies-*.txt"):
+                try:
+                    stale.unlink()
+                except OSError:
+                    pass
+        except OSError:
+            pass
+
+    def _cleanup_runtime_cookiefile(self) -> None:
+        path = getattr(self, "_runtime_cookiefile", None)
+        if not path:
+            return
+        try:
+            Path(path).unlink(missing_ok=True)
+        except OSError:
+            pass
 
     def _build_runtime_cookiefile(self, source: Path | None) -> Path | None:
         if not source or not source.exists():

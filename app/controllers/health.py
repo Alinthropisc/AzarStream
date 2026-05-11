@@ -1,5 +1,6 @@
 from litestar import Controller, get
 from litestar.response import Response
+from sqlalchemy import text
 
 from database.connection import db
 from services import cache
@@ -19,7 +20,7 @@ class HealthController(Controller):
 
         try:
             async with db.session() as session:
-                await session.execute("SELECT 1")
+                await session.execute(text("SELECT 1"))
                 status["database"] = True
         except:
             status["status"] = "unhealthy"

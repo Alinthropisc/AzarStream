@@ -26,7 +26,9 @@ from services import (
 from services.user import UserService
 from services.subscription import subscription_service
 from services.ad_formatting import prepare_telegram_html, prepare_telegram_compat_html, strip_telegram_markup
-from models import Bot as BotModel, DownloadStatus, MediaSource
+from services.content_filter import is_nsfw_url
+from models import Bot as BotModel, BotType, DownloadStatus, MediaSource
+from bot import search_handler
 
 log = get_logger("bot.processor")
 
@@ -42,6 +44,7 @@ class ProcessingContext:
     chat_id: int
     language: str = "en"
     is_new_user: bool = False  # True если пользователь впервые нажал /start
+    needs_language_pick: bool = False  # True пока пользователь не выбрал язык явно
 
 
 class UpdateProcessor:
@@ -73,61 +76,6 @@ class UpdateProcessor:
             r"(?:https?://)?pin\.it",
         ],
     }
-
-    # Запрет 18+ / NSFW контента — каналы кеша могут быть забанены за такой материал.
-    ADULT_DOMAINS = (
-        "pornhub.com",
-        "xnxx.com",
-        "xvideos.com",
-        "xvideos2.com",
-        "xvideos.red",
-        "thisvid.com",
-        "redtube.com",
-        "youporn.com",
-        "tube8.com",
-        "spankbang.com",
-        "xhamster.com",
-        "xhamsterlive.com",
-        "porn.com",
-        "porntrex.com",
-        "porn300.com",
-        "eporner.com",
-        "tnaflix.com",
-        "beeg.com",
-        "brazzers.com",
-        "bangbros.com",
-        "naughtyamerica.com",
-        "manyvids.com",
-        "chaturbate.com",
-        "stripchat.com",
-        "cam4.com",
-        "onlyfans.com",
-        "fansly.com",
-        "rule34.xxx",
-        "rule34video.com",
-        "e-hentai.org",
-        "nhentai.net",
-        "hanime.tv",
-        "hentaihaven.xxx",
-    )
-
-    @classmethod
-    def _is_adult_url(cls, url: str) -> bool:
-        from urllib.parse import urlparse
-
-        candidate = url.strip().lower()
-        if not candidate.startswith(("http://", "https://")):
-            candidate = "http://" + candidate
-        try:
-            host = urlparse(candidate).hostname or ""
-        except ValueError:
-            return False
-        if not host:
-            return False
-        for domain in cls.ADULT_DOMAINS:
-            if host == domain or host.endswith("." + domain):
-                return True
-        return False
 
     def __init__(self):
         # Кеш каналов для проверки подписки (bot_id -> channels, time)
@@ -229,6 +177,7 @@ class UpdateProcessor:
                 is_new_user = existing_user is None
                 db_user = await user_service.get_or_create_fast(user, bot_model.bot_id)
                 language = db_user.language
+                needs_language_pick = not db_user.language_selected
 
             # Создаём контекст
             ctx = ProcessingContext(
@@ -239,6 +188,7 @@ class UpdateProcessor:
                 chat_id=chat_id,
                 language=language,
                 is_new_user=is_new_user,
+                needs_language_pick=needs_language_pick,
             )
 
             # Роутинг
@@ -286,6 +236,43 @@ class UpdateProcessor:
             text=text[:100] if text else "(empty)",
         )
 
+        # Media Search бот — другая ветка
+        if getattr(ctx.bot_model, "bot_type", None) == BotType.MEDIA_SEARCH:
+            if text == "/start":
+                # Показываем выбор языка, пока он не выбран ЯВНО (новые + старые,
+                # которые ещё ни разу не нажимали кнопку языка).
+                if ctx.needs_language_pick:
+                    from i18n.lang import MESSAGES as _M
+                    from bot.keyboards import get_language_keyboard
+                    welcome = _M["search_welcome"].get(ctx.language, _M["search_welcome"]["en"])
+                    lang_prompt = _M["lang_prompt"].get(ctx.language, _M["lang_prompt"]["en"])
+                    await ctx.bot.send_message(
+                        ctx.chat_id,
+                        f"{welcome}\n\n{lang_prompt}",
+                        reply_markup=get_language_keyboard(),
+                        reply_to_message_id=message.message_id,
+                        parse_mode="HTML",
+                    )
+                else:
+                    await search_handler.handle_welcome(
+                        ctx.bot, ctx.chat_id, language=ctx.language,
+                        reply_to=message.message_id,
+                    )
+                return True
+            if text == "/lang":
+                return await self._handle_lang_command(ctx, message)
+            if not text.strip():
+                return True
+            await search_handler.handle_query(
+                ctx.bot,
+                chat_id=ctx.chat_id,
+                bot_id=ctx.bot_model.bot_id,
+                user_id=ctx.user_id,
+                query=text,
+                language=ctx.language,
+            )
+            return True
+
         # Команда /start
         if text == "/start":
             log.info("🚀 Handling /start command")
@@ -308,6 +295,49 @@ class UpdateProcessor:
     async def _handle_callback(self, ctx: ProcessingContext, callback: CallbackQuery) -> bool:
         """Обработка callback query"""
         data = callback.data or ""
+
+        # Media Search callbacks
+        if data == "noop":
+            await ctx.bot.answer_callback_query(callback.id)
+            return True
+        if data.startswith("sq:"):
+            try:
+                _, sq_id_str, page_str = data.split(":", 2)
+                await search_handler.handle_pagination(
+                    ctx.bot, callback, int(sq_id_str), int(page_str), language=ctx.language,
+                )
+            except Exception:
+                await ctx.bot.answer_callback_query(callback.id)
+            return True
+        if data.startswith("t:"):
+            try:
+                _, tid_str = data.split(":", 1)
+                delivered = await search_handler.handle_play(
+                    ctx.bot,
+                    callback,
+                    int(tid_str),
+                    language=ctx.language,
+                    bot_username=ctx.bot_model.username,
+                )
+                if delivered:
+                    await self._bump_bot_hits(ctx)
+                    await self._send_post_download_ad(ctx)
+            except Exception:
+                await ctx.bot.answer_callback_query(callback.id)
+            return True
+        if data.startswith("tv:"):
+            try:
+                _, tid_str, val_str = data.split(":", 2)
+                await search_handler.handle_vote(
+                    ctx.bot,
+                    callback,
+                    int(tid_str),
+                    int(val_str),
+                    language=ctx.language,
+                )
+            except Exception:
+                await ctx.bot.answer_callback_query(callback.id)
+            return True
 
         # Выбор языка
         if data.startswith("set_language:"):
@@ -342,8 +372,8 @@ class UpdateProcessor:
             is_new_user=ctx.is_new_user,
         )
 
-        if ctx.is_new_user:
-            # Новый пользователь — показываем выбор языка
+        if ctx.needs_language_pick:
+            # Язык не выбран явно — показываем picker
             text = MESSAGES["start"].get(ctx.language, MESSAGES["start"]["en"])
             lang_prompt = MESSAGES["lang_prompt"].get(ctx.language, MESSAGES["lang_prompt"]["en"])
             full_text = f"{text}\n\n{lang_prompt}"
@@ -392,8 +422,15 @@ class UpdateProcessor:
         answer_text = MESSAGES["lang_changed"].get(language, MESSAGES["lang_changed"]["en"])
         await ctx.bot.answer_callback_query(callback.id, answer_text)
 
-        text = MESSAGES["start"].get(language, MESSAGES["start"]["en"])
-        await ctx.bot.edit_message_text(text, chat_id=callback.message.chat.id, message_id=callback.message.message_id)
+        # Для Media Search показываем search-welcome, иначе обычный start
+        if getattr(ctx.bot_model, "bot_type", None) == BotType.MEDIA_SEARCH:
+            text = MESSAGES["search_welcome"].get(language, MESSAGES["search_welcome"]["en"])
+        else:
+            text = MESSAGES["start"].get(language, MESSAGES["start"]["en"])
+        await ctx.bot.edit_message_text(
+            text, chat_id=callback.message.chat.id,
+            message_id=callback.message.message_id, parse_mode="HTML",
+        )
 
         return True
 
@@ -401,11 +438,19 @@ class UpdateProcessor:
         """Обработка URL — с очередью для пользователя"""
         from i18n.lang import MESSAGES
 
-        # Запрет 18+ контента — проверяем до определения платформы и до постановки в очередь.
-        if self._is_adult_url(url):
-            text = MESSAGES["adult_content_blocked"].get(ctx.language, MESSAGES["adult_content_blocked"]["en"])
-            await ctx.bot.send_message(ctx.chat_id, text, reply_to_message_id=message.message_id)
-            log.warning("🚫 Adult URL blocked", user_id=ctx.user_id, url=url[:100])
+        if is_nsfw_url(url):
+            log.warning(
+                "🚫 NSFW link blocked",
+                user_id=ctx.user_id,
+                url=url[:120],
+            )
+            text = MESSAGES["nsfw_blocked"].get(ctx.language, MESSAGES["nsfw_blocked"]["en"])
+            await ctx.bot.send_message(
+                ctx.chat_id,
+                text,
+                reply_to_message_id=message.message_id,
+                parse_mode="HTML",
+            )
             return True
 
         # Определяем платформу заранее для передачи в проверку подписки
@@ -1357,6 +1402,18 @@ class UpdateProcessor:
                     )
 
 
+    async def _bump_bot_hits(self, ctx: ProcessingContext) -> None:
+        """Инкрементировать bot.total_downloads (для Media Search — нет Download-записи)."""
+        try:
+            async with UnitOfWork() as uow:
+                db_bot = await uow.bots.get_by_id(ctx.bot_model.id)
+                if db_bot:
+                    db_bot.total_downloads = (db_bot.total_downloads or 0) + 1
+                    uow.session.add(db_bot)
+                    await uow.commit()
+        except Exception as e:
+            log.warning("Failed to bump bot hits", error=str(e))
+
     async def _save_download_record(self, ctx: ProcessingContext, request: DownloadRequest, result) -> None:
         """Save a download record to the database for statistics."""
         from models import Download
@@ -1390,9 +1447,8 @@ class UpdateProcessor:
                 )
                 uow.session.add(download)
 
-                # Increment user's total_downloads counter
-                db_user.total_downloads = (db_user.total_downloads or 0) + 1
-                uow.session.add(db_user)
+                # Increment user's total_downloads counter (global profile)
+                await uow.users.increment_downloads(db_user.id)
 
                 # Real-time bump on the bot itself, чтобы admin Activity не ждал
                 # суточный пересчёт от воркера.
@@ -1402,7 +1458,7 @@ class UpdateProcessor:
                     uow.session.add(db_bot)
 
                 await uow.commit()
-                log.debug("Download record saved", user_id=db_user.id, total_downloads=db_user.total_downloads)
+                log.debug("Download record saved", user_id=db_user.id)
         except Exception as e:
             log.warning("Failed to save download record", error=str(e))
 

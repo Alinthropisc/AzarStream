@@ -5,6 +5,7 @@ from uuid import UUID
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from models.bot import BotType
 from models.cache_channel import CacheChannel
 from repositories.cache_channel import CacheChannelRepository
 from services.cache import cache as redis_cache
@@ -21,6 +22,7 @@ class CreateCacheChannelDTO:
     username: str | None = None
     description: str | None = None
     is_active: bool = True
+    bot_type: BotType = BotType.MEDIA_STREAM
 
 
 @dataclass(frozen=True, slots=True)
@@ -69,7 +71,7 @@ class CacheChannelService:
             existing_by_username = await self._repo.get_by_username(username)
             if existing_by_username is not None:
                 raise CacheChannelAlreadyExistsError(f"Канал с username=@{username} уже зарегистрирован")
-        channel = await self._repo.create(name=dto.name,telegram_id=dto.telegram_id,username=username,description=dto.description,is_active=dto.is_active)
+        channel = await self._repo.create(name=dto.name,telegram_id=dto.telegram_id,username=username,description=dto.description,is_active=dto.is_active,bot_type=dto.bot_type)
         log.info("Cache channel created",channel_id=str(channel.id),telegram_id=dto.telegram_id,name=dto.name)
         return channel
 
@@ -95,17 +97,19 @@ class CacheChannelService:
             raise NoCacheChannelAvailableError("Нет активных кэш-каналов. Добавьте канал через /admin cache_channel add")
         return channel
 
-    async def get_next_active_channel(self) -> CacheChannel:
+    async def get_next_active_channel(self, bot_type: BotType | None = None) -> CacheChannel:
         """
         Get the next available cache channel using Least Recently Used (LRU) strategy.
+        Optionally filter by bot_type (Media Stream / Media Search pool).
         """
-        # We order by last_used_at (NULLs first) and then by created_at
         stmt = (
             select(CacheChannel)
             .where(CacheChannel.is_active == True)
             .order_by(CacheChannel.last_used_at.is_(None).desc(), CacheChannel.last_used_at.asc(), CacheChannel.created_at.asc())
             .limit(1)
         )
+        if bot_type is not None:
+            stmt = stmt.where(CacheChannel.bot_type == bot_type)
         result = await self._session.execute(stmt)
         channel = result.scalar_one_or_none()
 
@@ -119,16 +123,28 @@ class CacheChannelService:
 
         return channel
 
-    async def list_all(self,only_active: bool = False,offset: int = 0,limit: int = 50) -> list[CacheChannel]:
+    async def list_all(
+        self,
+        only_active: bool = False,
+        offset: int = 0,
+        limit: int = 50,
+        bot_type: BotType | None = None,
+    ) -> list[CacheChannel]:
+        filters: dict = {}
+        if bot_type is not None:
+            filters["bot_type"] = bot_type
         if only_active:
-            return await self._repo.get_all_active()
-        channels = await self._repo.get_all(offset=offset,limit=limit,order_by="created_at",desc=False)
+            filters["is_active"] = True
+        channels = await self._repo.get_all(
+            offset=offset, limit=limit, order_by="created_at", desc=False, **filters
+        )
         return list(channels)
 
 
-    async def update(self,channel_id: UUID,dto: UpdateCacheChannelDTO) -> CacheChannel:
+    async def update(self, channel_id: UUID, dto: UpdateCacheChannelDTO) -> CacheChannel:
         # Убедимся что канал существует
         channel = await self.get_by_id(channel_id)
+        channel_id_str = str(channel_id)
         # Подготовка данных для обновления
         updates: dict = {}
 
@@ -151,22 +167,24 @@ class CacheChannelService:
             updates["username"] = new_username
 
         if not updates:
-            log.debug("Nothing to update", channel_id=str(channel_id))
+            log.debug("Nothing to update", channel_id=channel_id_str)
             return channel
 
-        updated = await self._repo.update(channel_id, **updates)
-        log.info("Cache channel updated", channel_id=str(channel_id), fields=list(updates.keys()))
+        updated = await self._repo.update(channel_id_str, **updates)
+        log.info("Cache channel updated", channel_id=channel_id_str, fields=list(updates.keys()))
         return updated  # type: ignore[return-value]
 
     async def toggle_active(self, channel_id: UUID) -> CacheChannel:
         channel = await self.get_by_id(channel_id)
         new_state = not channel.is_active
-        return await self.update(channel_id,UpdateCacheChannelDTO(is_active=new_state))
+        return await self.update(channel_id, UpdateCacheChannelDTO(is_active=new_state))
 
 
     async def delete(self, channel_id: UUID) -> None:
         await self.get_by_id(channel_id)
-        await self._repo.delete(channel_id)
+        # CacheChannel.id хранится как String(36) — приводим UUID к строке,
+        # иначе DELETE … WHERE id = ? с UUID-параметром не находит запись.
+        await self._repo.delete(str(channel_id))
         log.info("Cache channel deleted", channel_id=str(channel_id))
 
     async def delete_by_telegram_id(self, telegram_id: int) -> None:

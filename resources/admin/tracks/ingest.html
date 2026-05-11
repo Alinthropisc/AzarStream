@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Ingest Tracks - Azar Stream{% endblock %}
+{% block header %}Ingest Tracks{% endblock %}
+
+{% block content %}
+<div class="w-full">
+    <div class="mb-8">
+        <a href="/admin/tracks" class="text-slate-500 hover:text-white text-sm"><i class="fas fa-arrow-left mr-2"></i>Back to Library</a>
+    </div>
+
+    <div class="card">
+        <div class="flex items-center space-x-4 mb-8">
+            <div class="w-12 h-12 bg-violet-500/10 rounded-2xl flex items-center justify-center border border-violet-500/20">
+                <i class="fas fa-music text-violet-300 text-xl"></i>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white">Add to Music Library</h3>
+                <p class="text-slate-500 text-sm">Из YouTube / SoundCloud качается mp3 max-quality. Можно и просто mp3-файл загрузить.</p>
+            </div>
+        </div>
+
+        <form action="/admin/tracks/ingest" method="post" enctype="multipart/form-data" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Playlist / Track URL</label>
+                <input type="url" name="url" class="input-field" placeholder="https://www.youtube.com/playlist?list=... или https://soundcloud.com/...">
+                <p class="mt-1 text-[10px] text-slate-500 uppercase tracking-wider font-semibold">YouTube / SoundCloud · ссылка на трек или плейлист</p>
+            </div>
+
+            <div class="text-center text-xs text-slate-500 uppercase tracking-widest">— или —</div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Upload Audio File</label>
+                <input type="file" name="file" accept="audio/*" class="input-field py-2">
+                <p class="mt-1 text-[10px] text-slate-500 uppercase tracking-wider font-semibold">mp3, m4a, ogg ... — заголовок и автор берутся из тегов</p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Target Cache Channel</label>
+                <select name="target_cache_channel_id" class="input-field">
+                    <option value="">Авто (LRU из активных Media Search)</option>
+                    {% for ch in channels %}
+                    <option value="{{ ch.id }}">{{ ch.name }} ({{ ch.telegram_id }})</option>
+                    {% endfor %}
+                </select>
+                {% if not channels %}
+                <p class="mt-2 text-xs text-rose-400">⚠️ Нет активных Media Search кеш-каналов. Сначала <a href="/admin/cache_channels/create?type=media_search" class="underline">добавь</a>.</p>
+                {% endif %}
+            </div>
+
+            <div class="pt-6 border-t border-white/5 flex justify-end space-x-3">
+                <a href="/admin/tracks" class="btn-secondary">Cancel</a>
+                <button type="submit" class="btn-primary"><i class="fas fa-rocket mr-2 text-xs"></i>Start Ingest</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-8 p-6 bg-violet-500/5 border border-violet-500/10 rounded-3xl">
+        <h4 class="text-sm font-bold text-white mb-2">Как это работает?</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">Задача уходит в фоновый ARQ-воркер. yt-dlp качает аудио, конвертирует в mp3 (best), отправляет в выбранный кеш-канал, локальный файл удаляется. Прогресс — в <a href="/admin/tracks/jobs" class="text-violet-300 underline">Ingest Jobs</a>.</p>
+    </div>
+</div>
+{% endblock %}
