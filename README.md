@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📥 MediaFlow
+# 📥 Azar Stream
 ### Advanced Multi-Platform Telegram Bot Manager & Downloader
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)](https://python.org)
